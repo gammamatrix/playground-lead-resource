@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
-        "docs": "npx swagger-cli validate docs/resource.yml && npx swagger-cli bundle docs/resource.yml --type json --outfile swagger.json",
+        "docs": "npx swagger-cli validate docs/api.yml && npx swagger-cli bundle docs/api.yml --type json --outfile swagger.json",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
