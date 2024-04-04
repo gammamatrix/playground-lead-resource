@@ -1,0 +1,435 @@
+Campaign Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\CampaignRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Command (Tests\Feature\Playground\Lead\Resource\Console\Commands\About\Command)
+ [x] Command about displays package information and succeed with code 0
+
+Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\CreateRequest)
+ [x] Request instance
+
+Goal Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\GoalRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Instance (Tests\Unit\Playground\Lead\Resource\Http\Requests\FormRequest\Instance)
+ [x] FormRequest authorize without user
+ [x] RULES is empty by default
+ [x] UserHasAdminPrivileges without user
+ [x] UserHasAdminPrivileges with admin
+ [x] UserHasAdminPrivileges with default laravel user
+
+Instance (Tests\Unit\Playground\Lead\Resource\ServiceProvider\Instance)
+ [x] Version matches
+ [x] SetPolicies with empty array
+ [x] SetPolicies with invalid model
+ [x] SetPolicies with invalid policy
+
+Lead Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\LeadRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Opportunity Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\OpportunityRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Plan Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\PlanRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Policy (Tests\Unit\Playground\Lead\Resource\Policies\CampaignPolicy\Policy)
+ [x] Policy instance
+
+Region Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\RegionRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Report Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\ReportRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Source Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\SourceRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\StoreRequest)
+ [x] Request instance
+
+Task Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TaskRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Team Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeamRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Teammate Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeammateRoute)
+ [x] Json guest cannot see info
+ [x] Json guest cannot destroy
+ [x] Json guest cannot restore
+ [x] Json guest cannot get index
+ [x] Json guest cannot lock
+ [x] Json guest cannot unlock
+ [x] Json guest cannot get create info
+ [x] Json guest cannot get edit info
+ [x] Json guest cannot store
+ [x] Json guest cannot update
+ [x] Json admin can get index
+ [x] Json show info for admin
+ [x] Json admin can get create info
+ [x] Json admin can get edit info
+ [x] Json destroy as admin and succeed
+ [x] Json restore as admin and succeed
+ [x] Json update as admin without payload and fail validation
+ [x] Json lock as admin and succeed
+ [x] Json store as admin without payload and fail validation
+ [x] Json unlock as admin and succeed
+ [x] Json get create info as admin with invalid parameter and fail validation
+ [x] Json admin can get index with filters
+ [x] Json edit as admin and fail validation with invalid parameter
+ [x] Json admin can update
+ [x] Json store as admin and succeed
+ [x] Json lock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with force delete
+ [x] Json restore as admin and succeed with no redirect
+ [x] Json unlock as admin and succeed with no redirect
+ [x] Json destroy as admin and succeed with no content
+ [x] Json lock as user and get denied
+ [x] Json restore as user and get denied
+ [x] Json unlock as user and get denied
+ [x] Json destroy as admin and succeed and ignore redirect
+ [x] Json destroy as user and get denied and no force delete allowed
+
+Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\UpdateRequest)
+ [x] Request instance
+

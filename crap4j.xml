@@ -1,0 +1,1863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<crap_result>
+  <project/>
+  <timestamp>2024-04-04 18:02:23</timestamp>
+  <stats>
+    <name>Method Crap Stats</name>
+    <methodCount>168</methodCount>
+    <crapMethodCount>0</crapMethodCount>
+    <crapLoad>0</crapLoad>
+    <totalCrap>814.33</totalCrap>
+    <crapMethodPercent>0</crapMethodPercent>
+  </stats>
+  <methods>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Campaign\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Campaign|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Campaign\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Campaign|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Campaign|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Campaign|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Campaign\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\CampaignCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Campaign\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\CampaignCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Campaign\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Campaign\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\CampaignController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Campaign $campaign, Playground\Lead\Resource\Http\Requests\Campaign\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Campaign</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\Controller</className>
+      <methodName>getViewPath</methodName>
+      <methodSignature>getViewPath(string $controller, string $view): string</methodSignature>
+      <fullMethod>getViewPath(string $controller, string $view): string</fullMethod>
+      <crap>20</crap>
+      <complexity>4</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Goal\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Goal|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Goal\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Goal|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Goal|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Goal|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Goal\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\GoalCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Goal\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\GoalCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Goal\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Goal\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\GoalController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Goal $goal, Playground\Lead\Resource\Http\Requests\Goal\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Goal</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\IndexController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(): Illuminate\View\View</methodSignature>
+      <fullMethod>index(): Illuminate\View\View</fullMethod>
+      <crap>2</crap>
+      <complexity>1</complexity>
+      <coverage>0</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Lead\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Lead|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Lead\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Lead|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Lead|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Lead|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Lead\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\LeadCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Lead\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\LeadCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Lead\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Lead\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\LeadController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Lead $lead, Playground\Lead\Resource\Http\Requests\Lead\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Lead</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Opportunity\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Opportunity|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Opportunity\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Opportunity|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Opportunity|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Opportunity|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Opportunity\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\OpportunityCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Opportunity\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\OpportunityCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Opportunity\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Opportunity\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\OpportunityController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Opportunity $opportunity, Playground\Lead\Resource\Http\Requests\Opportunity\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Opportunity</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Plan\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Plan|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Plan\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Plan|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Plan|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Plan|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Plan\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\PlanCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Plan\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\PlanCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Plan\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Plan\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\PlanController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Plan $plan, Playground\Lead\Resource\Http\Requests\Plan\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Plan</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Region\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Region|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Region\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Region|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Region|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Region|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Region\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\RegionCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Region\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\RegionCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Region\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Region\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\RegionController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Region $region, Playground\Lead\Resource\Http\Requests\Region\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Region</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Report\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Report|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Report\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Report|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Report|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Report|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Report\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\ReportCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Report\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\ReportCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Report\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Report\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\ReportController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Report $report, Playground\Lead\Resource\Http\Requests\Report\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Report</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Source\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Source|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Source\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Source|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Source|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Source|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Source\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\SourceCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Source\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\SourceCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Source\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Source\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\SourceController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Source $source, Playground\Lead\Resource\Http\Requests\Source\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Source</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Task\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Task|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Task\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Task|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Task|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Task|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Task\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TaskCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Task\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TaskCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Task\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Task\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TaskController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Task $task, Playground\Lead\Resource\Http\Requests\Task\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Task</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Team\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Team|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Team\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Team|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Team|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Team|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Team\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TeamCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Team\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TeamCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Team\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Team\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeamController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Team $team, Playground\Lead\Resource\Http\Requests\Team\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Team</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>create</methodName>
+      <methodSignature>create(Playground\Lead\Resource\Http\Requests\Teammate\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Teammate|\Illuminate\View\View</methodSignature>
+      <fullMethod>create(Playground\Lead\Resource\Http\Requests\Teammate\CreateRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Teammate|\Illuminate\View\View</fullMethod>
+      <crap>7.23</crap>
+      <complexity>3</complexity>
+      <coverage>22.22</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>edit</methodName>
+      <methodSignature>edit(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Teammate|\Illuminate\View\View</methodSignature>
+      <fullMethod>edit(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\EditRequest $request): \Illuminate\Http\JsonResponse|\Playground\Lead\Resource\Http\Resources\Teammate|\Illuminate\View\View</fullMethod>
+      <crap>8.67</crap>
+      <complexity>3</complexity>
+      <coverage>14.29</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>destroy</methodName>
+      <methodSignature>destroy(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</methodSignature>
+      <fullMethod>destroy(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\DestroyRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse</fullMethod>
+      <crap>6.6</crap>
+      <complexity>5</complexity>
+      <coverage>60</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>lock</methodName>
+      <methodSignature>lock(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>lock(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\LockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>index</methodName>
+      <methodSignature>index(Playground\Lead\Resource\Http\Requests\Teammate\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TeammateCollection</methodSignature>
+      <fullMethod>index(Playground\Lead\Resource\Http\Requests\Teammate\IndexRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\TeammateCollection</fullMethod>
+      <crap>8.45</crap>
+      <complexity>6</complexity>
+      <coverage>59.18</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>restore</methodName>
+      <methodSignature>restore(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>restore(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\RestoreRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>4.77</crap>
+      <complexity>4</complexity>
+      <coverage>63.64</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>show</methodName>
+      <methodSignature>show(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>show(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\ShowRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\View\View|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>4.25</crap>
+      <complexity>2</complexity>
+      <coverage>17.39</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>store</methodName>
+      <methodSignature>store(Playground\Lead\Resource\Http\Requests\Teammate\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>store(Playground\Lead\Resource\Http\Requests\Teammate\StoreRequest $request): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>4.47</crap>
+      <complexity>4</complexity>
+      <coverage>69.23</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>unlock</methodName>
+      <methodSignature>unlock(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>unlock(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\UnlockRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>5.5</crap>
+      <complexity>4</complexity>
+      <coverage>54.55</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Controllers</package>
+      <className>Playground\Lead\Resource\Http\Controllers\TeammateController</className>
+      <methodName>update</methodName>
+      <methodSignature>update(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</methodSignature>
+      <fullMethod>update(Playground\Lead\Models\Teammate $teammate, Playground\Lead\Resource\Http\Requests\Teammate\UpdateRequest $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Playground\Lead\Resource\Http\Resources\Teammate</fullMethod>
+      <crap>4.59</crap>
+      <complexity>4</complexity>
+      <coverage>66.67</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\DestroyRequest</className>
+      <methodName>rules</methodName>
+      <methodSignature>rules(): array</methodSignature>
+      <fullMethod>rules(): array</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\FormRequest</className>
+      <methodName>authorize</methodName>
+      <methodSignature>authorize(): bool</methodSignature>
+      <fullMethod>authorize(): bool</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\FormRequest</className>
+      <methodName>rules</methodName>
+      <methodSignature>rules(): array</methodSignature>
+      <fullMethod>rules(): array</fullMethod>
+      <crap>2</crap>
+      <complexity>2</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\FormRequest</className>
+      <methodName>failedValidation</methodName>
+      <methodSignature>failedValidation(Illuminate\Contracts\Validation\Validator $validator)</methodSignature>
+      <fullMethod>failedValidation(Illuminate\Contracts\Validation\Validator $validator)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\FormRequest</className>
+      <methodName>userHasAdminPrivileges</methodName>
+      <methodSignature>userHasAdminPrivileges(Illuminate\Contracts\Auth\Authenticatable $user): bool</methodSignature>
+      <fullMethod>userHasAdminPrivileges(Illuminate\Contracts\Auth\Authenticatable $user): bool</fullMethod>
+      <crap>3</crap>
+      <complexity>3</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Requests</package>
+      <className>Playground\Lead\Resource\Http\Requests\StoreRequest</className>
+      <methodName>prepareForValidation</methodName>
+      <methodSignature>prepareForValidation()</methodSignature>
+      <fullMethod>prepareForValidation()</fullMethod>
+      <crap>17</crap>
+      <complexity>17</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Campaign</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Campaign</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\CampaignCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\CampaignCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Goal</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Goal</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\GoalCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\GoalCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Lead</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Lead</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\LeadCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\LeadCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Opportunity</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Opportunity</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\OpportunityCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\OpportunityCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Plan</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Plan</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\PlanCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\PlanCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Region</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Region</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\RegionCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\RegionCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Report</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Report</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\ReportCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\ReportCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Source</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Source</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\SourceCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\SourceCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Task</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Task</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TaskCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TaskCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Team</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Team</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TeamCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TeamCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Teammate</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\Teammate</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TeammateCollection</className>
+      <methodName>toArray</methodName>
+      <methodSignature>toArray(Illuminate\Http\Request $request)</methodSignature>
+      <fullMethod>toArray(Illuminate\Http\Request $request)</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource\Http\Resources</package>
+      <className>Playground\Lead\Resource\Http\Resources\TeammateCollection</className>
+      <methodName>with</methodName>
+      <methodSignature>with(Illuminate\Http\Request $request): array</methodSignature>
+      <fullMethod>with(Illuminate\Http\Request $request): array</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>boot</methodName>
+      <methodSignature>boot(): void</methodSignature>
+      <fullMethod>boot(): void</fullMethod>
+      <crap>11</crap>
+      <complexity>11</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>register</methodName>
+      <methodSignature>register(): void</methodSignature>
+      <fullMethod>register(): void</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>setPolicies</methodName>
+      <methodSignature>setPolicies(array $policies): void</methodSignature>
+      <fullMethod>setPolicies(array $policies): void</fullMethod>
+      <crap>10</crap>
+      <complexity>10</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>routes</methodName>
+      <methodSignature>routes(array $config): void</methodSignature>
+      <fullMethod>routes(array $config): void</fullMethod>
+      <crap>12</crap>
+      <complexity>12</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>about</methodName>
+      <methodSignature>about(): void</methodSignature>
+      <fullMethod>about(): void</fullMethod>
+      <crap>26</crap>
+      <complexity>26</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+    <method>
+      <package>Playground\Lead\Resource</package>
+      <className>Playground\Lead\Resource\ServiceProvider</className>
+      <methodName>version</methodName>
+      <methodSignature>version(): string</methodSignature>
+      <fullMethod>version(): string</fullMethod>
+      <crap>1</crap>
+      <complexity>1</complexity>
+      <coverage>100</coverage>
+      <crapLoad>0</crapLoad>
+    </method>
+  </methods>
+</crap_result>

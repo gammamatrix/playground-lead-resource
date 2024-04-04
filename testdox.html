@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-family: Source SansSerif Pro, Arial, sans-serif;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2rem;
+                background-color: #fff;
+                color: #000;
+            }
+
+            body > ul > li {
+                font-size: larger;
+            }
+
+            h2 {
+                font-size: larger;
+                text-decoration-line: underline;
+                text-decoration-thickness: 2px;
+                margin: 0;
+                padding: 0.5rem 0;
+            }
+
+            ul {
+                list-style: none;
+                margin: 0 0 2rem;
+                padding: 0 0 0 1rem;
+                text-indent: -1rem;
+            }
+
+            .success:before {
+                color: #4e9a06;
+                content: '✓';
+                padding-right: 0.5rem;
+            }
+
+            .defect {
+                color: #a40000;
+            }
+
+            .defect:before {
+                color: #a40000;
+                content: '✗';
+                padding-right: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Campaign Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\CampaignRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Command (Tests\Feature\Playground\Lead\Resource\Console\Commands\About\Command)</h2>
+        <ul>
+            <li class="success">Command about displays package information and succeed with code 0</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Goal Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\GoalRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Instance (Tests\Unit\Playground\Lead\Resource\Http\Requests\FormRequest\Instance)</h2>
+        <ul>
+            <li class="success">FormRequest authorize without user</li>
+            <li class="success">RULES is empty by default</li>
+            <li class="success">UserHasAdminPrivileges without user</li>
+            <li class="success">UserHasAdminPrivileges with admin</li>
+            <li class="success">UserHasAdminPrivileges with default laravel user</li>
+        </ul>
+        <h2>Instance (Tests\Unit\Playground\Lead\Resource\ServiceProvider\Instance)</h2>
+        <ul>
+            <li class="success">Version matches</li>
+            <li class="success">SetPolicies with empty array</li>
+            <li class="success">SetPolicies with invalid model</li>
+            <li class="success">SetPolicies with invalid policy</li>
+        </ul>
+        <h2>Lead Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\LeadRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Opportunity Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\OpportunityRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Plan Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\PlanRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\CampaignPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Region Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\RegionRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Report Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\ReportRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Source Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\SourceRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Task Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TaskRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Team Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeamRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Teammate Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeammateRoute)</h2>
+        <ul>
+            <li class="success">Json guest cannot see info</li>
+            <li class="success">Json guest cannot destroy</li>
+            <li class="success">Json guest cannot restore</li>
+            <li class="success">Json guest cannot get index</li>
+            <li class="success">Json guest cannot lock</li>
+            <li class="success">Json guest cannot unlock</li>
+            <li class="success">Json guest cannot get create info</li>
+            <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Json guest cannot store</li>
+            <li class="success">Json guest cannot update</li>
+            <li class="success">Json admin can get index</li>
+            <li class="success">Json show info for admin</li>
+            <li class="success">Json admin can get create info</li>
+            <li class="success">Json admin can get edit info</li>
+            <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Json lock as admin and succeed</li>
+            <li class="success">Json store as admin without payload and fail validation</li>
+            <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Json admin can get index with filters</li>
+            <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Json admin can update</li>
+            <li class="success">Json store as admin and succeed</li>
+            <li class="success">Json lock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with force delete</li>
+            <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Json lock as user and get denied</li>
+            <li class="success">Json restore as user and get denied</li>
+            <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+    </body>
+</html>
