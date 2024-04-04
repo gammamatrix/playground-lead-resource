@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The goal id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Goal
+  summary: 'Unlock a goal by id.'
+  operationId: lock_goal
+  responses:
+    204:
+      description: 'The goal has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Goal
+  summary: 'Lock a goal by id.'
+  operationId: unlock_goal
+  responses:
+    200:
+      description: 'The unlocked goal.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/goal.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

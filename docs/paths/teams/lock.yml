@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The team id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Team
+  summary: 'Unlock a team by id.'
+  operationId: lock_team
+  responses:
+    204:
+      description: 'The team has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Team
+  summary: 'Lock a team by id.'
+  operationId: unlock_team
+  responses:
+    200:
+      description: 'The unlocked team.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/team.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

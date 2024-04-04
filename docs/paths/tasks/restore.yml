@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The task id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Task
+  summary: 'Restore a task by id.'
+  operationId: restore_task
+  responses:
+    200:
+      description: 'The restored task.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/task.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

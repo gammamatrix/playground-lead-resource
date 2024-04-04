@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The region id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Region
+  summary: 'Unlock a region by id.'
+  operationId: lock_region
+  responses:
+    204:
+      description: 'The region has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Region
+  summary: 'Lock a region by id.'
+  operationId: unlock_region
+  responses:
+    200:
+      description: 'The unlocked region.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/region.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

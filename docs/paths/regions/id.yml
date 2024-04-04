@@ -1,0 +1,85 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The region id.'
+    schema:
+      type: string
+      format: uuid
+get:
+  tags:
+    - Region
+  summary: 'Get a region by id.'
+  operationId: get_region
+  responses:
+    200:
+      description: 'The region data.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/region.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+delete:
+  tags:
+    - Region
+  summary: 'Delete a region by id.'
+  operationId: delete_region
+  responses:
+    204:
+      description: 'The region has been deleted.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+    423:
+      description: 'The region is locked. Unlock to delete.'
+patch:
+  tags:
+    - Region
+  summary: 'Update a region by id.'
+  operationId: patch_region
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/region/patch.yml
+  responses:
+    200:
+      description: 'The updated region.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/region.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+    422:
+      description: 'Validation error'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                properties:
+                  title:
+                    type: array
+                    items:
+                      type: string
+                      example: 'The title field is required.'

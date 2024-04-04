@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The campaign id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Campaign
+  summary: 'Unlock a campaign by id.'
+  operationId: lock_campaign
+  responses:
+    204:
+      description: 'The campaign has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Campaign
+  summary: 'Lock a campaign by id.'
+  operationId: unlock_campaign
+  responses:
+    200:
+      description: 'The unlocked campaign.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/campaign.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

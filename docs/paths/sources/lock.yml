@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The source id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Source
+  summary: 'Unlock a source by id.'
+  operationId: lock_source
+  responses:
+    204:
+      description: 'The source has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Source
+  summary: 'Lock a source by id.'
+  operationId: unlock_source
+  responses:
+    200:
+      description: 'The unlocked source.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/source.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

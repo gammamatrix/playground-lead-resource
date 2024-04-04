@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The source id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Source
+  summary: 'Restore a source by id.'
+  operationId: restore_source
+  responses:
+    200:
+      description: 'The restored source.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/source.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

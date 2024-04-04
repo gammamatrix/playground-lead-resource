@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The team id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Team
+  summary: 'Restore a team by id.'
+  operationId: restore_team
+  responses:
+    200:
+      description: 'The restored team.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/team.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

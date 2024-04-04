@@ -1,0 +1,85 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The teammate id.'
+    schema:
+      type: string
+      format: uuid
+get:
+  tags:
+    - Teammate
+  summary: 'Get a teammate by id.'
+  operationId: get_teammate
+  responses:
+    200:
+      description: 'The teammate data.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/teammate.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+delete:
+  tags:
+    - Teammate
+  summary: 'Delete a teammate by id.'
+  operationId: delete_teammate
+  responses:
+    204:
+      description: 'The teammate has been deleted.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+    423:
+      description: 'The teammate is locked. Unlock to delete.'
+patch:
+  tags:
+    - Teammate
+  summary: 'Update a teammate by id.'
+  operationId: patch_teammate
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/teammate/patch.yml
+  responses:
+    200:
+      description: 'The updated teammate.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/teammate.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+    422:
+      description: 'Validation error'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: object
+                properties:
+                  title:
+                    type: array
+                    items:
+                      type: string
+                      example: 'The title field is required.'

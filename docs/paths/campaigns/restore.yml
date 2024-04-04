@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The campaign id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Campaign
+  summary: 'Restore a campaign by id.'
+  operationId: restore_campaign
+  responses:
+    200:
+      description: 'The restored campaign.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/campaign.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

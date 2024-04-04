@@ -1,0 +1,425 @@
+description: 'The Lead Campaign model.'
+type: object
+properties:
+  id:
+    description: 'The primary key.'
+    type: string
+    format: uuid
+    readOnly: true
+  created_by_id:
+    description: 'Foreign key: links a created by user to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  modified_by_id:
+    description: 'Foreign key: links a modified by user to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  owned_by_id:
+    description: 'Foreign key: links an owned by user to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  parent_id:
+    description: 'Foreign key: links a parent to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  model_type:
+    description: 'The model type of this campaign.'
+    type: string
+    nullable: true
+  campaign_id:
+    description: 'Foreign key: links a campaign to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  goal:
+    description: 'Foreign key: links a goal to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  lead_id:
+    description: 'Foreign key: links a lead to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  opportunity_id:
+    description: 'Foreign key: links a opportunity to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  plan_id:
+    description: 'Foreign key: links a plan to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  region_id:
+    description: 'Foreign key: links a region to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  report_id:
+    description: 'Foreign key: links a report to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  source_id:
+    description: 'Foreign key: links a source to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  task_id:
+    description: 'Foreign key: links a task to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  team_id:
+    description: 'Foreign key: links a team to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  teammate_id:
+    description: 'Foreign key: links a teammate to this campaign.'
+    type: string
+    format: uuid
+    nullable: true
+  created_at:
+    description: 'Denotes the date and time, the campaign was created.'
+    type: string
+    format: date-time
+    readOnly: true
+  updated_at:
+    description: 'Denotes the date and time, the campaign was last modified.'
+    type: string
+    format: date-time
+    readOnly: true
+  deleted_at:
+    description: 'Denotes the date and time, the campaign was put in the trash.'
+    type: string
+    format: date-time
+    nullable: true
+  start_at:
+    description: 'The start at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  planned_start_at:
+    description: 'The planned start at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  end_at:
+    description: 'The end at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  planned_end_at:
+    description: 'The planned end at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  calculated_at:
+    description: 'The calculated at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  canceled_at:
+    description: 'The canceled at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  closed_at:
+    description: 'The closed at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  embargo_at:
+    description: 'The embargo at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  fixed_at:
+    description: 'The fixed at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  postponed_at:
+    description: 'The postponed at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  published_at:
+    description: 'The published at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  released_at:
+    description: 'The released at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  reported_at:
+    description: 'The resumed at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  resolved_at:
+    description: 'The resolved at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  resumed_at:
+    description: 'The resumed at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  suspended_at:
+    description: 'The suspended at date for this campaign.'
+    type: string
+    format: date-time
+    nullable: true
+  gids:
+    description: 'Permissions: gids'
+    type: integer
+    format: int64
+  po:
+    description: 'Permissions: po'
+    type: integer
+    format: int32
+  pg:
+    description: 'Permissions: pg'
+    type: integer
+    format: int32
+  pw:
+    description: 'Permissions: pw'
+    type: integer
+    format: int32
+  status:
+    description: 'The status of the campaign.'
+    type: integer
+    format: int64
+  rank:
+    description: 'Status: rank'
+    type: integer
+    format: int64
+  size:
+    description: 'Status: size'
+    type: integer
+    format: int64
+  icon:
+    description: 'Ui: icon'
+    type: string
+    maxLength: 128
+  image:
+    description: 'Ui: image'
+    type: string
+    maxLength: 512
+  avatar:
+    description: 'Ui: avatar'
+    type: string
+    maxLength: 512
+  ui:
+    description: 'The ui of the campaign.'
+    type: object
+    nullable: true
+  active:
+    description: 'Flags: active'
+    type: boolean
+  canceled:
+    description: 'Flags: canceled'
+    type: boolean
+  closed:
+    description: 'Flags: closed'
+    type: boolean
+  completed:
+    description: 'Flags: completed'
+    type: boolean
+  duplicate:
+    description: 'Flags: duplicate'
+    type: boolean
+  fixed:
+    description: 'Flags: fixed'
+    type: boolean
+  flagged:
+    description: 'Flags: flagged'
+    type: boolean
+  internal:
+    description: 'Flags: internal'
+    type: boolean
+  locked:
+    description: 'Flags: locked'
+    type: boolean
+  pending:
+    description: 'Flags: pending'
+    type: boolean
+  planned:
+    description: 'Flags: planned'
+    type: boolean
+  prioritized:
+    description: 'Flags: prioritized'
+    type: boolean
+  problem:
+    description: 'Flags: problem'
+    type: boolean
+  published:
+    description: 'Flags: published'
+    type: boolean
+  released:
+    description: 'Flags: released'
+    type: boolean
+  retired:
+    description: 'Flags: retired'
+    type: boolean
+  resolved:
+    description: 'Flags: resolved'
+    type: boolean
+  suspended:
+    description: 'Flags: suspended'
+    type: boolean
+  unknown:
+    description: 'Flags: unknown'
+    type: boolean
+  label:
+    description: 'The label of the campaign.'
+    type: string
+    maxLength: 128
+  title:
+    description: 'The title of the campaign.'
+    type: string
+    maxLength: 255
+  byline:
+    description: 'The byline of the campaign.'
+    type: string
+    maxLength: 255
+  slug:
+    description: 'The slug of the campaign.'
+    type: string
+    maxLength: 128
+    nullable: true
+  url:
+    description: 'The url of the campaign.'
+    type: string
+    maxLength: 512
+  description:
+    description: 'The description of the campaign.'
+    type: string
+    maxLength: 512
+  introduction:
+    description: 'The introduction of the campaign.'
+    type: string
+    maxLength: 512
+  content:
+    description: 'The content of the campaign. Allows HTML.'
+    type: string
+    nullable: true
+  summary:
+    description: 'The summary of the campaign. Allows HTML.'
+    type: string
+    nullable: true
+  locale:
+    description: 'The locale of the campaign.'
+    type: string
+    nullable: true
+  currency:
+    description: 'The currency of the campaign.'
+    type: string
+    nullable: true
+  amount:
+    description: 'The amount of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  bonus:
+    description: 'The bonus of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  bonus_rate:
+    description: 'The bonus rate of the campaign. Percent value is stored as decimal: 99% => 0.99'
+    type: number
+    format: percent
+    nullable: true
+  commission:
+    description: 'The amount of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  commission_rate:
+    description: 'The commission rate of the campaign. Percent value is stored as decimal: 99% => 0.99'
+    type: number
+    format: percent
+    nullable: true
+  estimate:
+    description: 'The estimate of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  fees:
+    description: 'The fees of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  materials:
+    description: 'The materials of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  services:
+    description: 'The services of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  shipping:
+    description: 'The shipping of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  subtotal:
+    description: 'The subtotal of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  taxable:
+    description: 'The taxable of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  tax_rate:
+    description: 'The tax rate of the campaign. Percent value is stored as decimal: 99% => 0.99'
+    type: number
+    format: percent
+    nullable: true
+  taxes:
+    description: 'The taxes of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  total:
+    description: 'The total of the campaign.'
+    type: number
+    format: currency
+    nullable: true
+  assets:
+    description: 'JSON: assets'
+    type: object
+    nullable: true
+  meta:
+    description: 'JSON: meta'
+    type: object
+    nullable: true
+  notes:
+    description: 'JSON: notes'
+    type: array
+    items:
+      type: object
+    nullable: true
+  options:
+    description: 'JSON: options'
+    type: object
+    nullable: true
+  sources:
+    description: 'JSON: sources'
+    type: object
+    nullable: true

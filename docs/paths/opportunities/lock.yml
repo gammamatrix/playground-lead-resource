@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The opportunity id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Opportunity
+  summary: 'Unlock a opportunity by id.'
+  operationId: lock_opportunity
+  responses:
+    204:
+      description: 'The opportunity has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Opportunity
+  summary: 'Lock a opportunity by id.'
+  operationId: unlock_opportunity
+  responses:
+    200:
+      description: 'The unlocked opportunity.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/opportunity.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

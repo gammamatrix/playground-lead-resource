@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The lead id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Lead
+  summary: 'Unlock a lead by id.'
+  operationId: lock_lead
+  responses:
+    204:
+      description: 'The lead has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Lead
+  summary: 'Lock a lead by id.'
+  operationId: unlock_lead
+  responses:
+    200:
+      description: 'The unlocked lead.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/lead.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

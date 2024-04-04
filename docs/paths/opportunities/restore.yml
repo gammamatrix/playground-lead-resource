@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The opportunity id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Opportunity
+  summary: 'Restore a opportunity by id.'
+  operationId: restore_opportunity
+  responses:
+    200:
+      description: 'The restored opportunity.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/opportunity.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

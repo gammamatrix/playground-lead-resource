@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The task id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Task
+  summary: 'Unlock a task by id.'
+  operationId: lock_task
+  responses:
+    204:
+      description: 'The task has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Task
+  summary: 'Lock a task by id.'
+  operationId: unlock_task
+  responses:
+    200:
+      description: 'The unlocked task.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/task.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

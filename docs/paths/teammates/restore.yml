@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The teammate id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Teammate
+  summary: 'Restore a teammate by id.'
+  operationId: restore_teammate
+  responses:
+    200:
+      description: 'The restored teammate.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/teammate.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

@@ -1,0 +1,42 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The teammate id.'
+    schema:
+      type: string
+      format: uuid
+delete:
+  tags:
+    - Teammate
+  summary: 'Unlock a teammate by id.'
+  operationId: lock_teammate
+  responses:
+    204:
+      description: 'The teammate has been unlocked.'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
+put:
+  tags:
+    - Teammate
+  summary: 'Lock a teammate by id.'
+  operationId: unlock_teammate
+  responses:
+    200:
+      description: 'The unlocked teammate.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/teammate.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

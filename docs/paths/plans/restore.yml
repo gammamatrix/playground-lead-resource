@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The plan id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Plan
+  summary: 'Restore a plan by id.'
+  operationId: restore_plan
+  responses:
+    200:
+      description: 'The restored plan.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/plan.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

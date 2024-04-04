@@ -1,0 +1,30 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The report id.'
+    schema:
+      type: string
+      format: uuid
+put:
+  tags:
+    - Report
+  summary: 'Restore a report by id.'
+  operationId: restore_report
+  responses:
+    200:
+      description: 'The restored report.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/report.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
