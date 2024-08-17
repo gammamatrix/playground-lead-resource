@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Plan
-  summary: 'Restore a plan by id.'
+  summary: 'Restore a plan from the trash by ID.'
   operationId: restore_plan
   responses:
     200:

@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Lead
-  summary: 'Restore a lead by id.'
+  summary: 'Restore a lead from the trash by ID.'
   operationId: restore_lead
   responses:
     200:

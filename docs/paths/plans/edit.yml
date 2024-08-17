@@ -1,0 +1,34 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The plan id.'
+    schema:
+      type: string
+      format: uuid
+get:
+  tags:
+    - Plan
+  summary: 'Edit a plan form.'
+  operationId: edit_plan
+  responses:
+    200:
+      description: 'The edit plan information (JSON) or (HTML).'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/plan.yml
+              meta:
+                type: object
+        text/html:
+          schema:
+            type: string
+            example: '<html><body><form method="POST" action="/resource/lead/plans/{id}">Edit a plan</form></body></html>'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

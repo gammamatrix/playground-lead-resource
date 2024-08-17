@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Report
-  summary: 'Restore a report by id.'
+  summary: 'Restore a report from the trash by ID.'
   operationId: restore_report
   responses:
     200:

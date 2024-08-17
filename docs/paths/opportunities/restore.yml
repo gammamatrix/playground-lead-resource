@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Opportunity
-  summary: 'Restore a opportunity by id.'
+  summary: 'Restore a opportunity from the trash by ID.'
   operationId: restore_opportunity
   responses:
     200:

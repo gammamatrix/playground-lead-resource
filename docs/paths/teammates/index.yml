@@ -33,7 +33,7 @@ post:
           $ref: ../../requests/teammate/post.yml
   responses:
     200:
-      description: 'The created teammates.'
+      description: 'The created teammate.'
       content:
         application/json:
           schema:
@@ -62,3 +62,5 @@ post:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The teammate is locked. Unlock to patch.'

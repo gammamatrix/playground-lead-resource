@@ -45,7 +45,7 @@ delete:
 patch:
   tags:
     - Lead
-  summary: 'Update a lead by id.'
+  summary: 'Patch a lead by id.'
   operationId: patch_lead
   requestBody:
     content:
@@ -54,7 +54,7 @@ patch:
           $ref: ../../requests/lead/patch.yml
   responses:
     200:
-      description: 'The updated lead.'
+      description: 'The lead has been patched.'
       content:
         application/json:
           schema:
@@ -83,3 +83,5 @@ patch:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The lead is locked. Unlock to patch.'

@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Goal
-  summary: 'Restore a goal by id.'
+  summary: 'Restore a goal from the trash by ID.'
   operationId: restore_goal
   responses:
     200:

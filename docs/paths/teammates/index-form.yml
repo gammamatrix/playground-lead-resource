@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Teammate
+  summary: 'Get teammates from the index using POST.'
+  operationId: post_teammates_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/teammate/form.yml
+  responses:
+    200:
+      description: 'Get the teammates from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/teammate.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

@@ -13,7 +13,7 @@
 .DS_Store
 */.DS_Store
 
-.derp
+*.derp
 
 Homestead.yaml
 Homestead.json
@@ -21,10 +21,6 @@ Homestead.json
 .env.backup
 
 /hide
-
-resources/packages
-
-composer.lock
 
 /tmp
 /components
@@ -34,14 +30,15 @@ nbproject/private/
 
 database/migrations/*.disabled
 
-*.derp
+resources/packages
+
+composer.lock
+package-lock.json
 
 tmp-*
 temp-*
 
 .php-cs-fixer.cache
-
-package-lock.json
 
 ################################################################################
 # Environment ignores
@@ -63,7 +60,11 @@ public/storage
 
 output
 
+public/docs
+
 public/tests
+
+phpstan.neon
 
 phpunit.xml
 
@@ -99,4 +100,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-

@@ -45,7 +45,7 @@ delete:
 patch:
   tags:
     - Goal
-  summary: 'Update a goal by id.'
+  summary: 'Patch a goal by id.'
   operationId: patch_goal
   requestBody:
     content:
@@ -54,7 +54,7 @@ patch:
           $ref: ../../requests/goal/patch.yml
   responses:
     200:
-      description: 'The updated goal.'
+      description: 'The goal has been patched.'
       content:
         application/json:
           schema:
@@ -83,3 +83,5 @@ patch:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The goal is locked. Unlock to patch.'

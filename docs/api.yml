@@ -1,24 +1,24 @@
 openapi: 3.0.3
-servers:
-  -
-    url: 'https://resource.example.com'
-    description: 'Production server'
-  -
-    url: 'https://resource.staging.example.com'
-    description: 'Staging server'
-  -
-    url: 'https://resource.dev.example.com'
-    description: 'Dev server'
 info:
-  title: Playground Lead Resource
-  description: ''
-  termsOfService: ''
-  # contact:
-  #   email: support@example.com
+  title: 'Playground Lead Resource'
+  description: 'Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Lead System for Laravel applications.'
   version: 73.0.0
 externalDocs:
-  description: ''
-  url: ''
+  url: 'https://gammamatrix-playground.readthedocs.io/en/develop/components/lead.html'
+  description: 'Read the Docs: Playground Lead Packages'
+servers:
+  -
+    url: 'https://api.example.com'
+    description: 'Production Server'
+  -
+    url: 'https://api.staging.example.com'
+    description: 'Staging Server'
+  -
+    url: 'https://api.dev.example.com'
+    description: 'Dev Server'
+  -
+    url: 'http://localhost'
+    description: 'Local Server'
 tags:
   -
     name: Campaign
@@ -58,90 +58,156 @@ paths:
     $ref: paths/campaigns/id.yml
   /resource/lead/campaigns:
     $ref: paths/campaigns/index.yml
+  /resource/lead/campaigns/index:
+    $ref: paths/campaigns/index-form.yml
   '/resource/lead/campaigns/lock/{id}':
     $ref: paths/campaigns/lock.yml
   '/resource/lead/campaigns/restore/{id}':
     $ref: paths/campaigns/restore.yml
+  /resource/lead/campaigns/create:
+    $ref: paths/campaigns/create.yml
+  '/resource/lead/campaigns/edit/{id}':
+    $ref: paths/campaigns/edit.yml
   '/resource/lead/goals/{id}':
     $ref: paths/goals/id.yml
   /resource/lead/goals:
     $ref: paths/goals/index.yml
+  /resource/lead/goals/index:
+    $ref: paths/goals/index-form.yml
   '/resource/lead/goals/lock/{id}':
     $ref: paths/goals/lock.yml
   '/resource/lead/goals/restore/{id}':
     $ref: paths/goals/restore.yml
+  /resource/lead/goals/create:
+    $ref: paths/goals/create.yml
+  '/resource/lead/goals/edit/{id}':
+    $ref: paths/goals/edit.yml
   '/resource/lead/leads/{id}':
     $ref: paths/leads/id.yml
   /resource/lead/leads:
     $ref: paths/leads/index.yml
+  /resource/lead/leads/index:
+    $ref: paths/leads/index-form.yml
   '/resource/lead/leads/lock/{id}':
     $ref: paths/leads/lock.yml
   '/resource/lead/leads/restore/{id}':
     $ref: paths/leads/restore.yml
+  /resource/lead/leads/create:
+    $ref: paths/leads/create.yml
+  '/resource/lead/leads/edit/{id}':
+    $ref: paths/leads/edit.yml
   '/resource/lead/opportunities/{id}':
     $ref: paths/opportunities/id.yml
   /resource/lead/opportunities:
     $ref: paths/opportunities/index.yml
+  /resource/lead/opportunities/index:
+    $ref: paths/opportunities/index-form.yml
   '/resource/lead/opportunities/lock/{id}':
     $ref: paths/opportunities/lock.yml
   '/resource/lead/opportunities/restore/{id}':
     $ref: paths/opportunities/restore.yml
+  /resource/lead/opportunities/create:
+    $ref: paths/opportunities/create.yml
+  '/resource/lead/opportunities/edit/{id}':
+    $ref: paths/opportunities/edit.yml
   '/resource/lead/plans/{id}':
     $ref: paths/plans/id.yml
   /resource/lead/plans:
     $ref: paths/plans/index.yml
+  /resource/lead/plans/index:
+    $ref: paths/plans/index-form.yml
   '/resource/lead/plans/lock/{id}':
     $ref: paths/plans/lock.yml
   '/resource/lead/plans/restore/{id}':
     $ref: paths/plans/restore.yml
+  /resource/lead/plans/create:
+    $ref: paths/plans/create.yml
+  '/resource/lead/plans/edit/{id}':
+    $ref: paths/plans/edit.yml
   '/resource/lead/regions/{id}':
     $ref: paths/regions/id.yml
   /resource/lead/regions:
     $ref: paths/regions/index.yml
+  /resource/lead/regions/index:
+    $ref: paths/regions/index-form.yml
   '/resource/lead/regions/lock/{id}':
     $ref: paths/regions/lock.yml
   '/resource/lead/regions/restore/{id}':
     $ref: paths/regions/restore.yml
+  /resource/lead/regions/create:
+    $ref: paths/regions/create.yml
+  '/resource/lead/regions/edit/{id}':
+    $ref: paths/regions/edit.yml
   '/resource/lead/reports/{id}':
     $ref: paths/reports/id.yml
   /resource/lead/reports:
     $ref: paths/reports/index.yml
+  /resource/lead/reports/index:
+    $ref: paths/reports/index-form.yml
   '/resource/lead/reports/lock/{id}':
     $ref: paths/reports/lock.yml
   '/resource/lead/reports/restore/{id}':
     $ref: paths/reports/restore.yml
+  /resource/lead/reports/create:
+    $ref: paths/reports/create.yml
+  '/resource/lead/reports/edit/{id}':
+    $ref: paths/reports/edit.yml
   '/resource/lead/sources/{id}':
     $ref: paths/sources/id.yml
   /resource/lead/sources:
     $ref: paths/sources/index.yml
+  /resource/lead/sources/index:
+    $ref: paths/sources/index-form.yml
   '/resource/lead/sources/lock/{id}':
     $ref: paths/sources/lock.yml
   '/resource/lead/sources/restore/{id}':
     $ref: paths/sources/restore.yml
+  /resource/lead/sources/create:
+    $ref: paths/sources/create.yml
+  '/resource/lead/sources/edit/{id}':
+    $ref: paths/sources/edit.yml
   '/resource/lead/tasks/{id}':
     $ref: paths/tasks/id.yml
   /resource/lead/tasks:
     $ref: paths/tasks/index.yml
+  /resource/lead/tasks/index:
+    $ref: paths/tasks/index-form.yml
   '/resource/lead/tasks/lock/{id}':
     $ref: paths/tasks/lock.yml
   '/resource/lead/tasks/restore/{id}':
     $ref: paths/tasks/restore.yml
+  /resource/lead/tasks/create:
+    $ref: paths/tasks/create.yml
+  '/resource/lead/tasks/edit/{id}':
+    $ref: paths/tasks/edit.yml
   '/resource/lead/teams/{id}':
     $ref: paths/teams/id.yml
   /resource/lead/teams:
     $ref: paths/teams/index.yml
+  /resource/lead/teams/index:
+    $ref: paths/teams/index-form.yml
   '/resource/lead/teams/lock/{id}':
     $ref: paths/teams/lock.yml
   '/resource/lead/teams/restore/{id}':
     $ref: paths/teams/restore.yml
+  /resource/lead/teams/create:
+    $ref: paths/teams/create.yml
+  '/resource/lead/teams/edit/{id}':
+    $ref: paths/teams/edit.yml
   '/resource/lead/teammates/{id}':
     $ref: paths/teammates/id.yml
   /resource/lead/teammates:
     $ref: paths/teammates/index.yml
+  /resource/lead/teammates/index:
+    $ref: paths/teammates/index-form.yml
   '/resource/lead/teammates/lock/{id}':
     $ref: paths/teammates/lock.yml
   '/resource/lead/teammates/restore/{id}':
     $ref: paths/teammates/restore.yml
+  /resource/lead/teammates/create:
+    $ref: paths/teammates/create.yml
+  '/resource/lead/teammates/edit/{id}':
+    $ref: paths/teammates/edit.yml
 components:
   schemas:
     Campaign:

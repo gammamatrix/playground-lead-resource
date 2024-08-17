@@ -1,4 +1,4 @@
-description: 'The Lead Goal model.'
+description: 'The Lead goal model.'
 type: object
 properties:
   id:
@@ -6,6 +6,10 @@ properties:
     type: string
     format: uuid
     readOnly: true
+  goal_type:
+    description: 'The goal type of this goal.'
+    type: string
+    nullable: true
   created_by_id:
     description: 'Foreign key: links a created by user to this goal.'
     type: string
@@ -22,21 +26,12 @@ properties:
     format: uuid
     nullable: true
   parent_id:
-    description: 'Foreign key: links a parent to this goal.'
+    description: 'ID: a parent of this goal.'
     type: string
     format: uuid
-    nullable: true
-  model_type:
-    description: 'The model type of this goal.'
-    type: string
     nullable: true
   campaign_id:
     description: 'Foreign key: links a campaign to this goal.'
-    type: string
-    format: uuid
-    nullable: true
-  goal:
-    description: 'Foreign key: links a goal to this goal.'
     type: string
     format: uuid
     nullable: true
@@ -46,7 +41,7 @@ properties:
     format: uuid
     nullable: true
   opportunity_id:
-    description: 'Foreign key: links a opportunity to this goal.'
+    description: 'Foreign key: links an opportunity to this goal.'
     type: string
     format: uuid
     nullable: true
@@ -85,6 +80,11 @@ properties:
     type: string
     format: uuid
     nullable: true
+  matrix_id:
+    description: 'Foreign key: links a matrix to this goal.'
+    type: string
+    format: uuid
+    nullable: true
   created_at:
     description: 'Denotes the date and time, the goal was created.'
     type: string
@@ -97,31 +97,6 @@ properties:
     readOnly: true
   deleted_at:
     description: 'Denotes the date and time, the goal was put in the trash.'
-    type: string
-    format: date-time
-    nullable: true
-  start_at:
-    description: 'The start at date for this goal.'
-    type: string
-    format: date-time
-    nullable: true
-  planned_start_at:
-    description: 'The planned start at date for this goal.'
-    type: string
-    format: date-time
-    nullable: true
-  end_at:
-    description: 'The end at date for this goal.'
-    type: string
-    format: date-time
-    nullable: true
-  planned_end_at:
-    description: 'The planned end at date for this goal.'
-    type: string
-    format: date-time
-    nullable: true
-  calculated_at:
-    description: 'The calculated at date for this goal.'
     type: string
     format: date-time
     nullable: true
@@ -145,6 +120,16 @@ properties:
     type: string
     format: date-time
     nullable: true
+  planned_end_at:
+    description: 'The planned end at date for this goal.'
+    type: string
+    format: date-time
+    nullable: true
+  planned_start_at:
+    description: 'The planned start at date for this goal.'
+    type: string
+    format: date-time
+    nullable: true
   postponed_at:
     description: 'The postponed at date for this goal.'
     type: string
@@ -160,7 +145,7 @@ properties:
     type: string
     format: date-time
     nullable: true
-  reported_at:
+  resumed_at:
     description: 'The resumed at date for this goal.'
     type: string
     format: date-time
@@ -170,13 +155,18 @@ properties:
     type: string
     format: date-time
     nullable: true
-  resumed_at:
-    description: 'The resumed at date for this goal.'
+  suspended_at:
+    description: 'The suspended at date for this goal.'
     type: string
     format: date-time
     nullable: true
-  suspended_at:
-    description: 'The suspended at date for this goal.'
+  timer_end_at:
+    description: 'The timer end at date for this goal.'
+    type: string
+    format: date-time
+    nullable: true
+  timer_start_at:
+    description: 'The timer start at date for this goal.'
     type: string
     format: date-time
     nullable: true
@@ -196,6 +186,18 @@ properties:
     description: 'Permissions: pw'
     type: integer
     format: int32
+  only_admin:
+    description: 'Permissions: only admin'
+    type: boolean
+  only_user:
+    description: 'Permissions: only user'
+    type: boolean
+  only_guest:
+    description: 'Permissions: only guest'
+    type: boolean
+  allow_public:
+    description: 'Permissions: allow public'
+    type: boolean
   status:
     description: 'The status of the goal.'
     type: integer
@@ -236,8 +238,14 @@ properties:
   completed:
     description: 'Flags: completed'
     type: boolean
+  cron:
+    description: 'Flags: cron'
+    type: boolean
   duplicate:
     description: 'Flags: duplicate'
+    type: boolean
+  featured:
+    description: 'Flags: featured'
     type: boolean
   fixed:
     description: 'Flags: fixed'
@@ -269,11 +277,17 @@ properties:
   released:
     description: 'Flags: released'
     type: boolean
+  resolved:
+    description: 'Flags: resolved'
+    type: boolean
   retired:
     description: 'Flags: retired'
     type: boolean
-  resolved:
-    description: 'Flags: resolved'
+  sms:
+    description: 'Flags: sms'
+    type: boolean
+  special:
+    description: 'Flags: special'
     type: boolean
   suspended:
     description: 'Flags: suspended'
@@ -281,6 +295,10 @@ properties:
   unknown:
     description: 'Flags: unknown'
     type: boolean
+  locale:
+    description: 'The locale of the goal.'
+    type: string
+    maxLength: 255
   label:
     description: 'The label of the goal.'
     type: string
@@ -318,8 +336,16 @@ properties:
     description: 'The summary of the goal. Allows HTML.'
     type: string
     nullable: true
-  locale:
-    description: 'The locale of the goal.'
+  email:
+    description: 'The email of the goal.'
+    type: string
+    nullable: true
+  phone:
+    description: 'The phone of the goal.'
+    type: string
+    nullable: true
+  team_role:
+    description: 'The team role of the goal.'
     type: string
     nullable: true
   currency:
@@ -329,80 +355,73 @@ properties:
   amount:
     description: 'The amount of the goal.'
     type: number
-    format: currency
     nullable: true
   bonus:
     description: 'The bonus of the goal.'
     type: number
-    format: currency
     nullable: true
   bonus_rate:
-    description: 'The bonus rate of the goal. Percent value is stored as decimal: 99% => 0.99'
+    description: 'The bonus rate of the goal.'
     type: number
-    format: percent
     nullable: true
   commission:
-    description: 'The amount of the goal.'
+    description: 'The commission of the goal.'
     type: number
-    format: currency
     nullable: true
   commission_rate:
-    description: 'The commission rate of the goal. Percent value is stored as decimal: 99% => 0.99'
+    description: 'The commission rate of the goal.'
     type: number
-    format: percent
     nullable: true
   estimate:
     description: 'The estimate of the goal.'
     type: number
-    format: currency
     nullable: true
   fees:
     description: 'The fees of the goal.'
     type: number
-    format: currency
     nullable: true
   materials:
     description: 'The materials of the goal.'
     type: number
-    format: currency
     nullable: true
   services:
     description: 'The services of the goal.'
     type: number
-    format: currency
     nullable: true
   shipping:
     description: 'The shipping of the goal.'
     type: number
-    format: currency
     nullable: true
   subtotal:
     description: 'The subtotal of the goal.'
     type: number
-    format: currency
     nullable: true
   taxable:
     description: 'The taxable of the goal.'
     type: number
-    format: currency
     nullable: true
   tax_rate:
-    description: 'The tax rate of the goal. Percent value is stored as decimal: 99% => 0.99'
+    description: 'The tax rate of the goal.'
     type: number
-    format: percent
     nullable: true
   taxes:
     description: 'The taxes of the goal.'
     type: number
-    format: currency
     nullable: true
   total:
     description: 'The total of the goal.'
     type: number
-    format: currency
+    nullable: true
+  address:
+    description: 'JSON: address'
+    type: object
     nullable: true
   assets:
     description: 'JSON: assets'
+    type: object
+    nullable: true
+  contact:
+    description: 'JSON: contact'
     type: object
     nullable: true
   meta:

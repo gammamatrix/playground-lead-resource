@@ -1,0 +1,34 @@
+parameters:
+  -
+    in: path
+    name: id
+    required: true
+    description: 'The task id.'
+    schema:
+      type: string
+      format: uuid
+get:
+  tags:
+    - Task
+  summary: 'Edit a task form.'
+  operationId: edit_task
+  responses:
+    200:
+      description: 'The edit task information (JSON) or (HTML).'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/task.yml
+              meta:
+                type: object
+        text/html:
+          schema:
+            type: string
+            example: '<html><body><form method="POST" action="/resource/lead/tasks/{id}">Edit a task</form></body></html>'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

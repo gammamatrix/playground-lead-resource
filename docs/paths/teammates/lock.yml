@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Teammate
-  summary: 'Unlock a teammate by id.'
-  operationId: lock_teammate
+  summary: 'Delete a teammate by id.'
+  operationId: unlock_teammate
   responses:
     204:
       description: 'The teammate has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Teammate
-  summary: 'Lock a teammate by id.'
-  operationId: unlock_teammate
+  summary: 'Lock a teammate by ID.'
+  operationId: lock_teammate
   responses:
     200:
       description: 'The unlocked teammate.'

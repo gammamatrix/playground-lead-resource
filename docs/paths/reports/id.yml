@@ -45,7 +45,7 @@ delete:
 patch:
   tags:
     - Report
-  summary: 'Update a report by id.'
+  summary: 'Patch a report by id.'
   operationId: patch_report
   requestBody:
     content:
@@ -54,7 +54,7 @@ patch:
           $ref: ../../requests/report/patch.yml
   responses:
     200:
-      description: 'The updated report.'
+      description: 'The report has been patched.'
       content:
         application/json:
           schema:
@@ -83,3 +83,5 @@ patch:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The report is locked. Unlock to patch.'

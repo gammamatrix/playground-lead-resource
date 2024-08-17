@@ -33,7 +33,7 @@ post:
           $ref: ../../requests/campaign/post.yml
   responses:
     200:
-      description: 'The created campaigns.'
+      description: 'The created campaign.'
       content:
         application/json:
           schema:
@@ -62,3 +62,5 @@ post:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The campaign is locked. Unlock to patch.'

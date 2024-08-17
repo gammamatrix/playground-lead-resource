@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Goal
+  summary: 'Get goals from the index using POST.'
+  operationId: post_goals_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/goal/form.yml
+  responses:
+    200:
+      description: 'Get the goals from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/goal.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

@@ -45,7 +45,7 @@ delete:
 patch:
   tags:
     - Opportunity
-  summary: 'Update a opportunity by id.'
+  summary: 'Patch a opportunity by id.'
   operationId: patch_opportunity
   requestBody:
     content:
@@ -54,7 +54,7 @@ patch:
           $ref: ../../requests/opportunity/patch.yml
   responses:
     200:
-      description: 'The updated opportunity.'
+      description: 'The opportunity has been patched.'
       content:
         application/json:
           schema:
@@ -83,3 +83,5 @@ patch:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The opportunity is locked. Unlock to patch.'

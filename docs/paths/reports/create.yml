@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Report
+  summary: 'Create a report form.'
+  operationId: create_report
+  responses:
+    200:
+      description: 'The create report information (JSON) or (HTML).'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/report.yml
+              meta:
+                type: object
+        text/html:
+          schema:
+            type: string
+            example: '<html><body><form method="POST" action="/resource/lead/reports">Create a report</form></body></html>'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

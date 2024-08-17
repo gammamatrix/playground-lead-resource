@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Campaign
-  summary: 'Restore a campaign by id.'
+  summary: 'Restore a campaign from the trash by ID.'
   operationId: restore_campaign
   responses:
     200:

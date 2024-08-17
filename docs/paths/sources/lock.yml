@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Source
-  summary: 'Unlock a source by id.'
-  operationId: lock_source
+  summary: 'Delete a source by id.'
+  operationId: unlock_source
   responses:
     204:
       description: 'The source has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Source
-  summary: 'Lock a source by id.'
-  operationId: unlock_source
+  summary: 'Lock a source by ID.'
+  operationId: lock_source
   responses:
     200:
       description: 'The unlocked source.'

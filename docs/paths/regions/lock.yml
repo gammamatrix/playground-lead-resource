@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Region
-  summary: 'Unlock a region by id.'
-  operationId: lock_region
+  summary: 'Delete a region by id.'
+  operationId: unlock_region
   responses:
     204:
       description: 'The region has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Region
-  summary: 'Lock a region by id.'
-  operationId: unlock_region
+  summary: 'Lock a region by ID.'
+  operationId: lock_region
   responses:
     200:
       description: 'The unlocked region.'

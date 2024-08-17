@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Region
-  summary: 'Restore a region by id.'
+  summary: 'Restore a region from the trash by ID.'
   operationId: restore_region
   responses:
     200:
