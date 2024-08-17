@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Plan;
-use Playground\Lead\Resource\Http\Requests\Plan\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Plan\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Plan as PlanResource;
-use Playground\Lead\Resource\Http\Resources\PlanCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\PlanController
@@ -50,36 +40,36 @@ class PlanController extends Controller
     ];
 
     /**
-     * Create information or form for the Plan resource in storage.
+     * Create the Plan resource in storage.
      *
      * @route GET /resource/lead/plans/create playground.lead.resource.plans.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|PlanResource|View {
+        Requests\Plan\CreateRequest $request
+    ): JsonResponse|View|Resources\Plan {
 
         $validated = $request->validated();
-
-        $plan = new Plan($validated);
-
-        if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $plan = new Plan($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Plan($plan))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $plan,
@@ -94,45 +84,32 @@ class PlanController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('plan', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Plan resource in storage.
+     * Edit the Plan resource in storage.
      *
-     * @route GET /resource/lead/plans/edit playground.lead.resource.plans.edit
+     * @route GET /resource/lead/plans/edit/{plan} playground.lead.resource.plans.edit
      */
     public function edit(
         Plan $plan,
-        EditRequest $request
-    ): JsonResponse|PlanResource|View {
-
-        if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Plan\EditRequest $request
+    ): JsonResponse|View|Resources\Plan {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $plan->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $plan,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Plan($plan))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $plan->toArray();
 
@@ -141,12 +118,26 @@ class PlanController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $plan->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $plan,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::plan/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class PlanController extends Controller
      */
     public function destroy(
         Plan $plan,
-        DestroyRequest $request
+        Requests\Plan\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $plan->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $plan->delete();
@@ -176,7 +174,7 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class PlanController extends Controller
      */
     public function lock(
         Plan $plan,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|PlanResource {
+        Requests\Plan\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Plan {
 
-        $plan->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $plan->modified_by_id = $user->id;
+        }
+
+        $plan->locked = true;
 
         $plan->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $plan->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
+            return (new Resources\Plan($plan))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans.show', ['plan' => $plan->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['plan' => $plan->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class PlanController extends Controller
      * @route GET /resource/lead/plans playground.lead.resource.plans
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|PlanCollection {
+        Requests\Plan\IndexRequest $request
+    ): JsonResponse|View|Resources\PlanCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class PlanController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class PlanController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new PlanCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\PlanCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class PlanController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::plan/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class PlanController extends Controller
      */
     public function restore(
         Plan $plan,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|PlanResource {
+        Requests\Plan\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Plan {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $plan->modified_by_id = $user->id;
+        }
+
         $plan->restore();
 
         if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
+            return (new Resources\Plan($plan))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans.show', ['plan' => $plan->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['plan' => $plan->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class PlanController extends Controller
      */
     public function show(
         Plan $plan,
-        ShowRequest $request
-    ): JsonResponse|View|PlanResource {
-        if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Plan\ShowRequest $request
+    ): JsonResponse|View|Resources\Plan {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class PlanController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Plan($plan))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class PlanController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::plan/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Plan resource in storage.
+     * Store a newly created API Plan resource in storage.
      *
      * @route POST /resource/lead/plans playground.lead.resource.plans.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|PlanResource {
+        Requests\Plan\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Plan {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $plan = new Plan($validated);
 
-        $plan->created_by_id = $user?->id;
+        if ($user?->id) {
+            $plan->created_by_id = $user->id;
+        }
 
         $plan->save();
 
         if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
+            return (new Resources\Plan($plan))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans.show', ['plan' => $plan->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['plan' => $plan->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class PlanController extends Controller
      */
     public function unlock(
         Plan $plan,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|PlanResource {
+        Requests\Plan\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Plan {
 
-        $plan->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $plan->locked = false;
+
+        if ($user?->id) {
+            $plan->modified_by_id = $user->id;
+        }
 
         $plan->save();
 
         if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
+            return (new Resources\Plan($plan))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans.show', ['plan' => $plan->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['plan' => $plan->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class PlanController extends Controller
      */
     public function update(
         Plan $plan,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|PlanResource {
+        Requests\Plan\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Plan {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $plan->modified_by_id = $user?->id;
-
         $plan->update($validated);
 
+        if ($user?->id) {
+            $plan->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new PlanResource($plan))->additional(['meta' => [
+            return (new Resources\Plan($plan))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class PlanController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.plans.show', ['plan' => $plan->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['plan' => $plan->id]));
     }
 }

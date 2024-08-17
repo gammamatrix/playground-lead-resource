@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -19,19 +19,4 @@ abstract class Controller extends BaseController
     use AuthorizesRequests;
     use ValidatesRequests;
     // use DispatchesJobs;
-
-    protected function getViewPath(
-        string $controller = '',
-        string $view = ''
-    ): string {
-        $basePath = config('playground-cms-resource.blade');
-
-        return sprintf(
-            '%1$s%2$s%3$s%4$s',
-            empty($basePath) || ! is_string($basePath) ? '' : $basePath,
-            $controller,
-            $view ? '/' : '',
-            $view
-        );
-    }
 }

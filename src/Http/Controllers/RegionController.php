@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Region;
-use Playground\Lead\Resource\Http\Requests\Region\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Region\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Region\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Region\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Region\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Region\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Region\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Region\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Region\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Region\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Region as RegionResource;
-use Playground\Lead\Resource\Http\Resources\RegionCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\RegionController
@@ -50,36 +40,36 @@ class RegionController extends Controller
     ];
 
     /**
-     * Create information or form for the Region resource in storage.
+     * Create the Region resource in storage.
      *
      * @route GET /resource/lead/regions/create playground.lead.resource.regions.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|RegionResource|View {
+        Requests\Region\CreateRequest $request
+    ): JsonResponse|View|Resources\Region {
 
         $validated = $request->validated();
-
-        $region = new Region($validated);
-
-        if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $region = new Region($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Region($region))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $region,
@@ -94,45 +84,32 @@ class RegionController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('region', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Region resource in storage.
+     * Edit the Region resource in storage.
      *
-     * @route GET /resource/lead/regions/edit playground.lead.resource.regions.edit
+     * @route GET /resource/lead/regions/edit/{region} playground.lead.resource.regions.edit
      */
     public function edit(
         Region $region,
-        EditRequest $request
-    ): JsonResponse|RegionResource|View {
-
-        if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Region\EditRequest $request
+    ): JsonResponse|View|Resources\Region {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $region->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $region,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Region($region))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $region->toArray();
 
@@ -141,12 +118,26 @@ class RegionController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $region->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $region,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::region/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class RegionController extends Controller
      */
     public function destroy(
         Region $region,
-        DestroyRequest $request
+        Requests\Region\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $region->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $region->delete();
@@ -176,7 +174,7 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class RegionController extends Controller
      */
     public function lock(
         Region $region,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|RegionResource {
+        Requests\Region\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Region {
 
-        $region->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $region->modified_by_id = $user->id;
+        }
+
+        $region->locked = true;
 
         $region->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $region->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
+            return (new Resources\Region($region))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions.show', ['region' => $region->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['region' => $region->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class RegionController extends Controller
      * @route GET /resource/lead/regions playground.lead.resource.regions
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|RegionCollection {
+        Requests\Region\IndexRequest $request
+    ): JsonResponse|View|Resources\RegionCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class RegionController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class RegionController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new RegionCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\RegionCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class RegionController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::region/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class RegionController extends Controller
      */
     public function restore(
         Region $region,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|RegionResource {
+        Requests\Region\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Region {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $region->modified_by_id = $user->id;
+        }
+
         $region->restore();
 
         if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
+            return (new Resources\Region($region))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions.show', ['region' => $region->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['region' => $region->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class RegionController extends Controller
      */
     public function show(
         Region $region,
-        ShowRequest $request
-    ): JsonResponse|View|RegionResource {
-        if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Region\ShowRequest $request
+    ): JsonResponse|View|Resources\Region {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class RegionController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Region($region))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class RegionController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::region/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Region resource in storage.
+     * Store a newly created API Region resource in storage.
      *
      * @route POST /resource/lead/regions playground.lead.resource.regions.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|RegionResource {
+        Requests\Region\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Region {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $region = new Region($validated);
 
-        $region->created_by_id = $user?->id;
+        if ($user?->id) {
+            $region->created_by_id = $user->id;
+        }
 
         $region->save();
 
         if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
+            return (new Resources\Region($region))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions.show', ['region' => $region->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['region' => $region->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class RegionController extends Controller
      */
     public function unlock(
         Region $region,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|RegionResource {
+        Requests\Region\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Region {
 
-        $region->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $region->locked = false;
+
+        if ($user?->id) {
+            $region->modified_by_id = $user->id;
+        }
 
         $region->save();
 
         if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
+            return (new Resources\Region($region))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions.show', ['region' => $region->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['region' => $region->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class RegionController extends Controller
      */
     public function update(
         Region $region,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|RegionResource {
+        Requests\Region\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Region {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $region->modified_by_id = $user?->id;
-
         $region->update($validated);
 
+        if ($user?->id) {
+            $region->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new RegionResource($region))->additional(['meta' => [
+            return (new Resources\Region($region))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class RegionController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.regions.show', ['region' => $region->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['region' => $region->id]));
     }
 }

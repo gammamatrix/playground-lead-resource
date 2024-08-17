@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Goal;
-use Playground\Lead\Resource\Http\Requests\Goal\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Goal\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Goal as GoalResource;
-use Playground\Lead\Resource\Http\Resources\GoalCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\GoalController
@@ -50,36 +40,36 @@ class GoalController extends Controller
     ];
 
     /**
-     * Create information or form for the Goal resource in storage.
+     * Create the Goal resource in storage.
      *
      * @route GET /resource/lead/goals/create playground.lead.resource.goals.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|GoalResource|View {
+        Requests\Goal\CreateRequest $request
+    ): JsonResponse|View|Resources\Goal {
 
         $validated = $request->validated();
-
-        $goal = new Goal($validated);
-
-        if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $goal = new Goal($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Goal($goal))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $goal,
@@ -94,45 +84,32 @@ class GoalController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('goal', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Goal resource in storage.
+     * Edit the Goal resource in storage.
      *
-     * @route GET /resource/lead/goals/edit playground.lead.resource.goals.edit
+     * @route GET /resource/lead/goals/edit/{goal} playground.lead.resource.goals.edit
      */
     public function edit(
         Goal $goal,
-        EditRequest $request
-    ): JsonResponse|GoalResource|View {
-
-        if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Goal\EditRequest $request
+    ): JsonResponse|View|Resources\Goal {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $goal->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $goal,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Goal($goal))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $goal->toArray();
 
@@ -141,12 +118,26 @@ class GoalController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $goal->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $goal,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::goal/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class GoalController extends Controller
      */
     public function destroy(
         Goal $goal,
-        DestroyRequest $request
+        Requests\Goal\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $goal->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $goal->delete();
@@ -176,7 +174,7 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class GoalController extends Controller
      */
     public function lock(
         Goal $goal,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|GoalResource {
+        Requests\Goal\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Goal {
 
-        $goal->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $goal->modified_by_id = $user->id;
+        }
+
+        $goal->locked = true;
 
         $goal->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $goal->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
+            return (new Resources\Goal($goal))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals.show', ['goal' => $goal->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['goal' => $goal->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class GoalController extends Controller
      * @route GET /resource/lead/goals playground.lead.resource.goals
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|GoalCollection {
+        Requests\Goal\IndexRequest $request
+    ): JsonResponse|View|Resources\GoalCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class GoalController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class GoalController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new GoalCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\GoalCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class GoalController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::goal/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class GoalController extends Controller
      */
     public function restore(
         Goal $goal,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|GoalResource {
+        Requests\Goal\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Goal {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $goal->modified_by_id = $user->id;
+        }
+
         $goal->restore();
 
         if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
+            return (new Resources\Goal($goal))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals.show', ['goal' => $goal->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['goal' => $goal->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class GoalController extends Controller
      */
     public function show(
         Goal $goal,
-        ShowRequest $request
-    ): JsonResponse|View|GoalResource {
-        if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Goal\ShowRequest $request
+    ): JsonResponse|View|Resources\Goal {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class GoalController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Goal($goal))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class GoalController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::goal/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Goal resource in storage.
+     * Store a newly created API Goal resource in storage.
      *
      * @route POST /resource/lead/goals playground.lead.resource.goals.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|GoalResource {
+        Requests\Goal\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Goal {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $goal = new Goal($validated);
 
-        $goal->created_by_id = $user?->id;
+        if ($user?->id) {
+            $goal->created_by_id = $user->id;
+        }
 
         $goal->save();
 
         if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
+            return (new Resources\Goal($goal))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals.show', ['goal' => $goal->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['goal' => $goal->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class GoalController extends Controller
      */
     public function unlock(
         Goal $goal,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|GoalResource {
+        Requests\Goal\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Goal {
 
-        $goal->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $goal->locked = false;
+
+        if ($user?->id) {
+            $goal->modified_by_id = $user->id;
+        }
 
         $goal->save();
 
         if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
+            return (new Resources\Goal($goal))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals.show', ['goal' => $goal->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['goal' => $goal->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class GoalController extends Controller
      */
     public function update(
         Goal $goal,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|GoalResource {
+        Requests\Goal\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Goal {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $goal->modified_by_id = $user?->id;
-
         $goal->update($validated);
 
+        if ($user?->id) {
+            $goal->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new GoalResource($goal))->additional(['meta' => [
+            return (new Resources\Goal($goal))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class GoalController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.goals.show', ['goal' => $goal->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['goal' => $goal->id]));
     }
 }

@@ -1,12 +1,12 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Requests\Teammate;
 
-use Playground\Lead\Resource\Http\Requests\ShowRequest as FormRequest;
+use Playground\Lead\Resource\Http\Requests\FormRequest;
 
 /**
  * \Playground\Lead\Resource\Http\Requests\Teammate\ShowRequest

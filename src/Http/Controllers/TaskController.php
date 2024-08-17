@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Task;
-use Playground\Lead\Resource\Http\Requests\Task\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Task\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Task\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Task\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Task\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Task\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Task\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Task\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Task\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Task\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Task as TaskResource;
-use Playground\Lead\Resource\Http\Resources\TaskCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\TaskController
@@ -50,36 +40,36 @@ class TaskController extends Controller
     ];
 
     /**
-     * Create information or form for the Task resource in storage.
+     * Create the Task resource in storage.
      *
      * @route GET /resource/lead/tasks/create playground.lead.resource.tasks.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|TaskResource|View {
+        Requests\Task\CreateRequest $request
+    ): JsonResponse|View|Resources\Task {
 
         $validated = $request->validated();
-
-        $task = new Task($validated);
-
-        if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $task = new Task($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Task($task))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $task,
@@ -94,45 +84,32 @@ class TaskController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('task', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Task resource in storage.
+     * Edit the Task resource in storage.
      *
-     * @route GET /resource/lead/tasks/edit playground.lead.resource.tasks.edit
+     * @route GET /resource/lead/tasks/edit/{task} playground.lead.resource.tasks.edit
      */
     public function edit(
         Task $task,
-        EditRequest $request
-    ): JsonResponse|TaskResource|View {
-
-        if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Task\EditRequest $request
+    ): JsonResponse|View|Resources\Task {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $task->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $task,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Task($task))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $task->toArray();
 
@@ -141,12 +118,26 @@ class TaskController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $task->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $task,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::task/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class TaskController extends Controller
      */
     public function destroy(
         Task $task,
-        DestroyRequest $request
+        Requests\Task\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $task->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $task->delete();
@@ -176,7 +174,7 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class TaskController extends Controller
      */
     public function lock(
         Task $task,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|TaskResource {
+        Requests\Task\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Task {
 
-        $task->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $task->modified_by_id = $user->id;
+        }
+
+        $task->locked = true;
 
         $task->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $task->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
+            return (new Resources\Task($task))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks.show', ['task' => $task->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['task' => $task->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class TaskController extends Controller
      * @route GET /resource/lead/tasks playground.lead.resource.tasks
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|TaskCollection {
+        Requests\Task\IndexRequest $request
+    ): JsonResponse|View|Resources\TaskCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class TaskController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class TaskController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new TaskCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\TaskCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class TaskController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::task/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class TaskController extends Controller
      */
     public function restore(
         Task $task,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|TaskResource {
+        Requests\Task\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Task {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $task->modified_by_id = $user->id;
+        }
+
         $task->restore();
 
         if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
+            return (new Resources\Task($task))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks.show', ['task' => $task->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['task' => $task->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class TaskController extends Controller
      */
     public function show(
         Task $task,
-        ShowRequest $request
-    ): JsonResponse|View|TaskResource {
-        if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Task\ShowRequest $request
+    ): JsonResponse|View|Resources\Task {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class TaskController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Task($task))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class TaskController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::task/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Task resource in storage.
+     * Store a newly created API Task resource in storage.
      *
      * @route POST /resource/lead/tasks playground.lead.resource.tasks.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|TaskResource {
+        Requests\Task\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Task {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $task = new Task($validated);
 
-        $task->created_by_id = $user?->id;
+        if ($user?->id) {
+            $task->created_by_id = $user->id;
+        }
 
         $task->save();
 
         if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
+            return (new Resources\Task($task))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks.show', ['task' => $task->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['task' => $task->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class TaskController extends Controller
      */
     public function unlock(
         Task $task,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|TaskResource {
+        Requests\Task\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Task {
 
-        $task->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $task->locked = false;
+
+        if ($user?->id) {
+            $task->modified_by_id = $user->id;
+        }
 
         $task->save();
 
         if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
+            return (new Resources\Task($task))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks.show', ['task' => $task->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['task' => $task->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class TaskController extends Controller
      */
     public function update(
         Task $task,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|TaskResource {
+        Requests\Task\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Task {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $task->modified_by_id = $user?->id;
-
         $task->update($validated);
 
+        if ($user?->id) {
+            $task->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new TaskResource($task))->additional(['meta' => [
+            return (new Resources\Task($task))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class TaskController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.tasks.show', ['task' => $task->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['task' => $task->id]));
     }
 }

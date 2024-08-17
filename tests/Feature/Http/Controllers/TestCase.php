@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,26 +11,38 @@ use Playground\Test\Feature\Http\Controllers\Resource;
 use Tests\Feature\Playground\Lead\Resource\TestCase as BaseTestCase;
 
 /**
- * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\BacklogTestCase
+ * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\TestCase
  */
 class TestCase extends BaseTestCase
 {
     use Resource\Playground\CreateJsonTrait;
+    use Resource\Playground\CreateTrait;
     use Resource\Playground\DestroyJsonTrait;
+    use Resource\Playground\DestroyTrait;
     use Resource\Playground\EditJsonTrait;
+    use Resource\Playground\EditTrait;
     use Resource\Playground\IndexJsonTrait;
+    use Resource\Playground\IndexTrait;
     use Resource\Playground\LockJsonTrait;
+    use Resource\Playground\LockTrait;
     use Resource\Playground\RestoreJsonTrait;
+    use Resource\Playground\RestoreTrait;
     use Resource\Playground\ShowJsonTrait;
+    use Resource\Playground\ShowTrait;
     use Resource\Playground\StoreJsonTrait;
+    use Resource\Playground\StoreTrait;
     use Resource\Playground\UnlockJsonTrait;
+    use Resource\Playground\UnlockTrait;
     use Resource\Playground\UpdateJsonTrait;
+    use Resource\Playground\UpdateTrait;
+
+    protected bool $setUpUserForPlayground = true;
 
     /**
      * @var array<string, string>
      */
     public array $packageInfo = [
-        'model_attribute' => 'label',
+        'model_attribute' => 'title',
         'model_label' => '',
         'model_label_plural' => '',
         'model_route' => '',
@@ -40,8 +52,9 @@ class TestCase extends BaseTestCase
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',
         'module_slug' => 'lead',
-        'privilege' => '',
+        'privilege' => 'playground-lead-resource:',
         'table' => '',
+        'view' => 'playground-lead-resource::',
     ];
 
     /**
@@ -54,109 +67,6 @@ class TestCase extends BaseTestCase
      */
     protected $structure_model = [
         'id',
-        'created_by_id',
-        'modified_by_id',
-        'owned_by_id',
-        'parent_id',
-        'model_type',
-        'campaign_id',
-        'goal_id',
-        'lead_id',
-        'opportunity_id',
-        'plan_id',
-        'region_id',
-        'report_id',
-        'source_id',
-        'task_id',
-        'team_id',
-        'teammate_id',
-        'start_at',
-        'planned_start_at',
-        'end_at',
-        'planned_end_at',
-        'calculated_at',
-        'canceled_at',
-        'closed_at',
-        'embargo_at',
-        'fixed_at',
-        'postponed_at',
-        'published_at',
-        'released_at',
-        'reported_at',
-        'resolved_at',
-        'resumed_at',
-        'suspended_at',
-        'gids',
-        'po',
-        'pg',
-        'pw',
-        'status',
-        'rank',
-        'size',
-        'matrix',
-        'x',
-        'y',
-        'z',
-        'r',
-        'theta',
-        'rho',
-        'phi',
-        'elevation',
-        'latitude',
-        'longitude',
-        'active',
-        'canceled',
-        'closed',
-        'completed',
-        'duplicate',
-        'featured',
-        'fixed',
-        'flagged',
-        'internal',
-        'locked',
-        'pending',
-        'planned',
-        'prioritized',
-        'problem',
-        'published',
-        'released',
-        'retired',
-        'resolved',
-        'special',
-        'suspended',
-        'unknown',
-        'label',
-        'title',
-        'byline',
-        'slug',
-        'url',
-        'description',
-        'introduction',
-        'content',
-        'summary',
-        'locale',
-        'currency',
-        'amount',
-        'bonus',
-        'bonus_rate',
-        'estimate',
-        'fees',
-        'materials',
-        'services',
-        'shipping',
-        'subtotal',
-        'taxable',
-        'tax_rate',
-        'taxes',
-        'total',
-        'icon',
-        'image',
-        'avatar',
-        'ui',
-        'assets',
-        'meta',
-        'options',
-        'sources',
     ];
 
     /**

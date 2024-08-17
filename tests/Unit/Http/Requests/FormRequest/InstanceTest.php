@@ -1,14 +1,14 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Tests\Unit\Playground\Lead\Resource\Http\Requests\FormRequest;
 
 use Playground\Lead\Resource\Http\Requests\FormRequest;
-use Playground\Test\Models\PlaygroundUser as User;
-use Playground\Test\Models\User as DefaultLaravelUser;
+use Playground\Models\User;
+use Playground\Test\Models\DefaultUser;
 use Tests\Unit\Playground\Lead\Resource\TestCase;
 
 /**
@@ -55,9 +55,9 @@ class InstanceTest extends TestCase
     public function test_userHasAdminPrivileges_with_default_laravel_user(): void
     {
         /**
-         * @var DefaultLaravelUser $user
+         * @var DefaultUser $user
          */
-        $user = DefaultLaravelUser::factory()->admin()->make();
+        $user = DefaultUser::factory()->admin()->make();
 
         $instance = new FormRequest;
 

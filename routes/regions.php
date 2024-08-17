@@ -1,4 +1,7 @@
 <?php
+/**
+ * Playground
+ */
 
 declare(strict_types=1);
 
@@ -6,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Lead Routes: Region
+| Lead Resource Routes: Region
 |--------------------------------------------------------------------------
 |
 |
 */
+
 Route::group([
-    'prefix' => 'resource/lead/region',
+    'prefix' => 'api/lead/region',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -33,6 +37,11 @@ Route::group([
         'uses' => 'RegionController@index',
     ])->can('index', Playground\Lead\Models\Region::class);
 
+    Route::post('/index', [
+        'as' => 'playground.lead.resource.regions.index',
+        'uses' => 'RegionController@index',
+    ])->can('index', Playground\Lead\Models\Region::class);
+
     // UI
 
     Route::get('/create', [
@@ -43,47 +52,39 @@ Route::group([
     Route::get('/edit/{region}', [
         'as' => 'playground.lead.resource.regions.edit',
         'uses' => 'RegionController@edit',
-    ])->whereUuid('region')
-        ->can('edit', 'region');
+    ])->whereUuid('region')->can('edit', 'region');
 
     // Route::get('/go/{id}', [
-    //     'as'   => 'playground.lead.resource.regions.go',
+    //     'as' => 'playground.lead.resource.regions.go',
     //     'uses' => 'RegionController@go',
     // ]);
 
     Route::get('/{region}', [
         'as' => 'playground.lead.resource.regions.show',
         'uses' => 'RegionController@show',
-    ])->whereUuid('region')
-        ->can('detail', 'region');
+    ])->whereUuid('region')->can('detail', 'region');
 
-    // Resource
+    // API
 
     Route::put('/lock/{region}', [
         'as' => 'playground.lead.resource.regions.lock',
         'uses' => 'RegionController@lock',
-    ])->whereUuid('region')
-        ->can('lock', 'region');
+    ])->whereUuid('region')->can('lock', 'region');
 
     Route::delete('/lock/{region}', [
         'as' => 'playground.lead.resource.regions.unlock',
         'uses' => 'RegionController@unlock',
-    ])->whereUuid('region')
-        ->can('unlock', 'region');
+    ])->whereUuid('region')->can('unlock', 'region');
 
     Route::delete('/{region}', [
         'as' => 'playground.lead.resource.regions.destroy',
         'uses' => 'RegionController@destroy',
-    ])->whereUuid('region')
-        ->can('delete', 'region')
-        ->withTrashed();
+    ])->whereUuid('region')->can('delete', 'region')->withTrashed();
 
     Route::put('/restore/{region}', [
         'as' => 'playground.lead.resource.regions.restore',
         'uses' => 'RegionController@restore',
-    ])->whereUuid('region')
-        ->can('restore', 'region')
-        ->withTrashed();
+    ])->whereUuid('region')->can('restore', 'region')->withTrashed();
 
     Route::post('/', [
         'as' => 'playground.lead.resource.regions.post',
@@ -91,12 +92,12 @@ Route::group([
     ])->can('store', Playground\Lead\Models\Region::class);
 
     // Route::put('/', [
-    //     'as'   => 'playground.lead.resource.regions.put',
+    //     'as' => 'playground.lead.resource.regions.put',
     //     'uses' => 'RegionController@store',
-    // ])->can('store', \Playground\Lead\Models\Region::class);
+    // ])->can('store', Playground\Lead\Models\Region::class);
     //
     // Route::put('/{region}', [
-    //     'as'   => 'playground.lead.resource.regions.put.id',
+    //     'as' => 'playground.lead.resource.regions.put.id',
     //     'uses' => 'RegionController@store',
     // ])->whereUuid('region')->can('update', 'region');
 

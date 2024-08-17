@@ -1,15 +1,12 @@
 {
     "name": "gammamatrix/playground-lead-resource",
-    "description": "Playground: Provides an API and a Blade UI for interacting with Playground Lead, a sales campaign management tool for Laravel applications.",
+    "description": "Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Lead System for Laravel applications.",
     "keywords": [
-        "matrix",
-        "agile",
-        "sprints",
-        "projects",
-        "tickets",
         "gammamatrix",
         "laravel",
-        "playground"
+        "lead",
+        "playground",
+        "playground-blade"
     ],
     "homepage": "https://github.com/gammamatrix/playground-lead-resource",
     "license": "MIT",
@@ -20,24 +17,18 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/gammamatrix/playground-lead"
-        }
-    ],
     "require": {
-        "php": "^8.1",
-        "gammamatrix/playground-auth": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-http": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "gammamatrix/playground-lead": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0"
+        "php": "^8.2",
+        "gammamatrix/playground": "*",
+        "gammamatrix/playground-auth": "*",
+        "gammamatrix/playground-http": "*",
+        "gammamatrix/playground-lead": "*"
     },
     "require-dev": {
-        "gammamatrix/playground-test": "dev-develop|dev-master|dev-feature/*|^73.0@dev|^73.0",
-        "laravel/sanctum": "^4.0"
+        "gammamatrix/playground-test": "*",
+        "gammamatrix/playground-login-blade": "*",
+        "gammamatrix/playground-site-blade": "*"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Playground\\Lead\\Resource\\": "src/"
@@ -58,8 +49,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "73.x-dev",
-            "dev-master": "73.x-dev"
+            "dev-develop": "73.x-dev"
         },
         "laravel": {
             "providers": [
@@ -67,9 +57,15 @@
             ]
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
-        "test": "vendor/bin/phpunit",
+        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max",
+        "cloc": "cloc --exclude-dir=node_modules,output,vendor .",
         "format": "vendor/bin/php-cs-fixer fix",
-        "analyse": "vendor/bin/phpstan analyse --verbose --debug --level max"
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/testbench package:test"
+        ]
     }
 }

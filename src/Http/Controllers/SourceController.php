@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Source;
-use Playground\Lead\Resource\Http\Requests\Source\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Source\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Source\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Source\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Source\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Source\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Source\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Source\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Source\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Source\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Source as SourceResource;
-use Playground\Lead\Resource\Http\Resources\SourceCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\SourceController
@@ -50,36 +40,36 @@ class SourceController extends Controller
     ];
 
     /**
-     * Create information or form for the Source resource in storage.
+     * Create the Source resource in storage.
      *
      * @route GET /resource/lead/sources/create playground.lead.resource.sources.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|SourceResource|View {
+        Requests\Source\CreateRequest $request
+    ): JsonResponse|View|Resources\Source {
 
         $validated = $request->validated();
-
-        $source = new Source($validated);
-
-        if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $source = new Source($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Source($source))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $source,
@@ -94,45 +84,32 @@ class SourceController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('source', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Source resource in storage.
+     * Edit the Source resource in storage.
      *
-     * @route GET /resource/lead/sources/edit playground.lead.resource.sources.edit
+     * @route GET /resource/lead/sources/edit/{source} playground.lead.resource.sources.edit
      */
     public function edit(
         Source $source,
-        EditRequest $request
-    ): JsonResponse|SourceResource|View {
-
-        if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Source\EditRequest $request
+    ): JsonResponse|View|Resources\Source {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $source->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $source,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Source($source))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $source->toArray();
 
@@ -141,12 +118,26 @@ class SourceController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $source->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $source,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::source/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class SourceController extends Controller
      */
     public function destroy(
         Source $source,
-        DestroyRequest $request
+        Requests\Source\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $source->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $source->delete();
@@ -176,7 +174,7 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class SourceController extends Controller
      */
     public function lock(
         Source $source,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|SourceResource {
+        Requests\Source\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Source {
 
-        $source->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $source->modified_by_id = $user->id;
+        }
+
+        $source->locked = true;
 
         $source->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $source->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
+            return (new Resources\Source($source))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources.show', ['source' => $source->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['source' => $source->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class SourceController extends Controller
      * @route GET /resource/lead/sources playground.lead.resource.sources
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|SourceCollection {
+        Requests\Source\IndexRequest $request
+    ): JsonResponse|View|Resources\SourceCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class SourceController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class SourceController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new SourceCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\SourceCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class SourceController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::source/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class SourceController extends Controller
      */
     public function restore(
         Source $source,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|SourceResource {
+        Requests\Source\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Source {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $source->modified_by_id = $user->id;
+        }
+
         $source->restore();
 
         if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
+            return (new Resources\Source($source))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources.show', ['source' => $source->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['source' => $source->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class SourceController extends Controller
      */
     public function show(
         Source $source,
-        ShowRequest $request
-    ): JsonResponse|View|SourceResource {
-        if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Source\ShowRequest $request
+    ): JsonResponse|View|Resources\Source {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class SourceController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Source($source))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class SourceController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::source/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Source resource in storage.
+     * Store a newly created API Source resource in storage.
      *
      * @route POST /resource/lead/sources playground.lead.resource.sources.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|SourceResource {
+        Requests\Source\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Source {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $source = new Source($validated);
 
-        $source->created_by_id = $user?->id;
+        if ($user?->id) {
+            $source->created_by_id = $user->id;
+        }
 
         $source->save();
 
         if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
+            return (new Resources\Source($source))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources.show', ['source' => $source->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['source' => $source->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class SourceController extends Controller
      */
     public function unlock(
         Source $source,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|SourceResource {
+        Requests\Source\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Source {
 
-        $source->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $source->locked = false;
+
+        if ($user?->id) {
+            $source->modified_by_id = $user->id;
+        }
 
         $source->save();
 
         if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
+            return (new Resources\Source($source))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources.show', ['source' => $source->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['source' => $source->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class SourceController extends Controller
      */
     public function update(
         Source $source,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|SourceResource {
+        Requests\Source\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Source {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $source->modified_by_id = $user?->id;
-
         $source->update($validated);
 
+        if ($user?->id) {
+            $source->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new SourceResource($source))->additional(['meta' => [
+            return (new Resources\Source($source))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class SourceController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.sources.show', ['source' => $source->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['source' => $source->id]));
     }
 }

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Playground
+ */
 
 declare(strict_types=1);
 
@@ -6,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Lead Routes: Source
+| Lead Resource Routes: Source
 |--------------------------------------------------------------------------
 |
 |
 */
+
 Route::group([
-    'prefix' => 'resource/lead/source',
+    'prefix' => 'api/lead/source',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -33,6 +37,11 @@ Route::group([
         'uses' => 'SourceController@index',
     ])->can('index', Playground\Lead\Models\Source::class);
 
+    Route::post('/index', [
+        'as' => 'playground.lead.resource.sources.index',
+        'uses' => 'SourceController@index',
+    ])->can('index', Playground\Lead\Models\Source::class);
+
     // UI
 
     Route::get('/create', [
@@ -43,47 +52,39 @@ Route::group([
     Route::get('/edit/{source}', [
         'as' => 'playground.lead.resource.sources.edit',
         'uses' => 'SourceController@edit',
-    ])->whereUuid('source')
-        ->can('edit', 'source');
+    ])->whereUuid('source')->can('edit', 'source');
 
     // Route::get('/go/{id}', [
-    //     'as'   => 'playground.lead.resource.sources.go',
+    //     'as' => 'playground.lead.resource.sources.go',
     //     'uses' => 'SourceController@go',
     // ]);
 
     Route::get('/{source}', [
         'as' => 'playground.lead.resource.sources.show',
         'uses' => 'SourceController@show',
-    ])->whereUuid('source')
-        ->can('detail', 'source');
+    ])->whereUuid('source')->can('detail', 'source');
 
-    // Resource
+    // API
 
     Route::put('/lock/{source}', [
         'as' => 'playground.lead.resource.sources.lock',
         'uses' => 'SourceController@lock',
-    ])->whereUuid('source')
-        ->can('lock', 'source');
+    ])->whereUuid('source')->can('lock', 'source');
 
     Route::delete('/lock/{source}', [
         'as' => 'playground.lead.resource.sources.unlock',
         'uses' => 'SourceController@unlock',
-    ])->whereUuid('source')
-        ->can('unlock', 'source');
+    ])->whereUuid('source')->can('unlock', 'source');
 
     Route::delete('/{source}', [
         'as' => 'playground.lead.resource.sources.destroy',
         'uses' => 'SourceController@destroy',
-    ])->whereUuid('source')
-        ->can('delete', 'source')
-        ->withTrashed();
+    ])->whereUuid('source')->can('delete', 'source')->withTrashed();
 
     Route::put('/restore/{source}', [
         'as' => 'playground.lead.resource.sources.restore',
         'uses' => 'SourceController@restore',
-    ])->whereUuid('source')
-        ->can('restore', 'source')
-        ->withTrashed();
+    ])->whereUuid('source')->can('restore', 'source')->withTrashed();
 
     Route::post('/', [
         'as' => 'playground.lead.resource.sources.post',
@@ -91,12 +92,12 @@ Route::group([
     ])->can('store', Playground\Lead\Models\Source::class);
 
     // Route::put('/', [
-    //     'as'   => 'playground.lead.resource.sources.put',
+    //     'as' => 'playground.lead.resource.sources.put',
     //     'uses' => 'SourceController@store',
-    // ])->can('store', \Playground\Lead\Models\Source::class);
+    // ])->can('store', Playground\Lead\Models\Source::class);
     //
     // Route::put('/{source}', [
-    //     'as'   => 'playground.lead.resource.sources.put.id',
+    //     'as' => 'playground.lead.resource.sources.put.id',
     //     'uses' => 'SourceController@store',
     // ])->whereUuid('source')->can('update', 'source');
 

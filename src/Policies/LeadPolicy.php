@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Policies;
 
 use Playground\Auth\Policies\ModelPolicy;
@@ -21,7 +21,7 @@ class LeadPolicy extends ModelPolicy
     protected $rolesToView = [
         'user',
         'staff',
-        'sales',
+        'publisher',
         'manager',
         'admin',
         'root',
@@ -31,7 +31,7 @@ class LeadPolicy extends ModelPolicy
      * @var array<int, string> The roles allowed for actions in the MVC.
      */
     protected $rolesForAction = [
-        'sales',
+        'publisher',
         'manager',
         'admin',
         'root',

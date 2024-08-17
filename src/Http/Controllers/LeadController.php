@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Lead;
-use Playground\Lead\Resource\Http\Requests\Lead\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Lead\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Lead as LeadResource;
-use Playground\Lead\Resource\Http\Resources\LeadCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\LeadController
@@ -50,36 +40,36 @@ class LeadController extends Controller
     ];
 
     /**
-     * Create information or form for the Lead resource in storage.
+     * Create the Lead resource in storage.
      *
      * @route GET /resource/lead/leads/create playground.lead.resource.leads.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|LeadResource|View {
+        Requests\Lead\CreateRequest $request
+    ): JsonResponse|View|Resources\Lead {
 
         $validated = $request->validated();
-
-        $lead = new Lead($validated);
-
-        if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $lead = new Lead($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Lead($lead))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $lead,
@@ -94,45 +84,32 @@ class LeadController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('lead', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Lead resource in storage.
+     * Edit the Lead resource in storage.
      *
-     * @route GET /resource/lead/leads/edit playground.lead.resource.leads.edit
+     * @route GET /resource/lead/leads/edit/{lead} playground.lead.resource.leads.edit
      */
     public function edit(
         Lead $lead,
-        EditRequest $request
-    ): JsonResponse|LeadResource|View {
-
-        if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Lead\EditRequest $request
+    ): JsonResponse|View|Resources\Lead {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $lead->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $lead,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Lead($lead))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $lead->toArray();
 
@@ -141,12 +118,26 @@ class LeadController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $lead->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $lead,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::lead/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class LeadController extends Controller
      */
     public function destroy(
         Lead $lead,
-        DestroyRequest $request
+        Requests\Lead\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $lead->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $lead->delete();
@@ -176,7 +174,7 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class LeadController extends Controller
      */
     public function lock(
         Lead $lead,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|LeadResource {
+        Requests\Lead\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Lead {
 
-        $lead->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $lead->modified_by_id = $user->id;
+        }
+
+        $lead->locked = true;
 
         $lead->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $lead->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
+            return (new Resources\Lead($lead))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads.show', ['lead' => $lead->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['lead' => $lead->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class LeadController extends Controller
      * @route GET /resource/lead/leads playground.lead.resource.leads
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|LeadCollection {
+        Requests\Lead\IndexRequest $request
+    ): JsonResponse|View|Resources\LeadCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class LeadController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class LeadController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new LeadCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\LeadCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class LeadController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::lead/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class LeadController extends Controller
      */
     public function restore(
         Lead $lead,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|LeadResource {
+        Requests\Lead\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Lead {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $lead->modified_by_id = $user->id;
+        }
+
         $lead->restore();
 
         if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
+            return (new Resources\Lead($lead))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads.show', ['lead' => $lead->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['lead' => $lead->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class LeadController extends Controller
      */
     public function show(
         Lead $lead,
-        ShowRequest $request
-    ): JsonResponse|View|LeadResource {
-        if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Lead\ShowRequest $request
+    ): JsonResponse|View|Resources\Lead {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class LeadController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Lead($lead))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class LeadController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::lead/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Lead resource in storage.
+     * Store a newly created API Lead resource in storage.
      *
      * @route POST /resource/lead/leads playground.lead.resource.leads.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|LeadResource {
+        Requests\Lead\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Lead {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $lead = new Lead($validated);
 
-        $lead->created_by_id = $user?->id;
+        if ($user?->id) {
+            $lead->created_by_id = $user->id;
+        }
 
         $lead->save();
 
         if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
+            return (new Resources\Lead($lead))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads.show', ['lead' => $lead->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['lead' => $lead->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class LeadController extends Controller
      */
     public function unlock(
         Lead $lead,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|LeadResource {
+        Requests\Lead\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Lead {
 
-        $lead->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $lead->locked = false;
+
+        if ($user?->id) {
+            $lead->modified_by_id = $user->id;
+        }
 
         $lead->save();
 
         if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
+            return (new Resources\Lead($lead))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads.show', ['lead' => $lead->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['lead' => $lead->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class LeadController extends Controller
      */
     public function update(
         Lead $lead,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|LeadResource {
+        Requests\Lead\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Lead {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $lead->modified_by_id = $user?->id;
-
         $lead->update($validated);
 
+        if ($user?->id) {
+            $lead->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new LeadResource($lead))->additional(['meta' => [
+            return (new Resources\Lead($lead))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class LeadController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.leads.show', ['lead' => $lead->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['lead' => $lead->id]));
     }
 }
