@@ -1,16 +1,22 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Requests\Task;
 
-use Playground\Lead\Resource\Http\Requests\UnlockRequest as FormRequest;
+use Playground\Lead\Resource\Http\Requests\FormRequest;
 
 /**
  * \Playground\Lead\Resource\Http\Requests\Task\UnlockRequest
  */
 class UnlockRequest extends FormRequest
 {
+    /**
+     * @var array<string, string|array<mixed>>
+     */
+    public const RULES = [
+        '_return_url' => ['nullable', 'url'],
+    ];
 }

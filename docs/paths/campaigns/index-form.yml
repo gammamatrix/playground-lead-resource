@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Campaign
+  summary: 'Get campaigns from the index using POST.'
+  operationId: post_campaigns_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/campaign/form.yml
+  responses:
+    200:
+      description: 'Get the campaigns from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/campaign.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Team
-  summary: 'Restore a team by id.'
+  summary: 'Restore a team from the trash by ID.'
   operationId: restore_team
   responses:
     200:

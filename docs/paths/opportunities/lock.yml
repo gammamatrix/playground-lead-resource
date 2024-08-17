@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Opportunity
-  summary: 'Unlock a opportunity by id.'
-  operationId: lock_opportunity
+  summary: 'Delete a opportunity by id.'
+  operationId: unlock_opportunity
   responses:
     204:
       description: 'The opportunity has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Opportunity
-  summary: 'Lock a opportunity by id.'
-  operationId: unlock_opportunity
+  summary: 'Lock a opportunity by ID.'
+  operationId: lock_opportunity
   responses:
     200:
       description: 'The unlocked opportunity.'

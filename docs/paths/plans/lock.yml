@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Plan
-  summary: 'Unlock a plan by id.'
-  operationId: lock_plan
+  summary: 'Delete a plan by id.'
+  operationId: unlock_plan
   responses:
     204:
       description: 'The plan has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Plan
-  summary: 'Lock a plan by id.'
-  operationId: unlock_plan
+  summary: 'Lock a plan by ID.'
+  operationId: lock_plan
   responses:
     200:
       description: 'The unlocked plan.'

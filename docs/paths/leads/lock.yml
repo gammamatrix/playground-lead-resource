@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Lead
-  summary: 'Unlock a lead by id.'
-  operationId: lock_lead
+  summary: 'Delete a lead by id.'
+  operationId: unlock_lead
   responses:
     204:
       description: 'The lead has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Lead
-  summary: 'Lock a lead by id.'
-  operationId: unlock_lead
+  summary: 'Lock a lead by ID.'
+  operationId: lock_lead
   responses:
     200:
       description: 'The unlocked lead.'

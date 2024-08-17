@@ -1,23 +1,12 @@
-# Playground Lead Resource
+# Playground: Lead Resource
 
 [![Playground CI Workflow](https://github.com/gammamatrix/playground-lead-resource/actions/workflows/ci.yml/badge.svg?branch=develop)](https://raw.githubusercontent.com/gammamatrix/playground-lead-resource/testing/develop/testdox.txt)
 [![Test Coverage](https://raw.githubusercontent.com/gammamatrix/playground-lead-resource/testing/develop/coverage.svg)](tests)
-[![PHPStan Level 9 src and tests](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](.github/workflows/ci.yml#L120)
+[![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen)](.github/workflows/ci.yml#L120)
 
-The `playground-lead-resource` Laravel package.
-
-This package provides an Resource for interacting with the [Playground Lead](https://github.com/gammamatrix/playground-lead), a Campaign Sales Management tool.
-
-If you need a UI, then use [Playground Lead Resource](https://github.com/gammamatrix/playground-lead-resource), which provides a Blade UI.
+The Playground: Lead Resource package.
 
 ## Documentation
-
-Read more on using [Playground Lead Resource at Read the Docs: Playground Documentation.](https://gammamatrix-playground.readthedocs.io/en/develop/components/lead.html)
-
-<!-- ### Postman
-
-A postman collection is provided in the repository: [postman-playground-lead-resource.json.](postman-playground-lead-resource.json)
-- This same collection is viewable on the [Postman: GammaMatrix Playground workspace.](https://www.postman.com/gammamatrix/workspace/playground) -->
 
 ### Swagger
 
@@ -25,8 +14,8 @@ This application provides Swagger documentation: [swagger.json](swagger.json).
 - The endpoint models support locks, trash with force delete, restoring, revisions and more.
 - Index endpoints support advanced query filtering.
 
-Swagger Resource Documentation is built with npm.
-- npm is only needed to generate documentation and is not needed to operate the LEAD Resource.
+Swagger API Documentation is built with npm.
+- npm is only needed to generate documentation and is not needed to operate the CMS API.
 
 See [package.json](package.json) requirements.
 
@@ -54,47 +43,50 @@ You can install the package via composer:
 composer require gammamatrix/playground-lead-resource
 ```
 
-## `artisan about`
-
-Playground provides information in the `artisan about` command.
-
-<!-- <img src="resources/docs/artisan-about-playground-lead-resource.png" alt="screenshot of artisan about command with Playground Lead Resource."> -->
-
 ## Configuration
 
-You can publish the config file with:
+All options are disabled by default.
 
+See the contents of the published config file: [config/playground-lead-resource.php](config/playground-lead-resource.php)
+
+You can publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Playground\Lead\Resource\ServiceProvider" --tag="playground-config"
 ```
 
-All routes are enabled by default. They may be disabled via enviroment variable or the configuration.
+## Cloc
 
-See the contents of the published config file: [config/playground-lead-resource.php](config/playground-lead-resource.php)
-
-You can publish the routes file with:
-```bash
-php artisan vendor:publish --provider="Playground\Lead\Resource\ServiceProvider" --tag="playground-routes"
+```sh
+composer cloc
 ```
-- The routes while be published in a folder at `routes/playground-lead-resource`
 
-### Environment Variables
+```
+➜  playground-lead-resource git:(develop) ✗ composer cloc
+> cloc --exclude-dir=node_modules,output,vendor .
+     936 text files.
+     732 unique files.
+     205 files ignored.
 
-If you are unable or do not want to publish [configuration files for this package](config/playground-lead-resource.php),
-you may override the options via system environment variables.
-
-Information on [environment variables is available on the wiki for this package](https://github.com/gammamatrix/playground-lead-resource/wiki/Environment-Variables)
-
-
-## Migrations
-
-This package requires the migrations in [playground-lead](https://github.com/gammamatrix/playground-lead) a Laravel package.
+github.com/AlDanial/cloc v 1.98  T=0.97 s (752.8 files/s, 87447.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+JSON                           250              0              0          39291
+PHP                            325           2845           4033          17996
+YAML                           112              5              0          13654
+Blade                           38            235              7           6609
+XML                              3              0              7            215
+Markdown                         3             37              0             84
+INI                              1              3              0             12
+-------------------------------------------------------------------------------
+SUM:                           732           3125           4047          77861
+-------------------------------------------------------------------------------
+```
 
 ## PHPStan
 
 Tests at level 9 on:
 - `config/`
-- `database/`
 - `routes/`
 - `src/`
 - `tests/Feature/`
@@ -110,12 +102,16 @@ composer analyse
 composer format
 ```
 
-## Tests
+## Testing
 
 ```sh
-composer test
+composer test --parallel
 ```
 
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

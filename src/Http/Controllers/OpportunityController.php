@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Opportunity;
-use Playground\Lead\Resource\Http\Requests\Opportunity\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Opportunity\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Opportunity as OpportunityResource;
-use Playground\Lead\Resource\Http\Resources\OpportunityCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\OpportunityController
@@ -50,36 +40,36 @@ class OpportunityController extends Controller
     ];
 
     /**
-     * Create information or form for the Opportunity resource in storage.
+     * Create the Opportunity resource in storage.
      *
      * @route GET /resource/lead/opportunities/create playground.lead.resource.opportunities.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|OpportunityResource|View {
+        Requests\Opportunity\CreateRequest $request
+    ): JsonResponse|View|Resources\Opportunity {
 
         $validated = $request->validated();
-
-        $opportunity = new Opportunity($validated);
-
-        if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $opportunity = new Opportunity($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $opportunity,
@@ -94,45 +84,32 @@ class OpportunityController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('opportunity', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Opportunity resource in storage.
+     * Edit the Opportunity resource in storage.
      *
-     * @route GET /resource/lead/opportunities/edit playground.lead.resource.opportunities.edit
+     * @route GET /resource/lead/opportunities/edit/{opportunity} playground.lead.resource.opportunities.edit
      */
     public function edit(
         Opportunity $opportunity,
-        EditRequest $request
-    ): JsonResponse|OpportunityResource|View {
-
-        if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Opportunity\EditRequest $request
+    ): JsonResponse|View|Resources\Opportunity {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $opportunity->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $opportunity,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $opportunity->toArray();
 
@@ -141,12 +118,26 @@ class OpportunityController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $opportunity->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $opportunity,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::opportunity/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class OpportunityController extends Controller
      */
     public function destroy(
         Opportunity $opportunity,
-        DestroyRequest $request
+        Requests\Opportunity\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $opportunity->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $opportunity->delete();
@@ -176,7 +174,7 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class OpportunityController extends Controller
      */
     public function lock(
         Opportunity $opportunity,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|OpportunityResource {
+        Requests\Opportunity\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Opportunity {
 
-        $opportunity->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $opportunity->modified_by_id = $user->id;
+        }
+
+        $opportunity->locked = true;
 
         $opportunity->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $opportunity->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities.show', ['opportunity' => $opportunity->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['opportunity' => $opportunity->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class OpportunityController extends Controller
      * @route GET /resource/lead/opportunities playground.lead.resource.opportunities
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|OpportunityCollection {
+        Requests\Opportunity\IndexRequest $request
+    ): JsonResponse|View|Resources\OpportunityCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class OpportunityController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class OpportunityController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new OpportunityCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\OpportunityCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class OpportunityController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::opportunity/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class OpportunityController extends Controller
      */
     public function restore(
         Opportunity $opportunity,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|OpportunityResource {
+        Requests\Opportunity\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Opportunity {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $opportunity->modified_by_id = $user->id;
+        }
+
         $opportunity->restore();
 
         if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities.show', ['opportunity' => $opportunity->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['opportunity' => $opportunity->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class OpportunityController extends Controller
      */
     public function show(
         Opportunity $opportunity,
-        ShowRequest $request
-    ): JsonResponse|View|OpportunityResource {
-        if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Opportunity\ShowRequest $request
+    ): JsonResponse|View|Resources\Opportunity {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class OpportunityController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class OpportunityController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::opportunity/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Opportunity resource in storage.
+     * Store a newly created API Opportunity resource in storage.
      *
      * @route POST /resource/lead/opportunities playground.lead.resource.opportunities.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|OpportunityResource {
+        Requests\Opportunity\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Opportunity {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $opportunity = new Opportunity($validated);
 
-        $opportunity->created_by_id = $user?->id;
+        if ($user?->id) {
+            $opportunity->created_by_id = $user->id;
+        }
 
         $opportunity->save();
 
         if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities.show', ['opportunity' => $opportunity->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['opportunity' => $opportunity->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class OpportunityController extends Controller
      */
     public function unlock(
         Opportunity $opportunity,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|OpportunityResource {
+        Requests\Opportunity\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Opportunity {
 
-        $opportunity->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $opportunity->locked = false;
+
+        if ($user?->id) {
+            $opportunity->modified_by_id = $user->id;
+        }
 
         $opportunity->save();
 
         if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities.show', ['opportunity' => $opportunity->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['opportunity' => $opportunity->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class OpportunityController extends Controller
      */
     public function update(
         Opportunity $opportunity,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|OpportunityResource {
+        Requests\Opportunity\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Opportunity {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $opportunity->modified_by_id = $user?->id;
-
         $opportunity->update($validated);
 
+        if ($user?->id) {
+            $opportunity->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new OpportunityResource($opportunity))->additional(['meta' => [
+            return (new Resources\Opportunity($opportunity))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class OpportunityController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.opportunities.show', ['opportunity' => $opportunity->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['opportunity' => $opportunity->id]));
     }
 }

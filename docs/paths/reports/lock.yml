@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Report
-  summary: 'Unlock a report by id.'
-  operationId: lock_report
+  summary: 'Delete a report by id.'
+  operationId: unlock_report
   responses:
     204:
       description: 'The report has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Report
-  summary: 'Lock a report by id.'
-  operationId: unlock_report
+  summary: 'Lock a report by ID.'
+  operationId: lock_report
   responses:
     200:
       description: 'The unlocked report.'

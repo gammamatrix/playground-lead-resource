@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Requests\Team;
 
 use Playground\Lead\Resource\Http\Requests\FormRequest;

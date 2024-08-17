@@ -1,0 +1,31 @@
+description: 'The Lead Teammate index form.'
+type: object
+properties:
+  perPage:
+    description: 'Specify the number of records to display per page for pagination.'
+    type: integer
+    example: 10
+  page:
+    description: 'Select a page for pagination.'
+    type: integer
+    example: 1
+  offset:
+    description: 'Select the zero-based index offset for pagination.'
+    type: integer
+    example: 0
+  filter:
+    description: 'Filter options for the Teammate.'
+    type: object
+    properties:
+      trash:
+        description: 'Filter trash options'
+        type: integer
+        example: 1
+        enum:
+          - with
+          - only
+          - ''
+      page_type:
+        description: 'The Teammate type of this Teammate.'
+        type: integer
+        example: 1

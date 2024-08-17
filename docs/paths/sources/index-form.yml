@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Source
+  summary: 'Get sources from the index using POST.'
+  operationId: post_sources_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/source/form.yml
+  responses:
+    200:
+      description: 'Get the sources from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/source.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

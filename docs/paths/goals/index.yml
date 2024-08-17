@@ -33,7 +33,7 @@ post:
           $ref: ../../requests/goal/post.yml
   responses:
     200:
-      description: 'The created goals.'
+      description: 'The created goal.'
       content:
         application/json:
           schema:
@@ -62,3 +62,5 @@ post:
                     items:
                       type: string
                       example: 'The title field is required.'
+    423:
+      description: 'The goal is locked. Unlock to patch.'

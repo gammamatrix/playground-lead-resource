@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Task
+  summary: 'Get tasks from the index using POST.'
+  operationId: post_tasks_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/task/form.yml
+  responses:
+    200:
+      description: 'Get the tasks from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/task.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

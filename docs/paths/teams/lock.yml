@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Team
-  summary: 'Unlock a team by id.'
-  operationId: lock_team
+  summary: 'Delete a team by id.'
+  operationId: unlock_team
   responses:
     204:
       description: 'The team has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Team
-  summary: 'Lock a team by id.'
-  operationId: unlock_team
+  summary: 'Lock a team by ID.'
+  operationId: lock_team
   responses:
     200:
       description: 'The unlocked team.'

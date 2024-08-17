@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Tests\Unit\Playground\Lead\Resource\ServiceProvider;
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +23,7 @@ class InstanceTest extends TestCase
 
         $this->assertNotEmpty(ServiceProvider::VERSION);
         $this->assertIsString(ServiceProvider::VERSION);
-        $this->assertSame(ServiceProvider::VERSION, $instance->version());
+        $this->assertSame(ServiceProvider::VERSION, $instance::VERSION);
     }
 
     public function test_setPolicies_with_empty_array(): void

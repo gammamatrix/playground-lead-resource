@@ -1,15 +1,13 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Requests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest as BaseFormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 /**
  * \Playground\Lead\Resource\Http\Requests\FormRequest
@@ -26,7 +24,6 @@ class FormRequest extends BaseFormRequest
      */
     public function authorize(): bool
     {
-        // return true;
         $user = $this->user();
 
         if (empty($user)) {
@@ -46,25 +43,6 @@ class FormRequest extends BaseFormRequest
         $rules = is_array(static::RULES) ? static::RULES : [];
 
         return $rules;
-    }
-
-    /**
-     * Handle a failed validation attempt.
-     *
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'errors' => $validator->errors(),
-        ], 422));
-        // $exception = $validator->getException();
-
-        // throw (new $exception($validator))
-        //             ->errorBag($this->errorBag)
-        //             ->redirectTo($this->getRedirectUrl());
     }
 
     public function userHasAdminPrivileges(Authenticatable $user = null): bool

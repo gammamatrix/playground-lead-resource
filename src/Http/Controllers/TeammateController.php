@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Teammate;
-use Playground\Lead\Resource\Http\Requests\Teammate\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Teammate\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Teammate as TeammateResource;
-use Playground\Lead\Resource\Http\Resources\TeammateCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\TeammateController
@@ -50,36 +40,36 @@ class TeammateController extends Controller
     ];
 
     /**
-     * Create information or form for the Teammate resource in storage.
+     * Create the Teammate resource in storage.
      *
      * @route GET /resource/lead/teammates/create playground.lead.resource.teammates.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|TeammateResource|View {
+        Requests\Teammate\CreateRequest $request
+    ): JsonResponse|View|Resources\Teammate {
 
         $validated = $request->validated();
-
-        $teammate = new Teammate($validated);
-
-        if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $teammate = new Teammate($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $teammate,
@@ -94,45 +84,32 @@ class TeammateController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('teammate', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Teammate resource in storage.
+     * Edit the Teammate resource in storage.
      *
-     * @route GET /resource/lead/teammates/edit playground.lead.resource.teammates.edit
+     * @route GET /resource/lead/teammates/edit/{teammate} playground.lead.resource.teammates.edit
      */
     public function edit(
         Teammate $teammate,
-        EditRequest $request
-    ): JsonResponse|TeammateResource|View {
-
-        if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Teammate\EditRequest $request
+    ): JsonResponse|View|Resources\Teammate {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $teammate->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $teammate,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $teammate->toArray();
 
@@ -141,12 +118,26 @@ class TeammateController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $teammate->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $teammate,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::teammate/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class TeammateController extends Controller
      */
     public function destroy(
         Teammate $teammate,
-        DestroyRequest $request
+        Requests\Teammate\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $teammate->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $teammate->delete();
@@ -176,7 +174,7 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class TeammateController extends Controller
      */
     public function lock(
         Teammate $teammate,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|TeammateResource {
+        Requests\Teammate\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Teammate {
 
-        $teammate->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $teammate->modified_by_id = $user->id;
+        }
+
+        $teammate->locked = true;
 
         $teammate->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $teammate->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates.show', ['teammate' => $teammate->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['teammate' => $teammate->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class TeammateController extends Controller
      * @route GET /resource/lead/teammates playground.lead.resource.teammates
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|TeammateCollection {
+        Requests\Teammate\IndexRequest $request
+    ): JsonResponse|View|Resources\TeammateCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class TeammateController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class TeammateController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new TeammateCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\TeammateCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class TeammateController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::teammate/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class TeammateController extends Controller
      */
     public function restore(
         Teammate $teammate,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|TeammateResource {
+        Requests\Teammate\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Teammate {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $teammate->modified_by_id = $user->id;
+        }
+
         $teammate->restore();
 
         if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates.show', ['teammate' => $teammate->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['teammate' => $teammate->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class TeammateController extends Controller
      */
     public function show(
         Teammate $teammate,
-        ShowRequest $request
-    ): JsonResponse|View|TeammateResource {
-        if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Teammate\ShowRequest $request
+    ): JsonResponse|View|Resources\Teammate {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class TeammateController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class TeammateController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::teammate/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Teammate resource in storage.
+     * Store a newly created API Teammate resource in storage.
      *
      * @route POST /resource/lead/teammates playground.lead.resource.teammates.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|TeammateResource {
+        Requests\Teammate\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Teammate {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $teammate = new Teammate($validated);
 
-        $teammate->created_by_id = $user?->id;
+        if ($user?->id) {
+            $teammate->created_by_id = $user->id;
+        }
 
         $teammate->save();
 
         if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates.show', ['teammate' => $teammate->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['teammate' => $teammate->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class TeammateController extends Controller
      */
     public function unlock(
         Teammate $teammate,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|TeammateResource {
+        Requests\Teammate\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Teammate {
 
-        $teammate->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $teammate->locked = false;
+
+        if ($user?->id) {
+            $teammate->modified_by_id = $user->id;
+        }
 
         $teammate->save();
 
         if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates.show', ['teammate' => $teammate->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['teammate' => $teammate->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class TeammateController extends Controller
      */
     public function update(
         Teammate $teammate,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|TeammateResource {
+        Requests\Teammate\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Teammate {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $teammate->modified_by_id = $user?->id;
-
         $teammate->update($validated);
 
+        if ($user?->id) {
+            $teammate->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new TeammateResource($teammate))->additional(['meta' => [
+            return (new Resources\Teammate($teammate))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class TeammateController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.teammates.show', ['teammate' => $teammate->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['teammate' => $teammate->id]));
     }
 }

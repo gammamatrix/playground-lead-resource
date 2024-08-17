@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Opportunity
+  summary: 'Get opportunities from the index using POST.'
+  operationId: post_opportunities_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/opportunity/form.yml
+  responses:
+    200:
+      description: 'Get the opportunities from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/opportunity.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

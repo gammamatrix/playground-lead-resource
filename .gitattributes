@@ -9,14 +9,13 @@
 /.php-cs-fixer.cache    export-ignore
 /.php-cs-fixer.dist     export-ignore
 /.phpunit.cache         export-ignore
-# Database components are for testing only.
-/database               export-ignore
 /docs                   export-ignore
-/resources/docs         export-ignore
+/resources/package      export-ignore
 /tests                  export-ignore
 /vendor                 export-ignore
 /composer.lock          export-ignore
 /package.json           export-ignore
+/phpunit-ci.xml         export-ignore
 /phpunit.xml            export-ignore
 /phpunit.xml.dist       export-ignore
 /psalm.xml              export-ignore

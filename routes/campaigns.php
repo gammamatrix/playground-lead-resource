@@ -1,4 +1,7 @@
 <?php
+/**
+ * Playground
+ */
 
 declare(strict_types=1);
 
@@ -6,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Lead Routes: Campaign
+| Lead Resource Routes: Campaign
 |--------------------------------------------------------------------------
 |
 |
 */
+
 Route::group([
-    'prefix' => 'resource/lead/campaign',
+    'prefix' => 'api/lead/campaign',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -33,6 +37,11 @@ Route::group([
         'uses' => 'CampaignController@index',
     ])->can('index', Playground\Lead\Models\Campaign::class);
 
+    Route::post('/index', [
+        'as' => 'playground.lead.resource.campaigns.index',
+        'uses' => 'CampaignController@index',
+    ])->can('index', Playground\Lead\Models\Campaign::class);
+
     // UI
 
     Route::get('/create', [
@@ -43,47 +52,39 @@ Route::group([
     Route::get('/edit/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.edit',
         'uses' => 'CampaignController@edit',
-    ])->whereUuid('campaign')
-        ->can('edit', 'campaign');
+    ])->whereUuid('campaign')->can('edit', 'campaign');
 
     // Route::get('/go/{id}', [
-    //     'as'   => 'playground.lead.resource.campaigns.go',
+    //     'as' => 'playground.lead.resource.campaigns.go',
     //     'uses' => 'CampaignController@go',
     // ]);
 
     Route::get('/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.show',
         'uses' => 'CampaignController@show',
-    ])->whereUuid('campaign')
-        ->can('detail', 'campaign');
+    ])->whereUuid('campaign')->can('detail', 'campaign');
 
-    // Resource
+    // API
 
     Route::put('/lock/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.lock',
         'uses' => 'CampaignController@lock',
-    ])->whereUuid('campaign')
-        ->can('lock', 'campaign');
+    ])->whereUuid('campaign')->can('lock', 'campaign');
 
     Route::delete('/lock/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.unlock',
         'uses' => 'CampaignController@unlock',
-    ])->whereUuid('campaign')
-        ->can('unlock', 'campaign');
+    ])->whereUuid('campaign')->can('unlock', 'campaign');
 
     Route::delete('/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.destroy',
         'uses' => 'CampaignController@destroy',
-    ])->whereUuid('campaign')
-        ->can('delete', 'campaign')
-        ->withTrashed();
+    ])->whereUuid('campaign')->can('delete', 'campaign')->withTrashed();
 
     Route::put('/restore/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.restore',
         'uses' => 'CampaignController@restore',
-    ])->whereUuid('campaign')
-        ->can('restore', 'campaign')
-        ->withTrashed();
+    ])->whereUuid('campaign')->can('restore', 'campaign')->withTrashed();
 
     Route::post('/', [
         'as' => 'playground.lead.resource.campaigns.post',
@@ -91,12 +92,12 @@ Route::group([
     ])->can('store', Playground\Lead\Models\Campaign::class);
 
     // Route::put('/', [
-    //     'as'   => 'playground.lead.resource.campaigns.put',
+    //     'as' => 'playground.lead.resource.campaigns.put',
     //     'uses' => 'CampaignController@store',
-    // ])->can('store', \Playground\Lead\Models\Campaign::class);
+    // ])->can('store', Playground\Lead\Models\Campaign::class);
     //
     // Route::put('/{campaign}', [
-    //     'as'   => 'playground.lead.resource.campaigns.put.id',
+    //     'as' => 'playground.lead.resource.campaigns.put.id',
     //     'uses' => 'CampaignController@store',
     // ])->whereUuid('campaign')->can('update', 'campaign');
 

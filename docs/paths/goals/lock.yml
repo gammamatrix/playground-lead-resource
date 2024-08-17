@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Goal
-  summary: 'Unlock a goal by id.'
-  operationId: lock_goal
+  summary: 'Delete a goal by id.'
+  operationId: unlock_goal
   responses:
     204:
       description: 'The goal has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Goal
-  summary: 'Lock a goal by id.'
-  operationId: unlock_goal
+  summary: 'Lock a goal by ID.'
+  operationId: lock_goal
   responses:
     200:
       description: 'The unlocked goal.'

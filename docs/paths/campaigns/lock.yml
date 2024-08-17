@@ -10,8 +10,8 @@ parameters:
 delete:
   tags:
     - Campaign
-  summary: 'Unlock a campaign by id.'
-  operationId: lock_campaign
+  summary: 'Delete a campaign by id.'
+  operationId: unlock_campaign
   responses:
     204:
       description: 'The campaign has been unlocked.'
@@ -22,8 +22,8 @@ delete:
 put:
   tags:
     - Campaign
-  summary: 'Lock a campaign by id.'
-  operationId: unlock_campaign
+  summary: 'Lock a campaign by ID.'
+  operationId: lock_campaign
   responses:
     200:
       description: 'The unlocked campaign.'

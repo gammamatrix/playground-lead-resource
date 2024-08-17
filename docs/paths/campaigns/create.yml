@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Campaign
+  summary: 'Create a campaign form.'
+  operationId: create_campaign
+  responses:
+    200:
+      description: 'The create campaign information (JSON) or (HTML).'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../models/campaign.yml
+              meta:
+                type: object
+        text/html:
+          schema:
+            type: string
+            example: '<html><body><form method="POST" action="/resource/lead/campaigns">Create a campaign</form></body></html>'
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden

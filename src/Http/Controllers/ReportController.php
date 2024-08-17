@@ -1,9 +1,9 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Playground
  */
+
+declare(strict_types=1);
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -12,18 +12,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Playground\Lead\Models\Report;
-use Playground\Lead\Resource\Http\Requests\Report\CreateRequest;
-use Playground\Lead\Resource\Http\Requests\Report\DestroyRequest;
-use Playground\Lead\Resource\Http\Requests\Report\EditRequest;
-use Playground\Lead\Resource\Http\Requests\Report\IndexRequest;
-use Playground\Lead\Resource\Http\Requests\Report\LockRequest;
-use Playground\Lead\Resource\Http\Requests\Report\RestoreRequest;
-use Playground\Lead\Resource\Http\Requests\Report\ShowRequest;
-use Playground\Lead\Resource\Http\Requests\Report\StoreRequest;
-use Playground\Lead\Resource\Http\Requests\Report\UnlockRequest;
-use Playground\Lead\Resource\Http\Requests\Report\UpdateRequest;
-use Playground\Lead\Resource\Http\Resources\Report as ReportResource;
-use Playground\Lead\Resource\Http\Resources\ReportCollection;
+use Playground\Lead\Resource\Http\Requests;
+use Playground\Lead\Resource\Http\Resources;
 
 /**
  * \Playground\Lead\Resource\Http\Controllers\ReportController
@@ -50,36 +40,36 @@ class ReportController extends Controller
     ];
 
     /**
-     * Create information or form for the Report resource in storage.
+     * Create the Report resource in storage.
      *
      * @route GET /resource/lead/reports/create playground.lead.resource.reports.create
      */
     public function create(
-        CreateRequest $request
-    ): JsonResponse|ReportResource|View {
+        Requests\Report\CreateRequest $request
+    ): JsonResponse|View|Resources\Report {
 
         $validated = $request->validated();
-
-        $report = new Report($validated);
-
-        if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
 
         $user = $request->user();
 
         $report = new Report($validated);
 
+        if ($request->expectsJson()) {
+            return (new Resources\Report($report))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta = [
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
             'validated' => $validated,
             'info' => $this->packageInfo,
         ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $report,
@@ -94,45 +84,32 @@ class ReportController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
-        session()->flashInput($flash);
+        if (! $request->session()->has('errors')) {
+            session()->flashInput($flash);
+        }
 
-        return view($this->getViewPath('report', 'form'), $data);
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Edit information for the Report resource in storage.
+     * Edit the Report resource in storage.
      *
-     * @route GET /resource/lead/reports/edit playground.lead.resource.reports.edit
+     * @route GET /resource/lead/reports/edit/{report} playground.lead.resource.reports.edit
      */
     public function edit(
         Report $report,
-        EditRequest $request
-    ): JsonResponse|ReportResource|View {
-
-        if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Report\EditRequest $request
+    ): JsonResponse|View|Resources\Report {
 
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $report->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'input' => $request->input(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
-        ];
-
-        $data = [
-            'data' => $report,
-            'meta' => $meta,
-            '_method' => 'patch',
-        ];
+        if ($request->expectsJson()) {
+            return (new Resources\Report($report))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
 
         $flash = $report->toArray();
 
@@ -141,12 +118,26 @@ class ReportController extends Controller
             $data['_return_url'] = $validated['_return_url'];
         }
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $report->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'validated' => $validated,
+            'info' => $this->packageInfo,
+        ];
+
+        $meta['input'] = $request->input();
+        $meta['validated'] = $request->validated();
+
+        $data = [
+            'data' => $report,
+            'meta' => $meta,
+            '_method' => 'patch',
+        ];
+
         session()->flashInput($flash);
 
-        return view(
-            'playground-lead-resource::report/form',
-            $data
-        );
+        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -156,9 +147,16 @@ class ReportController extends Controller
      */
     public function destroy(
         Report $report,
-        DestroyRequest $request
+        Requests\Report\DestroyRequest $request
     ): Response|RedirectResponse {
+
         $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $report->modified_by_id = $user->id;
+        }
 
         if (empty($validated['force'])) {
             $report->delete();
@@ -176,7 +174,7 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports'));
+        return redirect(route($this->packageInfo['model_route']));
     }
 
     /**
@@ -186,20 +184,33 @@ class ReportController extends Controller
      */
     public function lock(
         Report $report,
-        LockRequest $request
-    ): JsonResponse|RedirectResponse|ReportResource {
+        Requests\Report\LockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Report {
 
-        $report->setAttribute('locked', true);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        if ($user?->id) {
+            $report->modified_by_id = $user->id;
+        }
+
+        $report->locked = true;
 
         $report->save();
 
+        $meta = [
+            'session_user_id' => $user?->id,
+            'id' => $report->id,
+            'timestamp' => Carbon::now()->toJson(),
+            'info' => $this->packageInfo,
+        ];
+
         if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
+            return (new Resources\Report($report))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -207,7 +218,10 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports.show', ['report' => $report->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['report' => $report->id]));
     }
 
     /**
@@ -216,8 +230,9 @@ class ReportController extends Controller
      * @route GET /resource/lead/reports playground.lead.resource.reports
      */
     public function index(
-        IndexRequest $request
-    ): JsonResponse|View|ReportCollection {
+        Requests\Report\IndexRequest $request
+    ): JsonResponse|View|Resources\ReportCollection {
+
         $user = $request->user();
 
         $validated = $request->validated();
@@ -227,6 +242,7 @@ class ReportController extends Controller
         $query->sort($validated['sort'] ?? null);
 
         if (! empty($validated['filter']) && is_array($validated['filter'])) {
+
             $query->filterTrash($validated['filter']['trash'] ?? null);
 
             $query->filterIds(
@@ -256,9 +272,7 @@ class ReportController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new ReportCollection($paginator))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
+            return (new Resources\ReportCollection($paginator))->response($request);
         }
 
         $meta = [
@@ -279,10 +293,7 @@ class ReportController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::report/index',
-            $data
-        );
+        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
     }
 
     /**
@@ -292,16 +303,21 @@ class ReportController extends Controller
      */
     public function restore(
         Report $report,
-        RestoreRequest $request
-    ): JsonResponse|RedirectResponse|ReportResource {
+        Requests\Report\RestoreRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Report {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
+        if ($user?->id) {
+            $report->modified_by_id = $user->id;
+        }
+
         $report->restore();
 
         if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
+            return (new Resources\Report($report))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -312,7 +328,10 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports.show', ['report' => $report->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['report' => $report->id]));
     }
 
     /**
@@ -322,13 +341,9 @@ class ReportController extends Controller
      */
     public function show(
         Report $report,
-        ShowRequest $request
-    ): JsonResponse|View|ReportResource {
-        if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
-            ]])->response($request);
-        }
+        Requests\Report\ShowRequest $request
+    ): JsonResponse|View|Resources\Report {
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -341,6 +356,12 @@ class ReportController extends Controller
             'info' => $this->packageInfo,
         ];
 
+        if ($request->expectsJson()) {
+            return (new Resources\Report($report))->additional(['meta' => [
+                'info' => $this->packageInfo,
+            ]])->response($request);
+        }
+
         $meta['input'] = $request->input();
         $meta['validated'] = $request->validated();
 
@@ -349,32 +370,32 @@ class ReportController extends Controller
             'meta' => $meta,
         ];
 
-        return view(
-            'playground-lead-resource::report/detail',
-            $data
-        );
+        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
     }
 
     /**
-     * Store a newly created Report resource in storage.
+     * Store a newly created API Report resource in storage.
      *
      * @route POST /resource/lead/reports playground.lead.resource.reports.post
      */
     public function store(
-        StoreRequest $request
-    ): Response|JsonResponse|RedirectResponse|ReportResource {
+        Requests\Report\StoreRequest $request
+    ): Response|JsonResponse|RedirectResponse|Resources\Report {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         $report = new Report($validated);
 
-        $report->created_by_id = $user?->id;
+        if ($user?->id) {
+            $report->created_by_id = $user->id;
+        }
 
         $report->save();
 
         if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
+            return (new Resources\Report($report))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -385,7 +406,10 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports.show', ['report' => $report->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['report' => $report->id]));
     }
 
     /**
@@ -395,20 +419,26 @@ class ReportController extends Controller
      */
     public function unlock(
         Report $report,
-        UnlockRequest $request
-    ): JsonResponse|RedirectResponse|ReportResource {
+        Requests\Report\UnlockRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Report {
 
-        $report->setAttribute('locked', false);
+        $validated = $request->validated();
+
+        $user = $request->user();
+
+        $report->locked = false;
+
+        if ($user?->id) {
+            $report->modified_by_id = $user->id;
+        }
 
         $report->save();
 
         if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
+            return (new Resources\Report($report))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
-
-        $validated = $request->validated();
 
         $returnUrl = $validated['_return_url'] ?? '';
 
@@ -416,7 +446,10 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports.show', ['report' => $report->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['report' => $report->id]));
     }
 
     /**
@@ -426,18 +459,21 @@ class ReportController extends Controller
      */
     public function update(
         Report $report,
-        UpdateRequest $request
-    ): JsonResponse|RedirectResponse|ReportResource {
+        Requests\Report\UpdateRequest $request
+    ): JsonResponse|RedirectResponse|Resources\Report {
+
         $validated = $request->validated();
 
         $user = $request->user();
 
-        $report->modified_by_id = $user?->id;
-
         $report->update($validated);
 
+        if ($user?->id) {
+            $report->modified_by_id = $user->id;
+        }
+
         if ($request->expectsJson()) {
-            return (new ReportResource($report))->additional(['meta' => [
+            return (new Resources\Report($report))->additional(['meta' => [
                 'info' => $this->packageInfo,
             ]])->response($request);
         }
@@ -448,6 +484,9 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route('playground.lead.resource.reports.show', ['report' => $report->id]));
+        return redirect(route(sprintf(
+            '%1$s.show',
+            $this->packageInfo['model_route']
+        ), ['report' => $report->id]));
     }
 }

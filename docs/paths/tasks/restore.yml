@@ -10,7 +10,7 @@ parameters:
 put:
   tags:
     - Task
-  summary: 'Restore a task by id.'
+  summary: 'Restore a task from the trash by ID.'
   operationId: restore_task
   responses:
     200:

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Playground
+ */
 
 declare(strict_types=1);
 
@@ -6,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Lead Routes: Report
+| Lead Resource Routes: Report
 |--------------------------------------------------------------------------
 |
 |
 */
+
 Route::group([
-    'prefix' => 'resource/lead/report',
+    'prefix' => 'api/lead/report',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -33,6 +37,11 @@ Route::group([
         'uses' => 'ReportController@index',
     ])->can('index', Playground\Lead\Models\Report::class);
 
+    Route::post('/index', [
+        'as' => 'playground.lead.resource.reports.index',
+        'uses' => 'ReportController@index',
+    ])->can('index', Playground\Lead\Models\Report::class);
+
     // UI
 
     Route::get('/create', [
@@ -43,47 +52,39 @@ Route::group([
     Route::get('/edit/{report}', [
         'as' => 'playground.lead.resource.reports.edit',
         'uses' => 'ReportController@edit',
-    ])->whereUuid('report')
-        ->can('edit', 'report');
+    ])->whereUuid('report')->can('edit', 'report');
 
     // Route::get('/go/{id}', [
-    //     'as'   => 'playground.lead.resource.reports.go',
+    //     'as' => 'playground.lead.resource.reports.go',
     //     'uses' => 'ReportController@go',
     // ]);
 
     Route::get('/{report}', [
         'as' => 'playground.lead.resource.reports.show',
         'uses' => 'ReportController@show',
-    ])->whereUuid('report')
-        ->can('detail', 'report');
+    ])->whereUuid('report')->can('detail', 'report');
 
-    // Resource
+    // API
 
     Route::put('/lock/{report}', [
         'as' => 'playground.lead.resource.reports.lock',
         'uses' => 'ReportController@lock',
-    ])->whereUuid('report')
-        ->can('lock', 'report');
+    ])->whereUuid('report')->can('lock', 'report');
 
     Route::delete('/lock/{report}', [
         'as' => 'playground.lead.resource.reports.unlock',
         'uses' => 'ReportController@unlock',
-    ])->whereUuid('report')
-        ->can('unlock', 'report');
+    ])->whereUuid('report')->can('unlock', 'report');
 
     Route::delete('/{report}', [
         'as' => 'playground.lead.resource.reports.destroy',
         'uses' => 'ReportController@destroy',
-    ])->whereUuid('report')
-        ->can('delete', 'report')
-        ->withTrashed();
+    ])->whereUuid('report')->can('delete', 'report')->withTrashed();
 
     Route::put('/restore/{report}', [
         'as' => 'playground.lead.resource.reports.restore',
         'uses' => 'ReportController@restore',
-    ])->whereUuid('report')
-        ->can('restore', 'report')
-        ->withTrashed();
+    ])->whereUuid('report')->can('restore', 'report')->withTrashed();
 
     Route::post('/', [
         'as' => 'playground.lead.resource.reports.post',
@@ -91,12 +92,12 @@ Route::group([
     ])->can('store', Playground\Lead\Models\Report::class);
 
     // Route::put('/', [
-    //     'as'   => 'playground.lead.resource.reports.put',
+    //     'as' => 'playground.lead.resource.reports.put',
     //     'uses' => 'ReportController@store',
-    // ])->can('store', \Playground\Lead\Models\Report::class);
+    // ])->can('store', Playground\Lead\Models\Report::class);
     //
     // Route::put('/{report}', [
-    //     'as'   => 'playground.lead.resource.reports.put.id',
+    //     'as' => 'playground.lead.resource.reports.put.id',
     //     'uses' => 'ReportController@store',
     // ])->whereUuid('report')->can('update', 'report');
 

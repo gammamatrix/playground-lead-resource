@@ -1,4 +1,7 @@
 <?php
+/**
+ * Playground
+ */
 
 declare(strict_types=1);
 
@@ -6,13 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Lead Routes: Team
+| Lead Resource Routes: Team
 |--------------------------------------------------------------------------
 |
 |
 */
+
 Route::group([
-    'prefix' => 'resource/lead/team',
+    'prefix' => 'api/lead/team',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -33,6 +37,11 @@ Route::group([
         'uses' => 'TeamController@index',
     ])->can('index', Playground\Lead\Models\Team::class);
 
+    Route::post('/index', [
+        'as' => 'playground.lead.resource.teams.index',
+        'uses' => 'TeamController@index',
+    ])->can('index', Playground\Lead\Models\Team::class);
+
     // UI
 
     Route::get('/create', [
@@ -43,47 +52,39 @@ Route::group([
     Route::get('/edit/{team}', [
         'as' => 'playground.lead.resource.teams.edit',
         'uses' => 'TeamController@edit',
-    ])->whereUuid('team')
-        ->can('edit', 'team');
+    ])->whereUuid('team')->can('edit', 'team');
 
     // Route::get('/go/{id}', [
-    //     'as'   => 'playground.lead.resource.teams.go',
+    //     'as' => 'playground.lead.resource.teams.go',
     //     'uses' => 'TeamController@go',
     // ]);
 
     Route::get('/{team}', [
         'as' => 'playground.lead.resource.teams.show',
         'uses' => 'TeamController@show',
-    ])->whereUuid('team')
-        ->can('detail', 'team');
+    ])->whereUuid('team')->can('detail', 'team');
 
-    // Resource
+    // API
 
     Route::put('/lock/{team}', [
         'as' => 'playground.lead.resource.teams.lock',
         'uses' => 'TeamController@lock',
-    ])->whereUuid('team')
-        ->can('lock', 'team');
+    ])->whereUuid('team')->can('lock', 'team');
 
     Route::delete('/lock/{team}', [
         'as' => 'playground.lead.resource.teams.unlock',
         'uses' => 'TeamController@unlock',
-    ])->whereUuid('team')
-        ->can('unlock', 'team');
+    ])->whereUuid('team')->can('unlock', 'team');
 
     Route::delete('/{team}', [
         'as' => 'playground.lead.resource.teams.destroy',
         'uses' => 'TeamController@destroy',
-    ])->whereUuid('team')
-        ->can('delete', 'team')
-        ->withTrashed();
+    ])->whereUuid('team')->can('delete', 'team')->withTrashed();
 
     Route::put('/restore/{team}', [
         'as' => 'playground.lead.resource.teams.restore',
         'uses' => 'TeamController@restore',
-    ])->whereUuid('team')
-        ->can('restore', 'team')
-        ->withTrashed();
+    ])->whereUuid('team')->can('restore', 'team')->withTrashed();
 
     Route::post('/', [
         'as' => 'playground.lead.resource.teams.post',
@@ -91,12 +92,12 @@ Route::group([
     ])->can('store', Playground\Lead\Models\Team::class);
 
     // Route::put('/', [
-    //     'as'   => 'playground.lead.resource.teams.put',
+    //     'as' => 'playground.lead.resource.teams.put',
     //     'uses' => 'TeamController@store',
-    // ])->can('store', \Playground\Lead\Models\Team::class);
+    // ])->can('store', Playground\Lead\Models\Team::class);
     //
     // Route::put('/{team}', [
-    //     'as'   => 'playground.lead.resource.teams.put.id',
+    //     'as' => 'playground.lead.resource.teams.put.id',
     //     'uses' => 'TeamController@store',
     // ])->whereUuid('team')->can('update', 'team');
 

@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Lead
+  summary: 'Get leads from the index using POST.'
+  operationId: post_leads_index
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../requests/lead/form.yml
+  responses:
+    200:
+      description: 'Get the leads from the index.'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: ../../models/lead.yml
+              meta:
+                type: object
+    401:
+      description: Unauthorized
+    403:
+      description: Forbidden
