@@ -53,87 +53,344 @@
     <body>
         <h2>Campaign Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\CampaignRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Command (Tests\Feature\Playground\Lead\Resource\Console\Commands\About\Command)</h2>
         <ul>
-            <li class="success">Command about displays package information and succeed with code 0</li>
+            <li class="success">Command about displays package information and succeed</li>
         </ul>
         <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\CreateRequest)</h2>
         <ul>
             <li class="success">Request instance</li>
         </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Create Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\CreateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Destroy Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\DestroyRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Edit Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\EditRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
         <h2>Goal Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\GoalRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\IndexRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Index Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\IndexRoute)</h2>
+        <ul>
+            <li class="success">Guest cannot render index view</li>
+            <li class="success">Admin can render index view</li>
+        </ul>
+        <h2>Instance (Tests\Feature\Playground\Lead\Resource\Http\Requests\FormRequest\Instance)</h2>
+        <ul>
+            <li class="success">FormRequest authorize with admin</li>
         </ul>
         <h2>Instance (Tests\Unit\Playground\Lead\Resource\Http\Requests\FormRequest\Instance)</h2>
         <ul>
@@ -152,357 +409,1039 @@
         </ul>
         <h2>Lead Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\LeadRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Lock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\LockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
         </ul>
         <h2>Opportunity Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\OpportunityRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Plan Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\PlanRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\CampaignPolicy\Policy)</h2>
         <ul>
             <li class="success">Policy instance</li>
         </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\GoalPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\LeadPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\OpportunityPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\PlanPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\RegionPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\ReportPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\SourcePolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\TaskPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\TeamPolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
+        <h2>Policy (Tests\Unit\Playground\Lead\Resource\Policies\TeammatePolicy\Policy)</h2>
+        <ul>
+            <li class="success">Policy instance</li>
+        </ul>
         <h2>Region Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\RegionRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Report Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\ReportRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Restore Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\RestoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Show Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\ShowRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
         </ul>
         <h2>Source Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\SourceRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\StoreRequest)</h2>
         <ul>
             <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Store Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\StoreRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">StoreRequest rules with optional revisions disabled</li>
+            <li class="success">StoreRequest rules with optional revisions enabled</li>
         </ul>
         <h2>Task Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TaskRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Team Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeamRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
         </ul>
         <h2>Teammate Route (Tests\Feature\Playground\Lead\Resource\Http\Controllers\Playground\TeammateRoute)</h2>
         <ul>
+            <li class="success">Guest cannot render index view</li>
             <li class="success">Json guest cannot see info</li>
+            <li class="success">Guest cannot render show view</li>
             <li class="success">Json guest cannot destroy</li>
+            <li class="success">Guest cannot destroy</li>
+            <li class="success">Guest cannot lock</li>
             <li class="success">Json guest cannot restore</li>
+            <li class="success">Guest cannot restore</li>
+            <li class="success">Guest cannot render create view</li>
+            <li class="success">Guest cannot render edit view</li>
             <li class="success">Json guest cannot get index</li>
             <li class="success">Json guest cannot lock</li>
             <li class="success">Json guest cannot unlock</li>
+            <li class="success">Guest cannot unlock</li>
             <li class="success">Json guest cannot get create info</li>
             <li class="success">Json guest cannot get edit info</li>
+            <li class="success">Guest cannot store</li>
             <li class="success">Json guest cannot store</li>
+            <li class="success">Admin can render index view</li>
             <li class="success">Json guest cannot update</li>
+            <li class="success">Guest cannot update</li>
+            <li class="success">Admin can render create view</li>
             <li class="success">Json admin can get index</li>
             <li class="success">Json show info for admin</li>
+            <li class="success">Show view rendered by admin</li>
             <li class="success">Json admin can get create info</li>
+            <li class="success">Admin can render edit view</li>
             <li class="success">Json admin can get edit info</li>
             <li class="success">Json destroy as admin and succeed</li>
+            <li class="success">Destroy as admin and succeed</li>
+            <li class="success">Lock as admin and succeed</li>
+            <li class="success">Store as admin without payload and fail validation</li>
             <li class="success">Json restore as admin and succeed</li>
+            <li class="success">Restore as admin and succeed</li>
+            <li class="success">Admin can render create view with return url</li>
             <li class="success">Json update as admin without payload and fail validation</li>
+            <li class="success">Update as admin without payload and fail validation</li>
             <li class="success">Json lock as admin and succeed</li>
             <li class="success">Json store as admin without payload and fail validation</li>
             <li class="success">Json unlock as admin and succeed</li>
+            <li class="success">Unlock as admin and succeed</li>
             <li class="success">Json get create info as admin with invalid parameter and fail validation</li>
+            <li class="success">Admin can render edit view with return url</li>
+            <li class="success">Admin can render index view with filters</li>
             <li class="success">Json admin can get index with filters</li>
             <li class="success">Json edit as admin and fail validation with invalid parameter</li>
+            <li class="success">Store as admin and succeed</li>
             <li class="success">Json admin can update</li>
+            <li class="success">Admin can update</li>
+            <li class="success">Create view as admin with invalid parameter and fail validation and redirect</li>
             <li class="success">Json store as admin and succeed</li>
+            <li class="success">Lock as admin and succeed with redirect to index with sorted by locked desc</li>
+            <li class="success">Destroy as admin and succeed with force delete</li>
             <li class="success">Json lock as admin and succeed with no redirect</li>
             <li class="success">Json destroy as admin and succeed with force delete</li>
             <li class="success">Json restore as admin and succeed with no redirect</li>
+            <li class="success">Restore as admin and succeed with redirect to index with only trash</li>
             <li class="success">Json unlock as admin and succeed with no redirect</li>
+            <li class="success">Edit view as admin with invalid parameter and fail validation and redirect</li>
+            <li class="success">Unlock as admin and succeed with redirect to index with sorted by unlocked desc</li>
+            <li class="success">Destroy as admin and succeed with redirect to index with trash</li>
             <li class="success">Json destroy as admin and succeed with no content</li>
+            <li class="success">Lock as user and get denied</li>
+            <li class="success">Admin can update view with return url</li>
+            <li class="success">Store as admin and succeed with return url</li>
             <li class="success">Json lock as user and get denied</li>
             <li class="success">Json restore as user and get denied</li>
             <li class="success">Json unlock as user and get denied</li>
+            <li class="success">Restore as user and get denied</li>
+            <li class="success">Unlock as user and get denied</li>
             <li class="success">Json destroy as admin and succeed and ignore redirect</li>
+            <li class="success">Destroy as user and get denied and no force delete allowed</li>
             <li class="success">Json destroy as user and get denied and no force delete allowed</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+        </ul>
+        <h2>Unlock Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\UnlockRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
         </ul>
         <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Campaign\UpdateRequest)</h2>
         <ul>
             <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Goal\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Lead\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Opportunity\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Plan\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Region\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Report\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Source\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Task\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Team\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
+        </ul>
+        <h2>Update Request (Tests\Unit\Playground\Lead\Resource\Http\Requests\Teammate\UpdateRequest)</h2>
+        <ul>
+            <li class="success">Request instance</li>
+            <li class="success">UpdateRequest rules with optional revisions disabled</li>
+            <li class="success">UpdateRequest rules with optional revisions enabled</li>
         </ul>
     </body>
 </html>
