@@ -1,0 +1,22 @@
+{
+    "class": "opportunity/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "opportunity/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Opportunity",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "opportunity",
+    "model": "Opportunity",
+    "model_column": "opportunity",
+    "model_label": "Opportunity",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Opportunity",
+    "models": {
+        "Opportunity": "resources/configurations/playground-lead/model.opportunity.json"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "class": "campaign/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "campaign/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Campaign",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "campaign",
+    "model": "Campaign",
+    "model_column": "campaign",
+    "model_label": "Campaign",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Campaign",
+    "models": {
+        "Campaign": "resources/configurations/playground-lead/model.campaign.json"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "class": "region/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "region/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Region",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "region",
+    "model": "Region",
+    "model_column": "region",
+    "model_label": "Region",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Region",
+    "models": {
+        "Region": "resources/configurations/playground-lead/model.region.json"
+    }
+}

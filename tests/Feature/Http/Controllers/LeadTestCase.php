@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
-namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
+namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
 /**
  * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\LeadTestCase

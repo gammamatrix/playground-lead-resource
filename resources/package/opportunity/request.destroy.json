@@ -1,0 +1,22 @@
+{
+    "class": "DestroyRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Opportunity/Opportunity",
+    "model": "Opportunity",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Opportunity",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "destroy",
+    "extends": "FormRequest",
+    "extends_use": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "models": []
+}

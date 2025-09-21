@@ -1,0 +1,22 @@
+{
+    "class": "teammate/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "teammate/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Teammate",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "teammate",
+    "model": "Teammate",
+    "model_column": "teammate",
+    "model_label": "Teammate",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Teammate",
+    "models": {
+        "Teammate": "resources/configurations/playground-lead/model.teammate.json"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "class": "DestroyRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Team/Team",
+    "model": "Team",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Team",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "destroy",
+    "extends": "FormRequest",
+    "extends_use": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "models": []
+}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'api/lead/opportunity',
+    'prefix' => 'resource/lead/opportunity',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -62,7 +63,7 @@ Route::group([
     Route::get('/{opportunity}', [
         'as' => 'playground.lead.resource.opportunities.show',
         'uses' => 'OpportunityController@show',
-    ])->whereUuid('opportunity')->can('detail', 'opportunity');
+    ])->whereUuid('opportunity')->can('detail', 'opportunity')->withTrashed();
 
     // API
 

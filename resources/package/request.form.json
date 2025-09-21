@@ -1,0 +1,22 @@
+{
+    "class": "FormRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "model": "",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "FormRequest",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "form-request",
+    "extends": "FormRequest",
+    "extends_use": "Illuminate/Foundation/Http/FormRequest",
+    "models": []
+}

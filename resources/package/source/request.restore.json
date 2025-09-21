@@ -1,0 +1,22 @@
+{
+    "class": "RestoreRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Source/Source",
+    "model": "Source",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Source",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "restore",
+    "extends": "FormRequest",
+    "extends_use": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "models": []
+}

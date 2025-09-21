@@ -1,0 +1,22 @@
+{
+    "class": "ReportRouteTest",
+    "config": "playground-lead-resource",
+    "extends": "",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/ReportRouteTest",
+    "model": "Report",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "ReportRouteTest",
+    "namespace": "Tests/Feature/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "playground-resource-controller-model-user",
+    "uses": [],
+    "models": {
+        "Report": "resources/configurations/playground-lead/model.report.json"
+    },
+    "package_providers": []
+}

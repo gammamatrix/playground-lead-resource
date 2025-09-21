@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'api/lead/teammate',
+    'prefix' => 'resource/lead/teammate',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -62,7 +63,7 @@ Route::group([
     Route::get('/{teammate}', [
         'as' => 'playground.lead.resource.teammates.show',
         'uses' => 'TeammateController@show',
-    ])->whereUuid('teammate')->can('detail', 'teammate');
+    ])->whereUuid('teammate')->can('detail', 'teammate')->withTrashed();
 
     // API
 

@@ -1,0 +1,22 @@
+{
+    "class": "CreateRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Lead/Lead",
+    "model": "Lead",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Lead",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "create",
+    "extends": "FormRequest",
+    "extends_use": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "models": []
+}

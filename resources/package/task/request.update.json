@@ -1,0 +1,22 @@
+{
+    "class": "UpdateRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Task/Task",
+    "model": "Task",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Task",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "update",
+    "extends": "BaseUpdateRequest",
+    "extends_use": "Playground/Http/Requests/UpdateRequest as BaseUpdateRequest",
+    "models": []
+}

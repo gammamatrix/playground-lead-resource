@@ -1,0 +1,19 @@
+{
+    "class": "",
+    "config": "playground-lead-resource",
+    "fqdn": "",
+    "model": "Region",
+    "model_fqdn": "",
+    "model_column": "",
+    "model_label": "",
+    "model_slug_plural": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Region",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "models": [],
+    "folder": "",
+    "type": "playground-resource"
+}

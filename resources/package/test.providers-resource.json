@@ -1,0 +1,30 @@
+{
+    "class": "PackageProviders",
+    "config": "playground-lead-resource",
+    "extends": "",
+    "fqdn": "Tests/Unit/Playground/Lead/Resource/PackageProviders",
+    "model": "",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "PackageProviders",
+    "namespace": "Tests/Unit/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "unit",
+    "type": "providers-resource",
+    "uses": [],
+    "models": [],
+    "package_providers": [
+        "\\Playground\\Test\\ServiceProvider::class",
+        "\\Playground\\ServiceProvider::class",
+        "\\Playground\\Auth\\ServiceProvider::class",
+        "\\Playground\\Blade\\ServiceProvider::class",
+        "\\Playground\\Http\\ServiceProvider::class",
+        "\\Playground\\Login\\Blade\\ServiceProvider::class",
+        "\\Playground\\Site\\Blade\\ServiceProvider::class",
+        "\\Playground\\Lead\\ServiceProvider::class",
+        "\\Playground\\Lead\\Resource\\ServiceProvider::class"
+    ]
+}

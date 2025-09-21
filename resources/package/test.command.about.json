@@ -1,0 +1,20 @@
+{
+    "class": "CommandTest",
+    "config": "playground-lead-resource",
+    "extends": "",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/CommandTest",
+    "model": "",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "LeadResource",
+    "namespace": "Tests/Feature/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "command-about",
+    "uses": [],
+    "models": [],
+    "package_providers": []
+}

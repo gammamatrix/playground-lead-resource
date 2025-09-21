@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Lead\Resource\Http\Requests;
 
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -36,21 +38,19 @@ class FormRequest extends BaseFormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
-        $rules = is_array(static::RULES) ? static::RULES : [];
-
-        return $rules;
+        return static::RULES;
     }
 
-    public function userHasAdminPrivileges(Authenticatable $user = null): bool
+    public function userHasAdminPrivileges(?Authenticatable $user = null): bool
     {
         $admin = false;
         if (! empty($user)) {
             if (method_exists($user, 'isAdmin')) {
-                $admin = $user->isAdmin();
+                $admin = ! empty($user->isAdmin());
             } else {
                 // standard user, no roles or privileges
                 $admin = true;

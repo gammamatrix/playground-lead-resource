@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'api/lead/region',
+    'prefix' => 'resource/lead/region',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -62,7 +63,7 @@ Route::group([
     Route::get('/{region}', [
         'as' => 'playground.lead.resource.regions.show',
         'uses' => 'RegionController@show',
-    ])->whereUuid('region')->can('detail', 'region');
+    ])->whereUuid('region')->can('detail', 'region')->withTrashed();
 
     // API
 

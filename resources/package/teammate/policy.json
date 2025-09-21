@@ -1,0 +1,31 @@
+{
+    "class": "TeammatePolicy",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Policies/Teammate",
+    "model": "Teammate",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Teammate",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "withTests": true,
+    "playground": false,
+    "models": [],
+    "uses": [],
+    "rolesForAction": [
+        "publisher",
+        "manager",
+        "admin",
+        "root"
+    ],
+    "rolesToView": [
+        "user",
+        "staff",
+        "publisher",
+        "manager",
+        "admin",
+        "root"
+    ]
+}

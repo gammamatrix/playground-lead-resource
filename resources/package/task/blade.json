@@ -1,0 +1,22 @@
+{
+    "class": "task/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "task/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Task",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "task",
+    "model": "Task",
+    "model_column": "task",
+    "model_label": "Task",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Task",
+    "models": {
+        "Task": "resources/configurations/playground-lead/model.task.json"
+    }
+}

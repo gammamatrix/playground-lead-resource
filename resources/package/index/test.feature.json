@@ -1,0 +1,20 @@
+{
+    "class": "IndexRouteTest",
+    "config": "playground-lead-resource",
+    "extends": "",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/IndexRouteTest",
+    "model": "Campaign",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "IndexRouteTest",
+    "namespace": "Tests/Feature/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "playground-resource-index",
+    "uses": [],
+    "models": [],
+    "package_providers": []
+}

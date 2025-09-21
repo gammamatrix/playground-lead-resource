@@ -1,0 +1,22 @@
+{
+    "class": "EditRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Teammate/Teammate",
+    "model": "Teammate",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Teammate",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "edit",
+    "extends": "FormRequest",
+    "extends_use": "Playground/Lead/Resource/Http/Requests/FormRequest",
+    "models": []
+}

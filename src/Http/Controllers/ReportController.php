@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
@@ -48,6 +50,8 @@ class ReportController extends Controller
         Requests\Report\CreateRequest $request
     ): JsonResponse|View|Resources\Report {
 
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -55,8 +59,8 @@ class ReportController extends Controller
         $report = new Report($validated);
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -64,12 +68,8 @@ class ReportController extends Controller
             'session_user_id' => $user?->id,
             'id' => null,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $report,
@@ -88,7 +88,12 @@ class ReportController extends Controller
             session()->flashInput($flash);
         }
 
-        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/form', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -101,13 +106,15 @@ class ReportController extends Controller
         Requests\Report\EditRequest $request
     ): JsonResponse|View|Resources\Report {
 
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -115,19 +122,14 @@ class ReportController extends Controller
 
         if (! empty($validated['_return_url'])) {
             $flash['_return_url'] = $validated['_return_url'];
-            $data['_return_url'] = $validated['_return_url'];
         }
 
         $meta = [
             'session_user_id' => $user?->id,
             'id' => $report->id,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $report,
@@ -135,9 +137,18 @@ class ReportController extends Controller
             '_method' => 'patch',
         ];
 
+        if (! empty($validated['_return_url'])) {
+            $data['_return_url'] = $validated['_return_url'];
+        }
+
         session()->flashInput($flash);
 
-        return view(sprintf('%1$s/form', $this->packageInfo['view']), $data);
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/form', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -149,6 +160,8 @@ class ReportController extends Controller
         Report $report,
         Requests\Report\DestroyRequest $request
     ): Response|RedirectResponse {
+
+        $packageInfo = $this->packageInfo();
 
         $validated = $request->validated();
 
@@ -174,7 +187,7 @@ class ReportController extends Controller
             return redirect($returnUrl);
         }
 
-        return redirect(route($this->packageInfo['model_route']));
+        return redirect(route($packageInfo->model_route()));
     }
 
     /**
@@ -186,6 +199,8 @@ class ReportController extends Controller
         Report $report,
         Requests\Report\LockRequest $request
     ): JsonResponse|RedirectResponse|Resources\Report {
+
+        $packageInfo = $this->packageInfo();
 
         $validated = $request->validated();
 
@@ -199,16 +214,9 @@ class ReportController extends Controller
 
         $report->save();
 
-        $meta = [
-            'session_user_id' => $user?->id,
-            'id' => $report->id,
-            'timestamp' => Carbon::now()->toJson(),
-            'info' => $this->packageInfo,
-        ];
-
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -220,7 +228,7 @@ class ReportController extends Controller
 
         return redirect(route(sprintf(
             '%1$s.show',
-            $this->packageInfo['model_route']
+            $packageInfo->model_route()
         ), ['report' => $report->id]));
     }
 
@@ -233,11 +241,22 @@ class ReportController extends Controller
         Requests\Report\IndexRequest $request
     ): JsonResponse|View|Resources\ReportCollection {
 
+        $packageInfo = $this->packageInfo();
+
         $user = $request->user();
 
+        /**
+         * @var array{
+         *     sort: string|array<mixed>,
+         *     filter: array{
+         *         trash: string
+         *     },
+         *     perPage: int
+         * } $validated
+         */
         $validated = $request->validated();
 
-        $query = Report::addSelect(sprintf('%1$s.*', $this->packageInfo['table']));
+        $query = Report::addSelect(sprintf('%1$s.*', $packageInfo->table()));
 
         $query->sort($validated['sort'] ?? null);
 
@@ -272,7 +291,7 @@ class ReportController extends Controller
         $paginator->appends($validated);
 
         if ($request->expectsJson()) {
-            return (new Resources\ReportCollection($paginator))->response($request);
+            return new Resources\ReportCollection($paginator)->response($request);
         }
 
         $meta = [
@@ -285,7 +304,7 @@ class ReportController extends Controller
             'sortable' => $request->getSortable(),
             'timestamp' => Carbon::now()->toJson(),
             'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
 
         $data = [
@@ -293,7 +312,12 @@ class ReportController extends Controller
             'meta' => $meta,
         ];
 
-        return view(sprintf('%1$s/index', $this->packageInfo['view']), $data);
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/index', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -306,6 +330,8 @@ class ReportController extends Controller
         Requests\Report\RestoreRequest $request
     ): JsonResponse|RedirectResponse|Resources\Report {
 
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -317,8 +343,8 @@ class ReportController extends Controller
         $report->restore();
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -330,7 +356,7 @@ class ReportController extends Controller
 
         return redirect(route(sprintf(
             '%1$s.show',
-            $this->packageInfo['model_route']
+            $packageInfo->model_route()
         ), ['report' => $report->id]));
     }
 
@@ -344,6 +370,8 @@ class ReportController extends Controller
         Requests\Report\ShowRequest $request
     ): JsonResponse|View|Resources\Report {
 
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
@@ -352,25 +380,26 @@ class ReportController extends Controller
             'session_user_id' => $user?->id,
             'id' => $report->id,
             'timestamp' => Carbon::now()->toJson(),
-            'validated' => $validated,
-            'info' => $this->packageInfo,
+            'info' => $packageInfo,
         ];
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
-
-        $meta['input'] = $request->input();
-        $meta['validated'] = $request->validated();
 
         $data = [
             'data' => $report,
             'meta' => $meta,
         ];
 
-        return view(sprintf('%1$s/detail', $this->packageInfo['view']), $data);
+        /**
+         * @var view-string $view
+         */
+        $view = sprintf('%1$s/detail', $packageInfo->view());
+
+        return view($view, $data);
     }
 
     /**
@@ -381,6 +410,8 @@ class ReportController extends Controller
     public function store(
         Requests\Report\StoreRequest $request
     ): Response|JsonResponse|RedirectResponse|Resources\Report {
+
+        $packageInfo = $this->packageInfo();
 
         $validated = $request->validated();
 
@@ -395,8 +426,8 @@ class ReportController extends Controller
         $report->save();
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -408,7 +439,7 @@ class ReportController extends Controller
 
         return redirect(route(sprintf(
             '%1$s.show',
-            $this->packageInfo['model_route']
+            $packageInfo->model_route()
         ), ['report' => $report->id]));
     }
 
@@ -421,6 +452,8 @@ class ReportController extends Controller
         Report $report,
         Requests\Report\UnlockRequest $request
     ): JsonResponse|RedirectResponse|Resources\Report {
+
+        $packageInfo = $this->packageInfo();
 
         $validated = $request->validated();
 
@@ -435,8 +468,8 @@ class ReportController extends Controller
         $report->save();
 
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -448,7 +481,7 @@ class ReportController extends Controller
 
         return redirect(route(sprintf(
             '%1$s.show',
-            $this->packageInfo['model_route']
+            $packageInfo->model_route()
         ), ['report' => $report->id]));
     }
 
@@ -462,19 +495,21 @@ class ReportController extends Controller
         Requests\Report\UpdateRequest $request
     ): JsonResponse|RedirectResponse|Resources\Report {
 
+        $packageInfo = $this->packageInfo();
+
         $validated = $request->validated();
 
         $user = $request->user();
-
-        $report->update($validated);
 
         if ($user?->id) {
             $report->modified_by_id = $user->id;
         }
 
+        $report->update($validated);
+
         if ($request->expectsJson()) {
-            return (new Resources\Report($report))->additional(['meta' => [
-                'info' => $this->packageInfo,
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
             ]])->response($request);
         }
 
@@ -486,7 +521,7 @@ class ReportController extends Controller
 
         return redirect(route(sprintf(
             '%1$s.show',
-            $this->packageInfo['model_route']
+            $packageInfo->model_route()
         ), ['report' => $report->id]));
     }
 }

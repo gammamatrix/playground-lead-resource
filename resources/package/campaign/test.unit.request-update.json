@@ -1,0 +1,23 @@
+{
+    "class": "UpdateRequestTest",
+    "config": "playground-lead-resource",
+    "extends": "RequestCase",
+    "fqdn": "Tests/Unit/Playground/Lead/Resource/UpdateRequestTest",
+    "model": "Campaign",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "UpdateRequestTest",
+    "namespace": "Tests/Unit/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "unit",
+    "type": "playground-request-model-update",
+    "uses": [
+        "Tests/Unit/Playground/Lead/Resource/PackageProviders",
+        "Playground/Test/Unit/Http/Requests/RequestCase"
+    ],
+    "models": [],
+    "package_providers": []
+}

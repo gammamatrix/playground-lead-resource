@@ -1,13 +1,16 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Playground\Lead\Resource;
 
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -15,7 +18,7 @@ use Illuminate\Support\Facades\Log;
  */
 class ServiceProvider extends AuthServiceProvider
 {
-    public const VERSION = '73.0.0';
+    public const string VERSION = '74.0.0';
 
     public string $package = 'playground-lead-resource';
 
@@ -26,7 +29,47 @@ class ServiceProvider extends AuthServiceProvider
     public function boot(): void
     {
         /**
-         * @var array<string, mixed> $config
+         * @var array{
+         *        about: bool,
+         *        layout: string,
+         *        load: array{
+         *            policies: bool,
+         *            routes: bool,
+         *            translations: bool,
+         *            views: bool
+         *        },
+         *        middleware: array{
+         *            default: string|string[],
+         *            auth: string|string[],
+         *            guest: string|string[]
+         *        },
+         *        policies: array<
+         *            class-string<\Illuminate\Database\Eloquent\Model>,
+         *            class-string<\Playground\Auth\Policies\Policy>
+         *        >,
+         *        routes: array{
+         *             lead: bool,
+         *             campaigns: bool,
+         *             goals: bool,
+         *             leads: bool,
+         *             opportunities: bool,
+         *             plans: bool,
+         *             regions: bool,
+         *             reports: bool,
+         *             sources: bool,
+         *             tasks: bool,
+         *             teams: bool,
+         *             teammates: bool,
+         *        },
+         *        blade: string,
+         *        abilities: array<string, string[]>,
+         *        sitemap: array{
+         *             enable: bool,
+         *             guest: bool,
+         *             user: bool,
+         *             view: string
+         *        }
+         *    } $config
          */
         $config = config($this->package);
 
@@ -62,7 +105,7 @@ class ServiceProvider extends AuthServiceProvider
             }
         }
 
-        if ($this->app->runningInConsole()) {
+        if (App::runningInConsole()) {
             // Publish configuration
             $this->publishes([
                 sprintf('%1$s/config/%2$s.php', dirname(__DIR__), $this->package) => config_path(sprintf('%1$s.php', $this->package)),
@@ -93,7 +136,7 @@ class ServiceProvider extends AuthServiceProvider
     /**
      * Set the application's policies from the configuration.
      *
-     * @param array<class-string, class-string> $policies
+     * @param  array<class-string, class-string>  $policies
      */
     public function setPolicies(array $policies): void
     {
@@ -111,7 +154,7 @@ class ServiceProvider extends AuthServiceProvider
             if (! is_string($policy) || ! class_exists($policy)) {
                 Log::error('Expecting the policy to exist for the model.', [
                     '__METHOD__' => __METHOD__,
-                    'model' => is_string($model) ? $model : gettype($model),
+                    'model' => $model,
                     'policy' => is_string($policy) ? $policy : gettype($policy),
                     'policies' => $policies,
                 ]);
@@ -123,7 +166,7 @@ class ServiceProvider extends AuthServiceProvider
     }
 
     /**
-     * @param array<string, mixed> $config
+     * @param  array<string, mixed>  $config
      */
     public function routes(array $config): void
     {
@@ -189,12 +232,12 @@ class ServiceProvider extends AuthServiceProvider
             '<fg=yellow;options=bold>Middleware</> default' => ! empty($middleware['default']) ? sprintf('%s', json_encode($middleware['default'])) : '',
             '<fg=yellow;options=bold>Middleware</> guest' => ! empty($middleware['guest']) ? sprintf('%s', json_encode($middleware['guest'])) : '',
 
-            '<fg=blue;options=bold>View</> [Blade]' => ! empty($config['blade']) ? sprintf('[%s]', $config['blade']) : '',
+            '<fg=blue;options=bold>View</> [Blade]' => ! empty($config['blade']) && is_string($config['blade']) ? sprintf('[%s]', $config['blade']) : '',
 
             '<fg=magenta;options=bold>Sitemap</> Views' => ! empty($sitemap['enable']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> Guest' => ! empty($sitemap['guest']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=magenta;options=bold>Sitemap</> User' => ! empty($sitemap['user']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
-            '<fg=magenta;options=bold>Sitemap</> [view]' => sprintf('[%s]', $sitemap['view']),
+            '<fg=magenta;options=bold>Sitemap</> [view]' => ! empty($sitemap['view']) && is_string($sitemap['view']) ? sprintf('[%s]', $sitemap['view']) : '',
 
             '<fg=red;options=bold>Route</> lead' => ! empty($routes['lead']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',
             '<fg=red;options=bold>Route</> campaigns' => ! empty($routes['campaigns']) ? '<fg=green;options=bold>ENABLED</>' : '<fg=yellow;options=bold>DISABLED</>',

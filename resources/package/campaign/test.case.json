@@ -1,0 +1,22 @@
+{
+    "class": "CampaignTestCase",
+    "config": "playground-lead-resource",
+    "extends": "TestCase",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/CampaignTestCase",
+    "model": "Campaign",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "CampaignTestCase",
+    "namespace": "Tests/Feature/Playground/Lead/Resource/Http/Controllers",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "playground-resource-controller-model-case",
+    "uses": [],
+    "models": {
+        "Campaign": "resources/configurations/playground-lead/model.campaign.json"
+    },
+    "package_providers": []
+}

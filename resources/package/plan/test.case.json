@@ -1,0 +1,22 @@
+{
+    "class": "PlanTestCase",
+    "config": "playground-lead-resource",
+    "extends": "TestCase",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/PlanTestCase",
+    "model": "Plan",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "PlanTestCase",
+    "namespace": "Tests/Feature/Playground/Lead/Resource/Http/Controllers",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "playground-resource-controller-model-case",
+    "uses": [],
+    "models": {
+        "Plan": "resources/configurations/playground-lead/model.plan.json"
+    },
+    "package_providers": []
+}

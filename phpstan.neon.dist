@@ -2,12 +2,14 @@ includes:
     - vendor/larastan/larastan/extension.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
+    - vendor/tomasvotruba/bladestan/config/extension.neon
 
 parameters:
-    level: 9
+    level: max
 
     paths:
         - config
+        # - lang
         - resources
         - routes
         - src
@@ -20,3 +22,8 @@ parameters:
 
     # editorUrl: 'vscode://file/%%file%%:%%line%%'
     # editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    ignoreErrors:
+            -
+                message: "#Called 'env' outside of the config directory which returns null when the config is cached, use 'config'.#"
+                path: *config/*.php

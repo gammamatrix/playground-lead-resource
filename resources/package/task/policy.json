@@ -1,0 +1,31 @@
+{
+    "class": "TaskPolicy",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Policies/Task",
+    "model": "Task",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Task",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "withTests": true,
+    "playground": false,
+    "models": [],
+    "uses": [],
+    "rolesForAction": [
+        "publisher",
+        "manager",
+        "admin",
+        "root"
+    ],
+    "rolesToView": [
+        "user",
+        "staff",
+        "publisher",
+        "manager",
+        "admin",
+        "root"
+    ]
+}

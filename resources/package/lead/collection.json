@@ -1,0 +1,17 @@
+{
+    "class": "LeadCollection",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Resources/LeadCollection",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "LeadCollection",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "collection": true,
+    "model": "Lead",
+    "model_fqdn": "Playground/Lead/Models/Lead",
+    "model_slug": "lead",
+    "type": "",
+    "models": []
+}

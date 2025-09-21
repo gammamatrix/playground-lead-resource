@@ -1,0 +1,110 @@
+{
+    "class": "ServiceProvider",
+    "config": "playground-lead-resource",
+    "config_space": "PLAYGROUND_LEAD_RESOURCE",
+    "fqdn": "Playground/Lead/Resource/ServiceProvider",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Lead Resource",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "organization_email": "jeremy.postlethwaite@gmail.com",
+    "package": "playground-lead-resource",
+    "withBlades": true,
+    "withControllers": true,
+    "withFactories": false,
+    "withMigrations": false,
+    "withModels": false,
+    "withPolicies": true,
+    "withRequests": true,
+    "withRoutes": true,
+    "withOpenAPI": true,
+    "withTests": true,
+    "playground": true,
+    "revision": false,
+    "docs_name": "Playground: Lead Resource at Read the Docs: Playground Documentation",
+    "docs_url": "https://gammamatrix-playground.readthedocs.io/en/develop/built-components/lead.html",
+    "package_name": "Playground: Lead Resource",
+    "model_package": "playground-lead",
+    "model_package_name": "Playground: Lead",
+    "package_description": "Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Playground Campaign and Lead Sales Management tool for Laravel applications.",
+    "package_homepage": "https://github.com/gammamatrix/playground-lead-resource",
+    "package_keywords": [
+        "lead",
+        "gammamatrix",
+        "laravel",
+        "playground",
+        "playground-blade"
+    ],
+    "package_license": "MIT",
+    "package_authors": [
+        {
+            "name": "Jeremy Postlethwaite",
+            "email": "jeremy.postlethwaite@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "package_require": {
+        "php": "^8.4",
+        "gammamatrix/playground": "*",
+        "gammamatrix/playground-auth": "*",
+        "gammamatrix/playground-http": "*",
+        "gammamatrix/playground-lead": "*",
+        "illuminate/support": "^12.0"
+    },
+    "package_require_dev": {
+        "gammamatrix/playground-test": "*",
+        "gammamatrix/playground-login-blade": "*",
+        "gammamatrix/playground-site-blade": "*",
+        "illuminate/testing": "^12.0"
+    },
+    "package_suggest": [],
+    "package_autoload_psr4": [],
+    "package_autoload_dev_psr4": [],
+    "package_providers": [],
+    "package_laravel_providers": [
+        "Playground/Lead/Resource/ServiceProvider"
+    ],
+    "packagist": "gammamatrix/playground-lead-resource",
+    "postman_collection": "",
+    "postman_url": "",
+    "controllers": [
+        "resources/package/controller.base.json",
+        "resources/package/index/controller.json",
+        "resources/package/campaign/controller.json",
+        "resources/package/goal/controller.json",
+        "resources/package/lead/controller.json",
+        "resources/package/opportunity/controller.json",
+        "resources/package/plan/controller.json",
+        "resources/package/region/controller.json",
+        "resources/package/report/controller.json",
+        "resources/package/source/controller.json",
+        "resources/package/task/controller.json",
+        "resources/package/team/controller.json",
+        "resources/package/teammate/controller.json"
+    ],
+    "models": [],
+    "policies": [],
+    "requests": [
+        "resources/package/form.request.json"
+    ],
+    "routes": {
+        "lead": "",
+        "campaigns": "resources/package/campaign/route.json",
+        "goals": "resources/package/goal/route.json",
+        "leads": "resources/package/lead/route.json",
+        "opportunities": "resources/package/opportunity/route.json",
+        "plans": "resources/package/plan/route.json",
+        "regions": "resources/package/region/route.json",
+        "reports": "resources/package/report/route.json",
+        "sources": "resources/package/source/route.json",
+        "tasks": "resources/package/task/route.json",
+        "teams": "resources/package/team/route.json",
+        "teammates": "resources/package/teammate/route.json"
+    },
+    "transformers": [],
+    "uses": [],
+    "service_provider": "",
+    "type": "playground-resource",
+    "version": "74.0.0"
+}

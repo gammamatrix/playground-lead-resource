@@ -1,0 +1,17 @@
+{
+    "class": "TeamCollection",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Resources/TeamCollection",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "TeamCollection",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "collection": true,
+    "model": "Team",
+    "model_fqdn": "Playground/Lead/Models/Team",
+    "model_slug": "team",
+    "type": "",
+    "models": []
+}

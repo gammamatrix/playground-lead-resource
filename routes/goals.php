@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'api/lead/goal',
+    'prefix' => 'resource/lead/goal',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -62,7 +63,7 @@ Route::group([
     Route::get('/{goal}', [
         'as' => 'playground.lead.resource.goals.show',
         'uses' => 'GoalController@show',
-    ])->whereUuid('goal')->can('detail', 'goal');
+    ])->whereUuid('goal')->can('detail', 'goal')->withTrashed();
 
     // API
 

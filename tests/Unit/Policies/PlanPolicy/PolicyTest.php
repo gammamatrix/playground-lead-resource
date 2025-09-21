@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Unit\Playground\Lead\Resource\Policies\PlanPolicy;
 
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -20,6 +22,7 @@ class PolicyTest extends TestCase
     {
         $instance = new PlanPolicy;
 
+        /** @phpstan-ignore method.alreadyNarrowedType */
         $this->assertInstanceOf(PlanPolicy::class, $instance);
     }
 }

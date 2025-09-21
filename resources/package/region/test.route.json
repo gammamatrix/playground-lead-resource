@@ -1,0 +1,22 @@
+{
+    "class": "RegionRouteTest",
+    "config": "playground-lead-resource",
+    "extends": "",
+    "fqdn": "Tests/Feature/Playground/Lead/Resource/RegionRouteTest",
+    "model": "Region",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "RegionRouteTest",
+    "namespace": "Tests/Feature/Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "playground": true,
+    "suite": "feature",
+    "type": "playground-resource-controller-model-user",
+    "uses": [],
+    "models": {
+        "Region": "resources/configurations/playground-lead/model.region.json"
+    },
+    "package_providers": []
+}

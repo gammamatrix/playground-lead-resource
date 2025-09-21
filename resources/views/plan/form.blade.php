@@ -1,8 +1,11 @@
-@extends('playground::layouts.resource.form', [
-    'withFormInfo' => 'playground-lead-resource::plan/form-info',
-    'withFormStatus' => 'playground-lead-resource::plan/form-status',
-])
+@extends(
+    "playground::layouts.resource.form",
+    [
+        "withFormInfo" => "playground-lead-resource::plan/form-info",
+        "withFormAccess" => true,
+    ]
+)
 
-@section('form-tertiary')
-@include('playground-lead-resource::plan/form-publishing')
+@section("fieldset-content")
+    
 @endsection

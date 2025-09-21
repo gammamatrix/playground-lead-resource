@@ -1,0 +1,22 @@
+{
+    "class": "plan/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "plan/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Plan",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "plan",
+    "model": "Plan",
+    "model_column": "plan",
+    "model_label": "Plan",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Plan",
+    "models": {
+        "Plan": "resources/configurations/playground-lead/model.plan.json"
+    }
+}

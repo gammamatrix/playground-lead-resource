@@ -1,0 +1,22 @@
+{
+    "class": "team/index.blade",
+    "config": "playground-lead-resource",
+    "fqdn": "team/index.blade",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Team",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "extends": "playground::layouts.resource",
+    "folder": "team",
+    "model": "Team",
+    "model_column": "team",
+    "model_label": "Team",
+    "type": "playground-resource",
+    "route": "playground.lead.resource",
+    "title": "Team",
+    "models": {
+        "Team": "resources/configurations/playground-lead/model.team.json"
+    }
+}

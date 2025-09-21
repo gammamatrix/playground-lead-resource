@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'api/lead/campaign',
+    'prefix' => 'resource/lead/campaign',
     'middleware' => config('playground-lead-resource.middleware.default'),
     'namespace' => '\Playground\Lead\Resource\Http\Controllers',
 ], function () {
@@ -62,7 +63,7 @@ Route::group([
     Route::get('/{campaign}', [
         'as' => 'playground.lead.resource.campaigns.show',
         'uses' => 'CampaignController@show',
-    ])->whereUuid('campaign')->can('detail', 'campaign');
+    ])->whereUuid('campaign')->can('detail', 'campaign')->withTrashed();
 
     // API
 

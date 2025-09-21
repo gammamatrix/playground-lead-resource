@@ -1,0 +1,17 @@
+{
+    "class": "CampaignCollection",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Resources/CampaignCollection",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "CampaignCollection",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "collection": true,
+    "model": "Campaign",
+    "model_fqdn": "Playground/Lead/Models/Campaign",
+    "model_slug": "campaign",
+    "type": "",
+    "models": []
+}

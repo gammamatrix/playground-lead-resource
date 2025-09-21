@@ -1,0 +1,24 @@
+apis:
+  main:
+    root: ./docs/api.yml
+    output: openapi.yaml
+extends:
+  - recommended
+rules:
+  operation-tag-defined: error
+  no-invalid-schema-examples: error
+  no-invalid-media-type-examples: error
+  scalar-property-missing-example: error
+ignore:
+  - .github
+  - .phpunit.cache
+  - config
+  - docs
+  - node_modules
+  - output
+  - resources
+  - routes
+  - src
+  - tests
+  - vendor
+  - openapi.yaml

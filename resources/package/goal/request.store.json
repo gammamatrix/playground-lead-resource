@@ -1,0 +1,22 @@
+{
+    "class": "StoreRequest",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Requests/Goal/Goal",
+    "model": "Goal",
+    "model_fqdn": "",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Goal",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "abstract": false,
+    "pagination": false,
+    "playground": false,
+    "store": false,
+    "slug": false,
+    "type": "store",
+    "extends": "BaseStoreRequest",
+    "extends_use": "Playground/Http/Requests/StoreRequest as BaseStoreRequest",
+    "models": []
+}

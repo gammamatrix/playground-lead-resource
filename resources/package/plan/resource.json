@@ -1,0 +1,17 @@
+{
+    "class": "Plan",
+    "config": "playground-lead-resource",
+    "fqdn": "Playground/Lead/Resource/Http/Resources/Plan",
+    "module": "Lead",
+    "module_slug": "lead",
+    "name": "Plan",
+    "namespace": "Playground/Lead/Resource",
+    "organization": "Playground",
+    "package": "playground-lead-resource",
+    "collection": false,
+    "model": "Plan",
+    "model_fqdn": "Playground/Lead/Models/Plan",
+    "model_slug": "plan",
+    "type": "",
+    "models": []
+}

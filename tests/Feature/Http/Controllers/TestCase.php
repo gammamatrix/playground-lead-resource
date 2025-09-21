@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Playground
  */
 
 declare(strict_types=1);
+
 namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
@@ -139,10 +141,6 @@ class TestCase extends BaseTestCase
                 'session_user_id',
                 'sortable',
                 'timestamp',
-                'validated' => [
-                    'perPage',
-                    'page',
-                ],
                 // 'pagination' => [
                 //     'count',
                 //     'current_page',

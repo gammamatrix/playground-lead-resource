@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Playground
  */
@@ -7,6 +8,48 @@ declare(strict_types=1);
 
 /**
  * Playground: Lead Resource Configuration and Environment Variables
+ *
+ * @return array{
+ *       about: bool,
+ *       layout: string,
+ *       load: array{
+ *           policies: bool,
+ *           routes: bool,
+ *           translations: bool,
+ *           views: bool
+ *       },
+ *       middleware: array{
+ *           default: string|string[],
+ *           auth: string|string[],
+ *           guest: string|string[]
+ *       },
+ *       policies: array<
+ *           class-string<\Illuminate\Database\Eloquent\Model>,
+ *           class-string<\Playground\Auth\Policies\Policy>
+ *       >,
+ *       routes: array{
+ *           lead: bool,
+ *           campaigns: bool,
+ *           goals: bool,
+ *           leads: bool,
+ *           opportunities: bool,
+ *           plans: bool,
+ *           regions: bool,
+ *           reports: bool,
+ *           sources: bool,
+ *           tasks: bool,
+ *           teams: bool,
+ *           teammates: bool,
+ *       },
+ *       blade: string,
+ *       abilities: array<string, string[]>,
+ *       sitemap: array{
+ *            enable: bool,
+ *            guest: bool,
+ *            user: bool,
+ *            view: string
+ *       }
+ *   }
  */
 return [
 
