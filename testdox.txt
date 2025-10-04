@@ -292,7 +292,7 @@ Instance (Tests\Feature\Playground\Lead\Resource\Http\Requests\FormRequest\Insta
 
 Instance (Tests\Unit\Playground\Lead\Resource\Http\Requests\FormRequest\Instance)
  [x] Form request authorize without user
- [x] Rule s is empty by default
+ [x] Rules is empty by default
  [x] User has admin privileges without user
  [x] User has admin privileges with admin
  [x] User has admin privileges with default laravel user
