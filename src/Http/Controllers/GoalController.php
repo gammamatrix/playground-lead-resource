@@ -54,8 +54,6 @@ class GoalController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $goal = new Goal($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class GoalController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class GoalController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Goal($goal)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $goal->toArray();
 
@@ -243,8 +243,6 @@ class GoalController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class GoalController extends Controller
             return new Resources\GoalCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class GoalController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $goal->modified_by_id = $user->id;
-        }
+        $goal->modified_by_id = $user?->id;
 
         $goal->restore();
 
@@ -372,7 +370,11 @@ class GoalController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Goal($goal)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class GoalController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Goal($goal)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $goal,
@@ -419,16 +415,14 @@ class GoalController extends Controller
 
         $goal = new Goal($validated);
 
-        if ($user?->id) {
-            $goal->created_by_id = $user->id;
-        }
+        $goal->created_by_id = $user?->id;
 
         $goal->save();
 
         if ($request->expectsJson()) {
             return new Resources\Goal($goal)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class GoalController extends Controller
 
         $goal->locked = false;
 
-        if ($user?->id) {
-            $goal->modified_by_id = $user->id;
-        }
+        $goal->modified_by_id = $user?->id;
 
         $goal->save();
 
@@ -501,9 +493,7 @@ class GoalController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $goal->modified_by_id = $user->id;
-        }
+        $goal->modified_by_id = $user?->id;
 
         $goal->update($validated);
 

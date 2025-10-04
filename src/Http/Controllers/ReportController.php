@@ -54,8 +54,6 @@ class ReportController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $report = new Report($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class ReportController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class ReportController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Report($report)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $report->toArray();
 
@@ -243,8 +243,6 @@ class ReportController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class ReportController extends Controller
             return new Resources\ReportCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class ReportController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $report->modified_by_id = $user->id;
-        }
+        $report->modified_by_id = $user?->id;
 
         $report->restore();
 
@@ -372,7 +370,11 @@ class ReportController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Report($report)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class ReportController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Report($report)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $report,
@@ -419,16 +415,14 @@ class ReportController extends Controller
 
         $report = new Report($validated);
 
-        if ($user?->id) {
-            $report->created_by_id = $user->id;
-        }
+        $report->created_by_id = $user?->id;
 
         $report->save();
 
         if ($request->expectsJson()) {
             return new Resources\Report($report)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class ReportController extends Controller
 
         $report->locked = false;
 
-        if ($user?->id) {
-            $report->modified_by_id = $user->id;
-        }
+        $report->modified_by_id = $user?->id;
 
         $report->save();
 
@@ -501,9 +493,7 @@ class ReportController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $report->modified_by_id = $user->id;
-        }
+        $report->modified_by_id = $user?->id;
 
         $report->update($validated);
 

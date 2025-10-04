@@ -54,8 +54,6 @@ class OpportunityController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $opportunity = new Opportunity($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class OpportunityController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class OpportunityController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Opportunity($opportunity)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $opportunity->toArray();
 
@@ -243,8 +243,6 @@ class OpportunityController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class OpportunityController extends Controller
             return new Resources\OpportunityCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class OpportunityController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $opportunity->modified_by_id = $user->id;
-        }
+        $opportunity->modified_by_id = $user?->id;
 
         $opportunity->restore();
 
@@ -372,7 +370,11 @@ class OpportunityController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Opportunity($opportunity)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class OpportunityController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Opportunity($opportunity)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $opportunity,
@@ -419,16 +415,14 @@ class OpportunityController extends Controller
 
         $opportunity = new Opportunity($validated);
 
-        if ($user?->id) {
-            $opportunity->created_by_id = $user->id;
-        }
+        $opportunity->created_by_id = $user?->id;
 
         $opportunity->save();
 
         if ($request->expectsJson()) {
             return new Resources\Opportunity($opportunity)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class OpportunityController extends Controller
 
         $opportunity->locked = false;
 
-        if ($user?->id) {
-            $opportunity->modified_by_id = $user->id;
-        }
+        $opportunity->modified_by_id = $user?->id;
 
         $opportunity->save();
 
@@ -501,9 +493,7 @@ class OpportunityController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $opportunity->modified_by_id = $user->id;
-        }
+        $opportunity->modified_by_id = $user?->id;
 
         $opportunity->update($validated);
 

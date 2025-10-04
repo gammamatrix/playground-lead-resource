@@ -54,8 +54,6 @@ class TeamController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $team = new Team($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class TeamController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class TeamController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Team($team)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $team->toArray();
 
@@ -243,8 +243,6 @@ class TeamController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class TeamController extends Controller
             return new Resources\TeamCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class TeamController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $team->modified_by_id = $user->id;
-        }
+        $team->modified_by_id = $user?->id;
 
         $team->restore();
 
@@ -372,7 +370,11 @@ class TeamController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Team($team)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class TeamController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Team($team)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $team,
@@ -419,16 +415,14 @@ class TeamController extends Controller
 
         $team = new Team($validated);
 
-        if ($user?->id) {
-            $team->created_by_id = $user->id;
-        }
+        $team->created_by_id = $user?->id;
 
         $team->save();
 
         if ($request->expectsJson()) {
             return new Resources\Team($team)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class TeamController extends Controller
 
         $team->locked = false;
 
-        if ($user?->id) {
-            $team->modified_by_id = $user->id;
-        }
+        $team->modified_by_id = $user?->id;
 
         $team->save();
 
@@ -501,9 +493,7 @@ class TeamController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $team->modified_by_id = $user->id;
-        }
+        $team->modified_by_id = $user?->id;
 
         $team->update($validated);
 

@@ -15,11 +15,12 @@
     "withFactories": false,
     "withMigrations": false,
     "withModels": false,
+    "withOpenAPI": true,
     "withPolicies": true,
     "withRequests": true,
     "withRoutes": true,
-    "withOpenAPI": true,
     "withTests": true,
+    "withTranslations": false,
     "playground": true,
     "revision": false,
     "docs_name": "Playground: Lead Resource at Read the Docs: Playground Documentation",
@@ -29,14 +30,13 @@
     "model_package_name": "Playground: Lead",
     "package_description": "Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Playground Campaign and Lead Sales Management tool for Laravel applications.",
     "package_homepage": "https://github.com/gammamatrix/playground-lead-resource",
-    "package_keywords": [
-        "lead",
-        "gammamatrix",
-        "laravel",
-        "playground",
-        "playground-blade"
-    ],
     "package_license": "MIT",
+    "packagist": "gammamatrix/playground-lead-resource",
+    "postman_collection": "",
+    "postman_url": "",
+    "service_provider": "",
+    "type": "playground-resource",
+    "version": "74.0.0",
     "package_authors": [
         {
             "name": "Jeremy Postlethwaite",
@@ -44,6 +44,23 @@
             "role": "Developer"
         }
     ],
+    "package_autoload_psr4": [],
+    "package_autoload_dev_psr4": [],
+    "package_keywords": [
+        "gammamatrix",
+        "laravel",
+        "lead",
+        "campaign",
+        "opportunity",
+        "opportunities",
+        "sales",
+        "playground",
+        "playground-blade"
+    ],
+    "package_laravel_providers": [
+        "Playground/Lead/Resource/ServiceProvider"
+    ],
+    "package_providers": [],
     "package_require": {
         "php": "^8.4",
         "gammamatrix/playground": "*",
@@ -59,15 +76,6 @@
         "illuminate/testing": "^12.0"
     },
     "package_suggest": [],
-    "package_autoload_psr4": [],
-    "package_autoload_dev_psr4": [],
-    "package_providers": [],
-    "package_laravel_providers": [
-        "Playground/Lead/Resource/ServiceProvider"
-    ],
-    "packagist": "gammamatrix/playground-lead-resource",
-    "postman_collection": "",
-    "postman_url": "",
     "controllers": [
         "resources/package/controller.base.json",
         "resources/package/index/controller.json",
@@ -103,8 +111,6 @@
         "teammates": "resources/package/teammate/route.json"
     },
     "transformers": [],
-    "uses": [],
-    "service_provider": "",
-    "type": "playground-resource",
-    "version": "74.0.0"
+    "translations": [],
+    "uses": []
 }

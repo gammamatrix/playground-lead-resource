@@ -54,8 +54,6 @@ class SourceController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $source = new Source($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class SourceController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class SourceController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Source($source)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $source->toArray();
 
@@ -243,8 +243,6 @@ class SourceController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class SourceController extends Controller
             return new Resources\SourceCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class SourceController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $source->modified_by_id = $user->id;
-        }
+        $source->modified_by_id = $user?->id;
 
         $source->restore();
 
@@ -372,7 +370,11 @@ class SourceController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Source($source)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class SourceController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Source($source)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $source,
@@ -419,16 +415,14 @@ class SourceController extends Controller
 
         $source = new Source($validated);
 
-        if ($user?->id) {
-            $source->created_by_id = $user->id;
-        }
+        $source->created_by_id = $user?->id;
 
         $source->save();
 
         if ($request->expectsJson()) {
             return new Resources\Source($source)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class SourceController extends Controller
 
         $source->locked = false;
 
-        if ($user?->id) {
-            $source->modified_by_id = $user->id;
-        }
+        $source->modified_by_id = $user?->id;
 
         $source->save();
 
@@ -501,9 +493,7 @@ class SourceController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $source->modified_by_id = $user->id;
-        }
+        $source->modified_by_id = $user?->id;
 
         $source->update($validated);
 

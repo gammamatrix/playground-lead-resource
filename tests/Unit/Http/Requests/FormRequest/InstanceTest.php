@@ -27,7 +27,7 @@ class InstanceTest extends TestCase
         $this->assertFalse($instance->authorize());
     }
 
-    public function test_rule_s_is_empty_by_default(): void
+    public function test_rules_is_empty_by_default(): void
     {
         $instance = new FormRequest;
 

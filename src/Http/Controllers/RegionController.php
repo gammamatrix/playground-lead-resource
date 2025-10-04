@@ -54,8 +54,6 @@ class RegionController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $region = new Region($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class RegionController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class RegionController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Region($region)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $region->toArray();
 
@@ -243,8 +243,6 @@ class RegionController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class RegionController extends Controller
             return new Resources\RegionCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class RegionController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $region->modified_by_id = $user->id;
-        }
+        $region->modified_by_id = $user?->id;
 
         $region->restore();
 
@@ -372,7 +370,11 @@ class RegionController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Region($region)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class RegionController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Region($region)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $region,
@@ -419,16 +415,14 @@ class RegionController extends Controller
 
         $region = new Region($validated);
 
-        if ($user?->id) {
-            $region->created_by_id = $user->id;
-        }
+        $region->created_by_id = $user?->id;
 
         $region->save();
 
         if ($request->expectsJson()) {
             return new Resources\Region($region)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class RegionController extends Controller
 
         $region->locked = false;
 
-        if ($user?->id) {
-            $region->modified_by_id = $user->id;
-        }
+        $region->modified_by_id = $user?->id;
 
         $region->save();
 
@@ -501,9 +493,7 @@ class RegionController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $region->modified_by_id = $user->id;
-        }
+        $region->modified_by_id = $user?->id;
 
         $region->update($validated);
 

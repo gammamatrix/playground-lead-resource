@@ -54,8 +54,6 @@ class PlanController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $plan = new Plan($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class PlanController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class PlanController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Plan($plan)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $plan->toArray();
 
@@ -243,8 +243,6 @@ class PlanController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class PlanController extends Controller
             return new Resources\PlanCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class PlanController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $plan->modified_by_id = $user->id;
-        }
+        $plan->modified_by_id = $user?->id;
 
         $plan->restore();
 
@@ -372,7 +370,11 @@ class PlanController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Plan($plan)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class PlanController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Plan($plan)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $plan,
@@ -419,16 +415,14 @@ class PlanController extends Controller
 
         $plan = new Plan($validated);
 
-        if ($user?->id) {
-            $plan->created_by_id = $user->id;
-        }
+        $plan->created_by_id = $user?->id;
 
         $plan->save();
 
         if ($request->expectsJson()) {
             return new Resources\Plan($plan)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class PlanController extends Controller
 
         $plan->locked = false;
 
-        if ($user?->id) {
-            $plan->modified_by_id = $user->id;
-        }
+        $plan->modified_by_id = $user?->id;
 
         $plan->save();
 
@@ -501,9 +493,7 @@ class PlanController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $plan->modified_by_id = $user->id;
-        }
+        $plan->modified_by_id = $user?->id;
 
         $plan->update($validated);
 

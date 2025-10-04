@@ -72,7 +72,10 @@
         "format": "vendor/bin/pint",
         "format-blade": "npx prettier --write \"resources/views/**/*.blade.php\"",
         "test": "vendor/bin/testbench package:test",
-        "test-dev": "vendor/bin/phpunit -c phpunit-dev.xml",
+        "test-dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/phpunit -c phpunit-dev.xml"
+        ],
         "test-parallel": [
             "Composer\\Config::disableProcessTimeout",
             "vendor/bin/paratest -c phpunit-dev.xml"

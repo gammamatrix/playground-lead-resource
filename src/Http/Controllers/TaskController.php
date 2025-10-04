@@ -54,8 +54,6 @@ class TaskController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $task = new Task($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class TaskController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class TaskController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Task($task)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $task->toArray();
 
@@ -243,8 +243,6 @@ class TaskController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class TaskController extends Controller
             return new Resources\TaskCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class TaskController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $task->modified_by_id = $user->id;
-        }
+        $task->modified_by_id = $user?->id;
 
         $task->restore();
 
@@ -372,7 +370,11 @@ class TaskController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Task($task)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class TaskController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Task($task)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $task,
@@ -419,16 +415,14 @@ class TaskController extends Controller
 
         $task = new Task($validated);
 
-        if ($user?->id) {
-            $task->created_by_id = $user->id;
-        }
+        $task->created_by_id = $user?->id;
 
         $task->save();
 
         if ($request->expectsJson()) {
             return new Resources\Task($task)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class TaskController extends Controller
 
         $task->locked = false;
 
-        if ($user?->id) {
-            $task->modified_by_id = $user->id;
-        }
+        $task->modified_by_id = $user?->id;
 
         $task->save();
 
@@ -501,9 +493,7 @@ class TaskController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $task->modified_by_id = $user->id;
-        }
+        $task->modified_by_id = $user?->id;
 
         $task->update($validated);
 

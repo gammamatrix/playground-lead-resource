@@ -54,8 +54,6 @@ class CampaignController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $campaign = new Campaign($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class CampaignController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class CampaignController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Campaign($campaign)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $campaign->toArray();
 
@@ -243,8 +243,6 @@ class CampaignController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class CampaignController extends Controller
             return new Resources\CampaignCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class CampaignController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $campaign->modified_by_id = $user->id;
-        }
+        $campaign->modified_by_id = $user?->id;
 
         $campaign->restore();
 
@@ -372,7 +370,11 @@ class CampaignController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Campaign($campaign)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class CampaignController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Campaign($campaign)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $campaign,
@@ -419,16 +415,14 @@ class CampaignController extends Controller
 
         $campaign = new Campaign($validated);
 
-        if ($user?->id) {
-            $campaign->created_by_id = $user->id;
-        }
+        $campaign->created_by_id = $user?->id;
 
         $campaign->save();
 
         if ($request->expectsJson()) {
             return new Resources\Campaign($campaign)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class CampaignController extends Controller
 
         $campaign->locked = false;
 
-        if ($user?->id) {
-            $campaign->modified_by_id = $user->id;
-        }
+        $campaign->modified_by_id = $user?->id;
 
         $campaign->save();
 
@@ -501,9 +493,7 @@ class CampaignController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $campaign->modified_by_id = $user->id;
-        }
+        $campaign->modified_by_id = $user?->id;
 
         $campaign->update($validated);
 

@@ -54,8 +54,6 @@ class LeadController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $lead = new Lead($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class LeadController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class LeadController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Lead($lead)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $lead->toArray();
 
@@ -243,8 +243,6 @@ class LeadController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class LeadController extends Controller
             return new Resources\LeadCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class LeadController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $lead->modified_by_id = $user->id;
-        }
+        $lead->modified_by_id = $user?->id;
 
         $lead->restore();
 
@@ -372,7 +370,11 @@ class LeadController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Lead($lead)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class LeadController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Lead($lead)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $lead,
@@ -419,16 +415,14 @@ class LeadController extends Controller
 
         $lead = new Lead($validated);
 
-        if ($user?->id) {
-            $lead->created_by_id = $user->id;
-        }
+        $lead->created_by_id = $user?->id;
 
         $lead->save();
 
         if ($request->expectsJson()) {
             return new Resources\Lead($lead)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class LeadController extends Controller
 
         $lead->locked = false;
 
-        if ($user?->id) {
-            $lead->modified_by_id = $user->id;
-        }
+        $lead->modified_by_id = $user?->id;
 
         $lead->save();
 
@@ -501,9 +493,7 @@ class LeadController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $lead->modified_by_id = $user->id;
-        }
+        $lead->modified_by_id = $user?->id;
 
         $lead->update($validated);
 

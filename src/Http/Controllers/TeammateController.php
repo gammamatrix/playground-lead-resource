@@ -54,8 +54,6 @@ class TeammateController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         $teammate = new Teammate($validated);
 
         if ($request->expectsJson()) {
@@ -63,6 +61,8 @@ class TeammateController extends Controller
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $meta = [
             'session_user_id' => $user?->id,
@@ -110,13 +110,13 @@ class TeammateController extends Controller
 
         $validated = $request->validated();
 
-        $user = $request->user();
-
         if ($request->expectsJson()) {
             return new Resources\Teammate($teammate)->additional(['meta' => [
                 'info' => $packageInfo,
             ]])->response($request);
         }
+
+        $user = $request->user();
 
         $flash = $teammate->toArray();
 
@@ -243,8 +243,6 @@ class TeammateController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $user = $request->user();
-
         /**
          * @var array{
          *     sort: string|array<mixed>,
@@ -294,6 +292,8 @@ class TeammateController extends Controller
             return new Resources\TeammateCollection($paginator)->response($request);
         }
 
+        $user = $request->user();
+
         $meta = [
             'session_user_id' => $user?->id,
             'columns' => $request->getPaginationColumns(),
@@ -336,9 +336,7 @@ class TeammateController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $teammate->modified_by_id = $user->id;
-        }
+        $teammate->modified_by_id = $user?->id;
 
         $teammate->restore();
 
@@ -372,7 +370,11 @@ class TeammateController extends Controller
 
         $packageInfo = $this->packageInfo();
 
-        $validated = $request->validated();
+        if ($request->expectsJson()) {
+            return new Resources\Teammate($teammate)->additional(['meta' => [
+                'info' => $packageInfo,
+            ]])->response($request);
+        }
 
         $user = $request->user();
 
@@ -382,12 +384,6 @@ class TeammateController extends Controller
             'timestamp' => Carbon::now()->toJson(),
             'info' => $packageInfo,
         ];
-
-        if ($request->expectsJson()) {
-            return new Resources\Teammate($teammate)->additional(['meta' => [
-                'info' => $packageInfo,
-            ]])->response($request);
-        }
 
         $data = [
             'data' => $teammate,
@@ -419,16 +415,14 @@ class TeammateController extends Controller
 
         $teammate = new Teammate($validated);
 
-        if ($user?->id) {
-            $teammate->created_by_id = $user->id;
-        }
+        $teammate->created_by_id = $user?->id;
 
         $teammate->save();
 
         if ($request->expectsJson()) {
             return new Resources\Teammate($teammate)->additional(['meta' => [
                 'info' => $packageInfo,
-            ]])->response($request);
+            ]])->response($request)->setStatusCode(201);
         }
 
         $returnUrl = $validated['_return_url'] ?? '';
@@ -461,9 +455,7 @@ class TeammateController extends Controller
 
         $teammate->locked = false;
 
-        if ($user?->id) {
-            $teammate->modified_by_id = $user->id;
-        }
+        $teammate->modified_by_id = $user?->id;
 
         $teammate->save();
 
@@ -501,9 +493,7 @@ class TeammateController extends Controller
 
         $user = $request->user();
 
-        if ($user?->id) {
-            $teammate->modified_by_id = $user->id;
-        }
+        $teammate->modified_by_id = $user?->id;
 
         $teammate->update($validated);
 
