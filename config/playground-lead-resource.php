@@ -18,6 +18,9 @@ declare(strict_types=1);
  *           translations: bool,
  *           views: bool
  *       },
+ *       matrix: array{
+ *           enabled: bool,
+ *       },
  *       middleware: array{
  *           default: string|string[],
  *           auth: string|string[],
@@ -80,6 +83,18 @@ return [
         'routes' => (bool) env('PLAYGROUND_LEAD_RESOURCE_LOAD_ROUTES', true),
         'translations' => (bool) env('PLAYGROUND_LEAD_RESOURCE_LOAD_TRANSLATIONS', true),
         'views' => (bool) env('PLAYGROUND_LEAD_RESOURCE_LOAD_VIEWS', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Matrix
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    'matrix' => [
+        'enabled' => (bool) env('PLAYGROUND_LEAD_RESOURCE_MATRIX_ENABLED', false),
     ],
 
     /*
