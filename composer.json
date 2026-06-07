@@ -27,14 +27,14 @@
         "gammamatrix/playground-auth": "*",
         "gammamatrix/playground-http": "*",
         "gammamatrix/playground-lead": "*",
-        "illuminate/support": "^12.0"
+        "illuminate/support": "^13.0"
     },
     "require-dev": {
         "gammamatrix/playground-test": "*",
         "gammamatrix/playground-login-blade": "*",
         "gammamatrix/playground-site-blade": "*",
-        "illuminate/testing": "^12.0",
-        "tomasvotruba/bladestan": "^0.11.3"
+        "illuminate/testing": "^13.0",
+        "tomasvotruba/bladestan": "dev-main"
     },
     "autoload": {
         "psr-4": {
@@ -56,7 +56,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-develop": "74.x-dev"
+            "dev-develop": "75.x-dev"
         },
         "laravel": {
             "providers": [

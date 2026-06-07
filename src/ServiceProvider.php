@@ -8,10 +8,12 @@ declare(strict_types=1);
 
 namespace Playground\Lead\Resource;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
+use Playground\Auth\Policies\Policy;
 
 /**
  * \Playground\Lead\Resource\ServiceProvider
@@ -44,8 +46,8 @@ class ServiceProvider extends AuthServiceProvider
          *            guest: string|string[]
          *        },
          *        policies: array<
-         *            class-string<\Illuminate\Database\Eloquent\Model>,
-         *            class-string<\Playground\Auth\Policies\Policy>
+         *            class-string<Model>,
+         *            class-string<Policy>
          *        >,
          *        routes: array{
          *             lead: bool,

@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
+use Playground\Lead\Models\Source;
+
 /**
  * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\SourceTestCase
  */
 class SourceTestCase extends TestCase
 {
-    public string $fqdn = \Playground\Lead\Models\Source::class;
+    public string $fqdn = Source::class;
 
     /**
      * @var array<string, string>

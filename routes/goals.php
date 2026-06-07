@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Goal;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.goals',
         'uses' => 'GoalController@index',
-    ])->can('index', Playground\Lead\Models\Goal::class);
+    ])->can('index', Goal::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.goals.index',
         'uses' => 'GoalController@index',
-    ])->can('index', Playground\Lead\Models\Goal::class);
+    ])->can('index', Goal::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.goals.create',
         'uses' => 'GoalController@create',
-    ])->can('create', Playground\Lead\Models\Goal::class);
+    ])->can('create', Goal::class);
 
     Route::get('/edit/{goal}', [
         'as' => 'playground.lead.resource.goals.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.goals.post',
         'uses' => 'GoalController@store',
-    ])->can('store', Playground\Lead\Models\Goal::class);
+    ])->can('store', Goal::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.goals.put',

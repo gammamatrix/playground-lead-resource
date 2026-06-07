@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Source;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.sources',
         'uses' => 'SourceController@index',
-    ])->can('index', Playground\Lead\Models\Source::class);
+    ])->can('index', Source::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.sources.index',
         'uses' => 'SourceController@index',
-    ])->can('index', Playground\Lead\Models\Source::class);
+    ])->can('index', Source::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.sources.create',
         'uses' => 'SourceController@create',
-    ])->can('create', Playground\Lead\Models\Source::class);
+    ])->can('create', Source::class);
 
     Route::get('/edit/{source}', [
         'as' => 'playground.lead.resource.sources.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.sources.post',
         'uses' => 'SourceController@store',
-    ])->can('store', Playground\Lead\Models\Source::class);
+    ])->can('store', Source::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.sources.put',

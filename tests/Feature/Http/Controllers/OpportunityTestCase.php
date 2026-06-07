@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
+use Playground\Lead\Models\Opportunity;
+
 /**
  * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\OpportunityTestCase
  */
 class OpportunityTestCase extends TestCase
 {
-    public string $fqdn = \Playground\Lead\Models\Opportunity::class;
+    public string $fqdn = Opportunity::class;
 
     /**
      * @var array<string, string>

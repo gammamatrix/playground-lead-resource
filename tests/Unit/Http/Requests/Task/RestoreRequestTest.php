@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Playground\Lead\Resource\Http\Requests\Task;
 
+use Playground\Lead\Resource\Http\Requests\Task\RestoreRequest;
 use Tests\Unit\Playground\Lead\Resource\Http\Requests\RequestTestCase;
 
 /**
@@ -15,5 +16,5 @@ use Tests\Unit\Playground\Lead\Resource\Http\Requests\RequestTestCase;
  */
 class RestoreRequestTest extends RequestTestCase
 {
-    protected string $requestClass = \Playground\Lead\Resource\Http\Requests\Task\RestoreRequest::class;
+    protected string $requestClass = RestoreRequest::class;
 }

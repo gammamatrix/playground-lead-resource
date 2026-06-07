@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Opportunity;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.opportunities',
         'uses' => 'OpportunityController@index',
-    ])->can('index', Playground\Lead\Models\Opportunity::class);
+    ])->can('index', Opportunity::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.opportunities.index',
         'uses' => 'OpportunityController@index',
-    ])->can('index', Playground\Lead\Models\Opportunity::class);
+    ])->can('index', Opportunity::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.opportunities.create',
         'uses' => 'OpportunityController@create',
-    ])->can('create', Playground\Lead\Models\Opportunity::class);
+    ])->can('create', Opportunity::class);
 
     Route::get('/edit/{opportunity}', [
         'as' => 'playground.lead.resource.opportunities.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.opportunities.post',
         'uses' => 'OpportunityController@store',
-    ])->can('store', Playground\Lead\Models\Opportunity::class);
+    ])->can('store', Opportunity::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.opportunities.put',

@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Playground\Lead\Resource\Http\Requests\Source;
 
+use Playground\Lead\Resource\Http\Requests\Source\DestroyRequest;
 use Tests\Unit\Playground\Lead\Resource\Http\Requests\RequestTestCase;
 
 /**
@@ -15,5 +16,5 @@ use Tests\Unit\Playground\Lead\Resource\Http\Requests\RequestTestCase;
  */
 class DestroyRequestTest extends RequestTestCase
 {
-    protected string $requestClass = \Playground\Lead\Resource\Http\Requests\Source\DestroyRequest::class;
+    protected string $requestClass = DestroyRequest::class;
 }

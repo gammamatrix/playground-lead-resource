@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature\Playground\Lead\Resource\Http\Controllers;
 
+use Playground\Lead\Models\Plan;
+
 /**
  * \Tests\Feature\Playground\Lead\Resource\Http\Controllers\PlanTestCase
  */
 class PlanTestCase extends TestCase
 {
-    public string $fqdn = \Playground\Lead\Models\Plan::class;
+    public string $fqdn = Plan::class;
 
     /**
      * @var array<string, string>

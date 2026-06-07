@@ -5,6 +5,30 @@
  */
 
 declare(strict_types=1);
+use Illuminate\Database\Eloquent\Model;
+use Playground\Auth\Policies\Policy;
+use Playground\Lead\Models\Campaign;
+use Playground\Lead\Models\Goal;
+use Playground\Lead\Models\Lead;
+use Playground\Lead\Models\Opportunity;
+use Playground\Lead\Models\Plan;
+use Playground\Lead\Models\Region;
+use Playground\Lead\Models\Report;
+use Playground\Lead\Models\Source;
+use Playground\Lead\Models\Task;
+use Playground\Lead\Models\Team;
+use Playground\Lead\Models\Teammate;
+use Playground\Lead\Resource\Policies\CampaignPolicy;
+use Playground\Lead\Resource\Policies\GoalPolicy;
+use Playground\Lead\Resource\Policies\LeadPolicy;
+use Playground\Lead\Resource\Policies\OpportunityPolicy;
+use Playground\Lead\Resource\Policies\PlanPolicy;
+use Playground\Lead\Resource\Policies\RegionPolicy;
+use Playground\Lead\Resource\Policies\ReportPolicy;
+use Playground\Lead\Resource\Policies\SourcePolicy;
+use Playground\Lead\Resource\Policies\TaskPolicy;
+use Playground\Lead\Resource\Policies\TeammatePolicy;
+use Playground\Lead\Resource\Policies\TeamPolicy;
 
 /**
  * Playground: Lead Resource Configuration and Environment Variables
@@ -27,8 +51,8 @@ declare(strict_types=1);
  *           guest: string|string[]
  *       },
  *       policies: array<
- *           class-string<\Illuminate\Database\Eloquent\Model>,
- *           class-string<\Playground\Auth\Policies\Policy>
+ *           class-string<Model>,
+ *           class-string<Policy>
  *       >,
  *       routes: array{
  *           lead: bool,
@@ -120,17 +144,17 @@ return [
     */
 
     'policies' => [
-        Playground\Lead\Models\Campaign::class => Playground\Lead\Resource\Policies\CampaignPolicy::class,
-        Playground\Lead\Models\Goal::class => Playground\Lead\Resource\Policies\GoalPolicy::class,
-        Playground\Lead\Models\Lead::class => Playground\Lead\Resource\Policies\LeadPolicy::class,
-        Playground\Lead\Models\Opportunity::class => Playground\Lead\Resource\Policies\OpportunityPolicy::class,
-        Playground\Lead\Models\Plan::class => Playground\Lead\Resource\Policies\PlanPolicy::class,
-        Playground\Lead\Models\Region::class => Playground\Lead\Resource\Policies\RegionPolicy::class,
-        Playground\Lead\Models\Report::class => Playground\Lead\Resource\Policies\ReportPolicy::class,
-        Playground\Lead\Models\Source::class => Playground\Lead\Resource\Policies\SourcePolicy::class,
-        Playground\Lead\Models\Task::class => Playground\Lead\Resource\Policies\TaskPolicy::class,
-        Playground\Lead\Models\Team::class => Playground\Lead\Resource\Policies\TeamPolicy::class,
-        Playground\Lead\Models\Teammate::class => Playground\Lead\Resource\Policies\TeammatePolicy::class,
+        Campaign::class => CampaignPolicy::class,
+        Goal::class => GoalPolicy::class,
+        Lead::class => LeadPolicy::class,
+        Opportunity::class => OpportunityPolicy::class,
+        Plan::class => PlanPolicy::class,
+        Region::class => RegionPolicy::class,
+        Report::class => ReportPolicy::class,
+        Source::class => SourcePolicy::class,
+        Task::class => TaskPolicy::class,
+        Team::class => TeamPolicy::class,
+        Teammate::class => TeammatePolicy::class,
     ],
 
     /*

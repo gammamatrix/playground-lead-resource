@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Teammate;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.teammates',
         'uses' => 'TeammateController@index',
-    ])->can('index', Playground\Lead\Models\Teammate::class);
+    ])->can('index', Teammate::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.teammates.index',
         'uses' => 'TeammateController@index',
-    ])->can('index', Playground\Lead\Models\Teammate::class);
+    ])->can('index', Teammate::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.teammates.create',
         'uses' => 'TeammateController@create',
-    ])->can('create', Playground\Lead\Models\Teammate::class);
+    ])->can('create', Teammate::class);
 
     Route::get('/edit/{teammate}', [
         'as' => 'playground.lead.resource.teammates.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.teammates.post',
         'uses' => 'TeammateController@store',
-    ])->can('store', Playground\Lead\Models\Teammate::class);
+    ])->can('store', Teammate::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.teammates.put',

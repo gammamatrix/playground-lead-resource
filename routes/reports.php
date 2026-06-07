@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Report;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.reports',
         'uses' => 'ReportController@index',
-    ])->can('index', Playground\Lead\Models\Report::class);
+    ])->can('index', Report::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.reports.index',
         'uses' => 'ReportController@index',
-    ])->can('index', Playground\Lead\Models\Report::class);
+    ])->can('index', Report::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.reports.create',
         'uses' => 'ReportController@create',
-    ])->can('create', Playground\Lead\Models\Report::class);
+    ])->can('create', Report::class);
 
     Route::get('/edit/{report}', [
         'as' => 'playground.lead.resource.reports.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.reports.post',
         'uses' => 'ReportController@store',
-    ])->can('store', Playground\Lead\Models\Report::class);
+    ])->can('store', Report::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.reports.put',

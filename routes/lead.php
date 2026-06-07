@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Campaign;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,6 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource',
         'uses' => 'IndexController@index',
-    ])->can('index', Playground\Lead\Models\Campaign::class);
+    ])->can('index', Campaign::class);
 
 });

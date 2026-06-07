@@ -7,6 +7,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Playground\Lead\Models\Lead;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +37,19 @@ Route::group([
     Route::get('/', [
         'as' => 'playground.lead.resource.leads',
         'uses' => 'LeadController@index',
-    ])->can('index', Playground\Lead\Models\Lead::class);
+    ])->can('index', Lead::class);
 
     Route::post('/index', [
         'as' => 'playground.lead.resource.leads.index',
         'uses' => 'LeadController@index',
-    ])->can('index', Playground\Lead\Models\Lead::class);
+    ])->can('index', Lead::class);
 
     // UI
 
     Route::get('/create', [
         'as' => 'playground.lead.resource.leads.create',
         'uses' => 'LeadController@create',
-    ])->can('create', Playground\Lead\Models\Lead::class);
+    ])->can('create', Lead::class);
 
     Route::get('/edit/{lead}', [
         'as' => 'playground.lead.resource.leads.edit',
@@ -90,7 +91,7 @@ Route::group([
     Route::post('/', [
         'as' => 'playground.lead.resource.leads.post',
         'uses' => 'LeadController@store',
-    ])->can('store', Playground\Lead\Models\Lead::class);
+    ])->can('store', Lead::class);
 
     // Route::put('/', [
     //     'as' => 'playground.lead.resource.leads.put',
