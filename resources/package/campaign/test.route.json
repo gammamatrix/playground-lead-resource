@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/CampaignRouteTest",
     "model": "Campaign",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Campaign",
+    "model_variable": "campaign",
+    "model_variable_plural": "campaigns",
     "module": "Lead",
     "module_slug": "lead",
     "name": "CampaignRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Campaign": "resources/configurations/playground-lead/model.campaign.json"
+        "Campaign": "resources/configurations/playground-lead/campaign/model.json"
     },
     "package_providers": []
 }

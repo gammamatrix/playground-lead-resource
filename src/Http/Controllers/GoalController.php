@@ -32,6 +32,8 @@ class GoalController extends Controller
         'model_route' => 'playground.lead.resource.goals',
         'model_slug' => 'goal',
         'model_slug_plural' => 'goals',
+        'model_variable' => 'goal',
+        'model_variable_plural' => 'goals',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

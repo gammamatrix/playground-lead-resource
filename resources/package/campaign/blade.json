@@ -13,10 +13,13 @@
     "model": "Campaign",
     "model_column": "campaign",
     "model_label": "Campaign",
+    "model_slug": "campaign",
+    "model_variable": "campaign",
+    "model_variable_plural": "campaigns",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Campaign",
     "models": {
-        "Campaign": "resources/configurations/playground-lead/model.campaign.json"
+        "Campaign": "resources/configurations/playground-lead/campaign/model.json"
     }
 }

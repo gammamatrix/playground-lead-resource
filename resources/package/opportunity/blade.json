@@ -13,10 +13,13 @@
     "model": "Opportunity",
     "model_column": "opportunity",
     "model_label": "Opportunity",
+    "model_slug": "opportunity",
+    "model_variable": "opportunity",
+    "model_variable_plural": "opportunities",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Opportunity",
     "models": {
-        "Opportunity": "resources/configurations/playground-lead/model.opportunity.json"
+        "Opportunity": "resources/configurations/playground-lead/opportunity/model.json"
     }
 }

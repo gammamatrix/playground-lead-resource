@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/RegionRouteTest",
     "model": "Region",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Region",
+    "model_variable": "region",
+    "model_variable_plural": "regions",
     "module": "Lead",
     "module_slug": "lead",
     "name": "RegionRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Region": "resources/configurations/playground-lead/model.region.json"
+        "Region": "resources/configurations/playground-lead/region/model.json"
     },
     "package_providers": []
 }

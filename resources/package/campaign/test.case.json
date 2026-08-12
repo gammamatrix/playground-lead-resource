@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/CampaignTestCase",
     "model": "Campaign",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Campaign",
+    "model_variable": "campaign",
+    "model_variable_plural": "campaigns",
     "module": "Lead",
     "module_slug": "lead",
     "name": "CampaignTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Campaign": "resources/configurations/playground-lead/model.campaign.json"
+        "Campaign": "resources/configurations/playground-lead/campaign/model.json"
     },
     "package_providers": []
 }

@@ -5,6 +5,8 @@
     "fqdn": "Tests/Unit/Playground/Lead/Resource/UpdateRequestTest",
     "model": "Report",
     "model_fqdn": "",
+    "model_variable": "",
+    "model_variable_plural": "",
     "module": "Lead",
     "module_slug": "lead",
     "name": "UpdateRequestTest",

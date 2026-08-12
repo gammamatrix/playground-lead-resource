@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/LeadRouteTest",
     "model": "Lead",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Lead",
+    "model_variable": "lead",
+    "model_variable_plural": "leads",
     "module": "Lead",
     "module_slug": "lead",
     "name": "LeadRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Lead": "resources/configurations/playground-lead/model.lead.json"
+        "Lead": "resources/configurations/playground-lead/lead/model.json"
     },
     "package_providers": []
 }

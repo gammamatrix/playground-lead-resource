@@ -32,6 +32,8 @@ class ReportController extends Controller
         'model_route' => 'playground.lead.resource.reports',
         'model_slug' => 'report',
         'model_slug_plural' => 'reports',
+        'model_variable' => 'report',
+        'model_variable_plural' => 'reports',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

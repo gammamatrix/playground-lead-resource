@@ -36,7 +36,7 @@
     "postman_url": "",
     "service_provider": "",
     "type": "playground-resource",
-    "version": "74.0.0",
+    "version": "75.0.0",
     "package_authors": [
         {
             "name": "Jeremy Postlethwaite",
@@ -61,19 +61,20 @@
         "Playground/Lead/Resource/ServiceProvider"
     ],
     "package_providers": [],
+    "package_repositories": [],
     "package_require": {
         "php": "^8.4",
         "gammamatrix/playground": "*",
         "gammamatrix/playground-auth": "*",
         "gammamatrix/playground-http": "*",
         "gammamatrix/playground-lead": "*",
-        "illuminate/support": "^12.0"
+        "illuminate/support": "^13.0"
     },
     "package_require_dev": {
         "gammamatrix/playground-test": "*",
         "gammamatrix/playground-login-blade": "*",
         "gammamatrix/playground-site-blade": "*",
-        "illuminate/testing": "^12.0"
+        "illuminate/testing": "^13.0"
     },
     "package_suggest": [],
     "controllers": [

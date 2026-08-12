@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/PlanTestCase",
     "model": "Plan",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Plan",
+    "model_variable": "plan",
+    "model_variable_plural": "plans",
     "module": "Lead",
     "module_slug": "lead",
     "name": "PlanTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Plan": "resources/configurations/playground-lead/model.plan.json"
+        "Plan": "resources/configurations/playground-lead/plan/model.json"
     },
     "package_providers": []
 }

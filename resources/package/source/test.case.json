@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/SourceTestCase",
     "model": "Source",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Source",
+    "model_variable": "source",
+    "model_variable_plural": "sources",
     "module": "Lead",
     "module_slug": "lead",
     "name": "SourceTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Source": "resources/configurations/playground-lead/model.source.json"
+        "Source": "resources/configurations/playground-lead/source/model.json"
     },
     "package_providers": []
 }

@@ -13,10 +13,13 @@
     "model": "Source",
     "model_column": "source",
     "model_label": "Source",
+    "model_slug": "source",
+    "model_variable": "source",
+    "model_variable_plural": "sources",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Source",
     "models": {
-        "Source": "resources/configurations/playground-lead/model.source.json"
+        "Source": "resources/configurations/playground-lead/source/model.json"
     }
 }

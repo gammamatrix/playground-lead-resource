@@ -13,10 +13,13 @@
     "model": "Report",
     "model_column": "report",
     "model_label": "Report",
+    "model_slug": "report",
+    "model_variable": "report",
+    "model_variable_plural": "reports",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Report",
     "models": {
-        "Report": "resources/configurations/playground-lead/model.report.json"
+        "Report": "resources/configurations/playground-lead/report/model.json"
     }
 }

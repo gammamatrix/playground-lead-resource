@@ -13,10 +13,13 @@
     "model": "Goal",
     "model_column": "goal",
     "model_label": "Goal",
+    "model_slug": "goal",
+    "model_variable": "goal",
+    "model_variable_plural": "goals",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Goal",
     "models": {
-        "Goal": "resources/configurations/playground-lead/model.goal.json"
+        "Goal": "resources/configurations/playground-lead/goal/model.json"
     }
 }

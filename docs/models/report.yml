@@ -30,6 +30,11 @@ properties:
     type: string
     format: uuid
     nullable: true
+  matrix_id:
+    description: 'Foreign key: links a matrix to this report.'
+    type: string
+    format: uuid
+    nullable: true
   campaign_id:
     description: 'Foreign key: links a campaign to this report.'
     type: string
@@ -77,11 +82,6 @@ properties:
     nullable: true
   teammate_id:
     description: 'Foreign key: links a teammate to this report.'
-    type: string
-    format: uuid
-    nullable: true
-  matrix_id:
-    description: 'Foreign key: links a matrix to this report.'
     type: string
     format: uuid
     nullable: true
@@ -145,13 +145,13 @@ properties:
     type: string
     format: date-time
     nullable: true
-  resumed_at:
-    description: 'The resumed at date for this report.'
+  resolved_at:
+    description: 'The resolved at date for this report.'
     type: string
     format: date-time
     nullable: true
-  resolved_at:
-    description: 'The resolved at date for this report.'
+  resumed_at:
+    description: 'The resumed at date for this report.'
     type: string
     format: date-time
     nullable: true

@@ -2,56 +2,41 @@ openapi: 3.0.3
 info:
   title: 'Playground Lead Resource'
   description: 'Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Lead System for Laravel applications.'
-  version: 74.0.0
+  version: 75.0.0
 externalDocs:
   url: 'https://gammamatrix-playground.readthedocs.io/en/develop/components/lead.html'
   description: 'Read the Docs: Playground Lead Packages'
 servers:
-  -
-    url: 'https://api.example.com'
+  - url: 'https://api.example.com'
     description: 'Production Server'
-  -
-    url: 'https://api.staging.example.com'
+  - url: 'https://api.staging.example.com'
     description: 'Staging Server'
-  -
-    url: 'https://api.dev.example.com'
+  - url: 'https://api.dev.example.com'
     description: 'Dev Server'
-  -
-    url: 'http://localhost'
+  - url: 'http://localhost'
     description: 'Local Server'
 tags:
-  -
-    name: Campaign
+  - name: Campaign
     description: 'Manage campaigns in storage.'
-  -
-    name: Goal
+  - name: Goal
     description: 'Manage goals in storage.'
-  -
-    name: Lead
+  - name: Lead
     description: 'Manage leads in storage.'
-  -
-    name: Opportunity
+  - name: Opportunity
     description: 'Manage opportunities in storage.'
-  -
-    name: Plan
+  - name: Plan
     description: 'Manage plans in storage.'
-  -
-    name: Region
+  - name: Region
     description: 'Manage regions in storage.'
-  -
-    name: Report
+  - name: Report
     description: 'Manage reports in storage.'
-  -
-    name: Source
+  - name: Source
     description: 'Manage sources in storage.'
-  -
-    name: Task
+  - name: Task
     description: 'Manage tasks in storage.'
-  -
-    name: Team
+  - name: Team
     description: 'Manage teams in storage.'
-  -
-    name: Teammate
+  - name: Teammate
     description: 'Manage teammates in storage.'
 paths:
   '/resource/lead/campaigns/{id}':

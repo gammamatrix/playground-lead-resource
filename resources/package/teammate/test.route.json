@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/TeammateRouteTest",
     "model": "Teammate",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Teammate",
+    "model_variable": "teammate",
+    "model_variable_plural": "teammates",
     "module": "Lead",
     "module_slug": "lead",
     "name": "TeammateRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Teammate": "resources/configurations/playground-lead/model.teammate.json"
+        "Teammate": "resources/configurations/playground-lead/teammate/model.json"
     },
     "package_providers": []
 }

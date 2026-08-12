@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/TeamTestCase",
     "model": "Team",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Team",
+    "model_variable": "team",
+    "model_variable_plural": "teams",
     "module": "Lead",
     "module_slug": "lead",
     "name": "TeamTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Team": "resources/configurations/playground-lead/model.team.json"
+        "Team": "resources/configurations/playground-lead/team/model.json"
     },
     "package_providers": []
 }

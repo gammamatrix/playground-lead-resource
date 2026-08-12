@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/GoalTestCase",
     "model": "Goal",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Goal",
+    "model_variable": "goal",
+    "model_variable_plural": "goals",
     "module": "Lead",
     "module_slug": "lead",
     "name": "GoalTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Goal": "resources/configurations/playground-lead/model.goal.json"
+        "Goal": "resources/configurations/playground-lead/goal/model.json"
     },
     "package_providers": []
 }

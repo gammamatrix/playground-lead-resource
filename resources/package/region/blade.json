@@ -13,10 +13,13 @@
     "model": "Region",
     "model_column": "region",
     "model_label": "Region",
+    "model_slug": "region",
+    "model_variable": "region",
+    "model_variable_plural": "regions",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Region",
     "models": {
-        "Region": "resources/configurations/playground-lead/model.region.json"
+        "Region": "resources/configurations/playground-lead/region/model.json"
     }
 }

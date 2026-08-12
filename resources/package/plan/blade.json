@@ -13,10 +13,13 @@
     "model": "Plan",
     "model_column": "plan",
     "model_label": "Plan",
+    "model_slug": "plan",
+    "model_variable": "plan",
+    "model_variable_plural": "plans",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Plan",
     "models": {
-        "Plan": "resources/configurations/playground-lead/model.plan.json"
+        "Plan": "resources/configurations/playground-lead/plan/model.json"
     }
 }

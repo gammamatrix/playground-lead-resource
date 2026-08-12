@@ -13,10 +13,13 @@
     "model": "Team",
     "model_column": "team",
     "model_label": "Team",
+    "model_slug": "team",
+    "model_variable": "team",
+    "model_variable_plural": "teams",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Team",
     "models": {
-        "Team": "resources/configurations/playground-lead/model.team.json"
+        "Team": "resources/configurations/playground-lead/team/model.json"
     }
 }

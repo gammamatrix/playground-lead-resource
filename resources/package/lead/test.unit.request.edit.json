@@ -5,6 +5,8 @@
     "fqdn": "Tests/Unit/Playground/Lead/Resource/EditRequestTest",
     "model": "Lead",
     "model_fqdn": "",
+    "model_variable": "",
+    "model_variable_plural": "",
     "module": "Lead",
     "module_slug": "lead",
     "name": "EditRequestTest",

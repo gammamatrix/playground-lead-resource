@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/GoalRouteTest",
     "model": "Goal",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Goal",
+    "model_variable": "goal",
+    "model_variable_plural": "goals",
     "module": "Lead",
     "module_slug": "lead",
     "name": "GoalRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Goal": "resources/configurations/playground-lead/model.goal.json"
+        "Goal": "resources/configurations/playground-lead/goal/model.json"
     },
     "package_providers": []
 }

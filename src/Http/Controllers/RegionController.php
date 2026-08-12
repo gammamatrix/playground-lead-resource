@@ -32,6 +32,8 @@ class RegionController extends Controller
         'model_route' => 'playground.lead.resource.regions',
         'model_slug' => 'region',
         'model_slug_plural' => 'regions',
+        'model_variable' => 'region',
+        'model_variable_plural' => 'regions',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

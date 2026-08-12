@@ -13,10 +13,13 @@
     "model": "Teammate",
     "model_column": "teammate",
     "model_label": "Teammate",
+    "model_slug": "teammate",
+    "model_variable": "teammate",
+    "model_variable_plural": "teammates",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Teammate",
     "models": {
-        "Teammate": "resources/configurations/playground-lead/model.teammate.json"
+        "Teammate": "resources/configurations/playground-lead/teammate/model.json"
     }
 }

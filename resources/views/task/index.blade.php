@@ -23,19 +23,23 @@ $columnsViewable = [
     ],
     "created_by_id" => [
         "hide-sm" => true,
-        "label" => "Created by id",
+        "label" => "Created by ID",
     ],
     "modified_by_id" => [
         "hide-sm" => true,
-        "label" => "Modified by id",
+        "label" => "Modified by ID",
     ],
     "owned_by_id" => [
         "hide-sm" => true,
-        "label" => "Owned by id",
+        "label" => "Owned by ID",
     ],
     "parent_id" => [
         "hide-sm" => true,
         "label" => "Parent id",
+    ],
+    "matrix_id" => [
+        "hide-sm" => true,
+        "label" => "Matrix id",
     ],
     "campaign_id" => [
         "hide-sm" => true,
@@ -76,10 +80,6 @@ $columnsViewable = [
     "teammate_id" => [
         "hide-sm" => true,
         "label" => "Teammate id",
-    ],
-    "matrix_id" => [
-        "hide-sm" => true,
-        "label" => "Matrix id",
     ],
     "locale" => [
         "hide-sm" => true,
@@ -295,13 +295,13 @@ $columnsViewable = [
         "hide-sm" => true,
         "flag" => true,
         "label" => "Featured",
-        "onTrueClass" => "fa-solid fa-star text-warning",
+        "onTrueClass" => "fa-solid fa-star text-primary",
     ],
     "fixed" => [
         "hide-sm" => true,
         "flag" => true,
         "label" => "Fixed",
-        "onTrueClass" => "fa-solid fa-wrench",
+        "onTrueClass" => "fa-solid fa-wrench text-success",
     ],
     "flagged" => [
         "hide-sm" => true,
@@ -372,7 +372,7 @@ $columnsViewable = [
     "sms" => [
         "hide-sm" => true,
         "flag" => true,
-        "label" => "Sms",
+        "label" => "SMS",
         "onTrueClass" => "fa-solid fa-comment-sms",
     ],
     "special" => [
@@ -437,13 +437,13 @@ $columnsViewable = [
         "hide-sm" => true,
         "label" => "Released at",
     ],
-    "resumed_at" => [
-        "hide-sm" => true,
-        "label" => "Resumed at",
-    ],
     "resolved_at" => [
         "hide-sm" => true,
         "label" => "Resolved at",
+    ],
+    "resumed_at" => [
+        "hide-sm" => true,
+        "label" => "Resumed at",
     ],
     "suspended_at" => [
         "hide-sm" => true,

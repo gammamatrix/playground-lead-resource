@@ -19,7 +19,7 @@
     "playground": true,
     "revision": false,
     "models": {
-        "Team": "resources/configurations/playground-lead/model.team.json"
+        "Team": "resources/configurations/playground-lead/team/model.json"
     },
     "policies": [],
     "requests": [],
@@ -45,6 +45,8 @@
         "model_route": "playground.lead.resource.teams",
         "model_slug": "team",
         "model_slug_plural": "teams",
+        "model_variable": "team",
+        "model_variable_plural": "teams",
         "module_label": "Lead",
         "module_label_plural": "Leads",
         "module_route": "playground.lead.resource",

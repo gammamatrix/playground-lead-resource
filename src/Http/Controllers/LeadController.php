@@ -32,6 +32,8 @@ class LeadController extends Controller
         'model_route' => 'playground.lead.resource.leads',
         'model_slug' => 'lead',
         'model_slug_plural' => 'leads',
+        'model_variable' => 'lead',
+        'model_variable_plural' => 'leads',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

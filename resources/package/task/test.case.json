@@ -4,7 +4,9 @@
     "extends": "TestCase",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/Http/Controllers/TaskTestCase",
     "model": "Task",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Task",
+    "model_variable": "task",
+    "model_variable_plural": "tasks",
     "module": "Lead",
     "module_slug": "lead",
     "name": "TaskTestCase",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-case",
     "uses": [],
     "models": {
-        "Task": "resources/configurations/playground-lead/model.task.json"
+        "Task": "resources/configurations/playground-lead/task/model.json"
     },
     "package_providers": []
 }

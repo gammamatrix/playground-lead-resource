@@ -32,6 +32,8 @@ class TeammateController extends Controller
         'model_route' => 'playground.lead.resource.teammates',
         'model_slug' => 'teammate',
         'model_slug_plural' => 'teammates',
+        'model_variable' => 'teammate',
+        'model_variable_plural' => 'teammates',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

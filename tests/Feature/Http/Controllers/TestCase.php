@@ -50,6 +50,8 @@ class TestCase extends BaseTestCase
         'model_route' => '',
         'model_slug' => '',
         'model_slug_plural' => '',
+        'model_variable' => '',
+        'model_variable_plural' => '',
         'module_label' => 'Lead',
         'module_label_plural' => 'Leads',
         'module_route' => 'playground.lead.resource',

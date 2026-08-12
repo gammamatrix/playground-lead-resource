@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Playground Lead Resource
   description: 'Playground: Provides an API and a Blade UI for interacting with Playground Lead, a Lead System for Laravel applications.'
-  version: 74.0.0
+  version: 75.0.0
 servers:
   - url: https://api.example.com
     description: Production Server
@@ -3561,6 +3561,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this campaign.'
+          type: string
+          format: uuid
+          nullable: true
         goal_id:
           description: 'Foreign key: links a goal to this campaign.'
           type: string
@@ -3608,11 +3613,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this campaign.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this campaign.'
           type: string
           format: uuid
           nullable: true
@@ -3676,13 +3676,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this campaign.
+        resolved_at:
+          description: The resolved at date for this campaign.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this campaign.
+        resumed_at:
+          description: The resumed at date for this campaign.
           type: string
           format: date-time
           nullable: true
@@ -3991,6 +3991,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this campaign.'
+          type: string
+          format: uuid
+          nullable: true
         goal_id:
           description: 'Foreign key: links a goal to this campaign.'
           type: string
@@ -4041,11 +4046,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this campaign.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this campaign.
           type: string
@@ -4091,13 +4091,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this campaign.
+        resolved_at:
+          description: The resolved at date for this campaign.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this campaign.
+        resumed_at:
+          description: The resumed at date for this campaign.
           type: string
           format: date-time
           nullable: true
@@ -4400,6 +4400,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this campaign.'
+          type: string
+          format: uuid
+          nullable: true
         goal_id:
           description: 'Foreign key: links a goal to this campaign.'
           type: string
@@ -4450,11 +4455,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this campaign.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this campaign.
           type: string
@@ -4500,13 +4500,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this campaign.
+        resolved_at:
+          description: The resolved at date for this campaign.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this campaign.
+        resumed_at:
+          description: The resumed at date for this campaign.
           type: string
           format: date-time
           nullable: true
@@ -4856,6 +4856,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this goal.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this goal.'
           type: string
@@ -4903,11 +4908,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this goal.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this goal.'
           type: string
           format: uuid
           nullable: true
@@ -4971,13 +4971,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this goal.
+        resolved_at:
+          description: The resolved at date for this goal.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this goal.
+        resumed_at:
+          description: The resumed at date for this goal.
           type: string
           format: date-time
           nullable: true
@@ -5286,6 +5286,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this goal.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this goal.'
           type: string
@@ -5336,11 +5341,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this goal.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this goal.
           type: string
@@ -5386,13 +5386,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this goal.
+        resolved_at:
+          description: The resolved at date for this goal.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this goal.
+        resumed_at:
+          description: The resumed at date for this goal.
           type: string
           format: date-time
           nullable: true
@@ -5695,6 +5695,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this goal.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this goal.'
           type: string
@@ -5745,11 +5750,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this goal.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this goal.
           type: string
@@ -5795,13 +5795,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this goal.
+        resolved_at:
+          description: The resolved at date for this goal.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this goal.
+        resumed_at:
+          description: The resumed at date for this goal.
           type: string
           format: date-time
           nullable: true
@@ -6151,6 +6151,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this lead.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this lead.'
           type: string
@@ -6198,11 +6203,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this lead.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this lead.'
           type: string
           format: uuid
           nullable: true
@@ -6266,13 +6266,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this lead.
+        resolved_at:
+          description: The resolved at date for this lead.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this lead.
+        resumed_at:
+          description: The resumed at date for this lead.
           type: string
           format: date-time
           nullable: true
@@ -6581,6 +6581,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this lead.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this lead.'
           type: string
@@ -6631,11 +6636,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this lead.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this lead.
           type: string
@@ -6681,13 +6681,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this lead.
+        resolved_at:
+          description: The resolved at date for this lead.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this lead.
+        resumed_at:
+          description: The resumed at date for this lead.
           type: string
           format: date-time
           nullable: true
@@ -6990,6 +6990,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this lead.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this lead.'
           type: string
@@ -7040,11 +7045,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this lead.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this lead.
           type: string
@@ -7090,13 +7090,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this lead.
+        resolved_at:
+          description: The resolved at date for this lead.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this lead.
+        resumed_at:
+          description: The resumed at date for this lead.
           type: string
           format: date-time
           nullable: true
@@ -7446,6 +7446,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this opportunity.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this opportunity.'
           type: string
@@ -7493,11 +7498,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this opportunity.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this opportunity.'
           type: string
           format: uuid
           nullable: true
@@ -7561,13 +7561,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this opportunity.
+        resolved_at:
+          description: The resolved at date for this opportunity.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this opportunity.
+        resumed_at:
+          description: The resumed at date for this opportunity.
           type: string
           format: date-time
           nullable: true
@@ -7876,6 +7876,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this opportunity.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this opportunity.'
           type: string
@@ -7926,11 +7931,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this opportunity.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this opportunity.
           type: string
@@ -7976,13 +7976,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this opportunity.
+        resolved_at:
+          description: The resolved at date for this opportunity.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this opportunity.
+        resumed_at:
+          description: The resumed at date for this opportunity.
           type: string
           format: date-time
           nullable: true
@@ -8285,6 +8285,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this opportunity.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this opportunity.'
           type: string
@@ -8335,11 +8340,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this opportunity.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this opportunity.
           type: string
@@ -8385,13 +8385,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this opportunity.
+        resolved_at:
+          description: The resolved at date for this opportunity.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this opportunity.
+        resumed_at:
+          description: The resumed at date for this opportunity.
           type: string
           format: date-time
           nullable: true
@@ -8741,6 +8741,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this plan.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this plan.'
           type: string
@@ -8788,11 +8793,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this plan.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this plan.'
           type: string
           format: uuid
           nullable: true
@@ -8856,13 +8856,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this plan.
+        resolved_at:
+          description: The resolved at date for this plan.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this plan.
+        resumed_at:
+          description: The resumed at date for this plan.
           type: string
           format: date-time
           nullable: true
@@ -9171,6 +9171,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this plan.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this plan.'
           type: string
@@ -9221,11 +9226,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this plan.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this plan.
           type: string
@@ -9271,13 +9271,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this plan.
+        resolved_at:
+          description: The resolved at date for this plan.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this plan.
+        resumed_at:
+          description: The resumed at date for this plan.
           type: string
           format: date-time
           nullable: true
@@ -9580,6 +9580,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this plan.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this plan.'
           type: string
@@ -9630,11 +9635,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this plan.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this plan.
           type: string
@@ -9680,13 +9680,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this plan.
+        resolved_at:
+          description: The resolved at date for this plan.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this plan.
+        resumed_at:
+          description: The resumed at date for this plan.
           type: string
           format: date-time
           nullable: true
@@ -10036,6 +10036,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this region.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this region.'
           type: string
@@ -10083,11 +10088,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this region.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this region.'
           type: string
           format: uuid
           nullable: true
@@ -10151,13 +10151,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this region.
+        resolved_at:
+          description: The resolved at date for this region.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this region.
+        resumed_at:
+          description: The resumed at date for this region.
           type: string
           format: date-time
           nullable: true
@@ -10466,6 +10466,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this region.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this region.'
           type: string
@@ -10516,11 +10521,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this region.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this region.
           type: string
@@ -10566,13 +10566,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this region.
+        resolved_at:
+          description: The resolved at date for this region.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this region.
+        resumed_at:
+          description: The resumed at date for this region.
           type: string
           format: date-time
           nullable: true
@@ -10875,6 +10875,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this region.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this region.'
           type: string
@@ -10925,11 +10930,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this region.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this region.
           type: string
@@ -10975,13 +10975,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this region.
+        resolved_at:
+          description: The resolved at date for this region.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this region.
+        resumed_at:
+          description: The resumed at date for this region.
           type: string
           format: date-time
           nullable: true
@@ -11331,6 +11331,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this report.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this report.'
           type: string
@@ -11378,11 +11383,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this report.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this report.'
           type: string
           format: uuid
           nullable: true
@@ -11446,13 +11446,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this report.
+        resolved_at:
+          description: The resolved at date for this report.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this report.
+        resumed_at:
+          description: The resumed at date for this report.
           type: string
           format: date-time
           nullable: true
@@ -11761,6 +11761,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this report.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this report.'
           type: string
@@ -11811,11 +11816,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this report.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this report.
           type: string
@@ -11861,13 +11861,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this report.
+        resolved_at:
+          description: The resolved at date for this report.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this report.
+        resumed_at:
+          description: The resumed at date for this report.
           type: string
           format: date-time
           nullable: true
@@ -12170,6 +12170,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this report.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this report.'
           type: string
@@ -12220,11 +12225,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this report.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this report.
           type: string
@@ -12270,13 +12270,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this report.
+        resolved_at:
+          description: The resolved at date for this report.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this report.
+        resumed_at:
+          description: The resumed at date for this report.
           type: string
           format: date-time
           nullable: true
@@ -12626,6 +12626,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this source.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this source.'
           type: string
@@ -12673,11 +12678,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this source.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this source.'
           type: string
           format: uuid
           nullable: true
@@ -12741,13 +12741,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this source.
+        resolved_at:
+          description: The resolved at date for this source.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this source.
+        resumed_at:
+          description: The resumed at date for this source.
           type: string
           format: date-time
           nullable: true
@@ -13056,6 +13056,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this source.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this source.'
           type: string
@@ -13106,11 +13111,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this source.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this source.
           type: string
@@ -13156,13 +13156,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this source.
+        resolved_at:
+          description: The resolved at date for this source.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this source.
+        resumed_at:
+          description: The resumed at date for this source.
           type: string
           format: date-time
           nullable: true
@@ -13465,6 +13465,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this source.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this source.'
           type: string
@@ -13515,11 +13520,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this source.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this source.
           type: string
@@ -13565,13 +13565,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this source.
+        resolved_at:
+          description: The resolved at date for this source.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this source.
+        resumed_at:
+          description: The resumed at date for this source.
           type: string
           format: date-time
           nullable: true
@@ -13921,6 +13921,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this task.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this task.'
           type: string
@@ -13968,11 +13973,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this task.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this task.'
           type: string
           format: uuid
           nullable: true
@@ -14036,13 +14036,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this task.
+        resolved_at:
+          description: The resolved at date for this task.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this task.
+        resumed_at:
+          description: The resumed at date for this task.
           type: string
           format: date-time
           nullable: true
@@ -14351,6 +14351,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this task.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this task.'
           type: string
@@ -14401,11 +14406,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this task.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this task.
           type: string
@@ -14451,13 +14451,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this task.
+        resolved_at:
+          description: The resolved at date for this task.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this task.
+        resumed_at:
+          description: The resumed at date for this task.
           type: string
           format: date-time
           nullable: true
@@ -14760,6 +14760,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this task.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this task.'
           type: string
@@ -14810,11 +14815,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this task.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this task.
           type: string
@@ -14860,13 +14860,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this task.
+        resolved_at:
+          description: The resolved at date for this task.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this task.
+        resumed_at:
+          description: The resumed at date for this task.
           type: string
           format: date-time
           nullable: true
@@ -15216,6 +15216,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this team.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this team.'
           type: string
@@ -15263,11 +15268,6 @@ components:
           nullable: true
         teammate_id:
           description: 'Foreign key: links a teammate to this team.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this team.'
           type: string
           format: uuid
           nullable: true
@@ -15331,13 +15331,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this team.
+        resolved_at:
+          description: The resolved at date for this team.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this team.
+        resumed_at:
+          description: The resumed at date for this team.
           type: string
           format: date-time
           nullable: true
@@ -15646,6 +15646,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this team.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this team.'
           type: string
@@ -15696,11 +15701,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this team.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this team.
           type: string
@@ -15746,13 +15746,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this team.
+        resolved_at:
+          description: The resolved at date for this team.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this team.
+        resumed_at:
+          description: The resumed at date for this team.
           type: string
           format: date-time
           nullable: true
@@ -16055,6 +16055,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this team.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this team.'
           type: string
@@ -16105,11 +16110,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this team.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this team.
           type: string
@@ -16155,13 +16155,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this team.
+        resolved_at:
+          description: The resolved at date for this team.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this team.
+        resumed_at:
+          description: The resumed at date for this team.
           type: string
           format: date-time
           nullable: true
@@ -16511,6 +16511,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this teammate.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this teammate.'
           type: string
@@ -16558,11 +16563,6 @@ components:
           nullable: true
         team_id:
           description: 'Foreign key: links a team to this teammate.'
-          type: string
-          format: uuid
-          nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this teammate.'
           type: string
           format: uuid
           nullable: true
@@ -16626,13 +16626,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this teammate.
+        resolved_at:
+          description: The resolved at date for this teammate.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this teammate.
+        resumed_at:
+          description: The resumed at date for this teammate.
           type: string
           format: date-time
           nullable: true
@@ -16941,6 +16941,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this teammate.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this teammate.'
           type: string
@@ -16991,11 +16996,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this teammate.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this teammate.
           type: string
@@ -17041,13 +17041,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this teammate.
+        resolved_at:
+          description: The resolved at date for this teammate.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this teammate.
+        resumed_at:
+          description: The resumed at date for this teammate.
           type: string
           format: date-time
           nullable: true
@@ -17350,6 +17350,11 @@ components:
           type: string
           format: uuid
           nullable: true
+        matrix_id:
+          description: 'Foreign key: links a matrix to this teammate.'
+          type: string
+          format: uuid
+          nullable: true
         campaign_id:
           description: 'Foreign key: links a campaign to this teammate.'
           type: string
@@ -17400,11 +17405,6 @@ components:
           type: string
           format: uuid
           nullable: true
-        matrix_id:
-          description: 'Foreign key: links a matrix to this teammate.'
-          type: string
-          format: uuid
-          nullable: true
         canceled_at:
           description: The canceled at date for this teammate.
           type: string
@@ -17450,13 +17450,13 @@ components:
           type: string
           format: date-time
           nullable: true
-        resumed_at:
-          description: The resumed at date for this teammate.
+        resolved_at:
+          description: The resolved at date for this teammate.
           type: string
           format: date-time
           nullable: true
-        resolved_at:
-          description: The resolved at date for this teammate.
+        resumed_at:
+          description: The resumed at date for this teammate.
           type: string
           format: date-time
           nullable: true

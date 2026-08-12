@@ -19,7 +19,7 @@
     "playground": true,
     "revision": false,
     "models": {
-        "Opportunity": "resources/configurations/playground-lead/model.opportunity.json"
+        "Opportunity": "resources/configurations/playground-lead/opportunity/model.json"
     },
     "policies": [],
     "requests": [],
@@ -45,6 +45,8 @@
         "model_route": "playground.lead.resource.opportunities",
         "model_slug": "opportunity",
         "model_slug_plural": "opportunities",
+        "model_variable": "opportunity",
+        "model_variable_plural": "opportunities",
         "module_label": "Lead",
         "module_label_plural": "Leads",
         "module_route": "playground.lead.resource",

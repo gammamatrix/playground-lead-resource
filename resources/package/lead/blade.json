@@ -13,10 +13,13 @@
     "model": "Lead",
     "model_column": "lead",
     "model_label": "Lead",
+    "model_slug": "lead",
+    "model_variable": "lead",
+    "model_variable_plural": "leads",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Lead",
     "models": {
-        "Lead": "resources/configurations/playground-lead/model.lead.json"
+        "Lead": "resources/configurations/playground-lead/lead/model.json"
     }
 }

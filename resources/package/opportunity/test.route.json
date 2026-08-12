@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/OpportunityRouteTest",
     "model": "Opportunity",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Opportunity",
+    "model_variable": "opportunity",
+    "model_variable_plural": "opportunities",
     "module": "Lead",
     "module_slug": "lead",
     "name": "OpportunityRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Opportunity": "resources/configurations/playground-lead/model.opportunity.json"
+        "Opportunity": "resources/configurations/playground-lead/opportunity/model.json"
     },
     "package_providers": []
 }

@@ -1,8 +1,6 @@
 <?php
 
-if (! config("playground-lead-resource.matrix.enabled")) {
-    return;
-}
+$withMatrix = class_exists("Playground\\Matrix\\Models\\Matrix");
 ?>
 
 <div class="card">
@@ -45,46 +43,48 @@ if (! config("playground-lead-resource.matrix.enabled")) {
             @endif
         @endif
     @elseif (! $data->locked && $routePatch)
-        @php
-            $matrices = Playground\Matrix\Models\Matrix::all();
-        @endphp
+        @if ($withMatrix)
+            @php
+                $matrices = Playground\Matrix\Models\Matrix::all();
+            @endphp
 
-        <div class="card-body">
-            <form
-                method="POST"
-                action="{{ $routePatch }}"
-                novalidate
-                class="needs-validation"
-            >
-                @csrf
-                @method("patch")
-                <div
-                    class="btn-toolbar mb-3"
-                    role="toolbar"
-                    aria-label="{{ __("Matrix Form") }}"
+            <div class="card-body">
+                <form
+                    method="POST"
+                    action="{{ $routePatch }}"
+                    novalidate
+                    class="needs-validation"
                 >
-                    <div class="input-group w-100">
-                        <select
-                            class="form-select"
-                            aria-label="{{ __("set the matrix") }}"
-                            name="matrix_id"
-                            required
-                        >
-                            <option selected value="">
-                                {{ __("set the matrix") }}
-                            </option>
-                            @foreach ($matrices as $matrix)
-                                <option value="{{ $matrix->id }}">
-                                    {{ $matrix->title ?: $matrix->label }}
+                    @csrf
+                    @method("patch")
+                    <div
+                        class="btn-toolbar mb-3"
+                        role="toolbar"
+                        aria-label="{{ __("Matrix Form") }}"
+                    >
+                        <div class="input-group w-100">
+                            <select
+                                class="form-select"
+                                aria-label="{{ __("set the matrix") }}"
+                                name="matrix_id"
+                                required
+                            >
+                                <option selected value="">
+                                    {{ __("set the matrix") }}
                                 </option>
-                            @endforeach
-                        </select>
-                        <button class="btn btn-success" role="button">
-                            {{ __("Save") }}
-                        </button>
+                                @foreach ($matrices as $matrix)
+                                    <option value="{{ $matrix->id }}">
+                                        {{ $matrix->title ?: $matrix->label }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-success" role="button">
+                                {{ __("Save") }}
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     @endif
 </div>

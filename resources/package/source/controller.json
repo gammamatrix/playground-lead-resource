@@ -19,7 +19,7 @@
     "playground": true,
     "revision": false,
     "models": {
-        "Source": "resources/configurations/playground-lead/model.source.json"
+        "Source": "resources/configurations/playground-lead/source/model.json"
     },
     "policies": [],
     "requests": [],
@@ -45,6 +45,8 @@
         "model_route": "playground.lead.resource.sources",
         "model_slug": "source",
         "model_slug_plural": "sources",
+        "model_variable": "source",
+        "model_variable_plural": "sources",
         "module_label": "Lead",
         "module_label_plural": "Leads",
         "module_route": "playground.lead.resource",

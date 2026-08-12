@@ -13,10 +13,13 @@
     "model": "Task",
     "model_column": "task",
     "model_label": "Task",
+    "model_slug": "task",
+    "model_variable": "task",
+    "model_variable_plural": "tasks",
     "type": "playground-resource",
     "route": "playground.lead.resource",
     "title": "Task",
     "models": {
-        "Task": "resources/configurations/playground-lead/model.task.json"
+        "Task": "resources/configurations/playground-lead/task/model.json"
     }
 }

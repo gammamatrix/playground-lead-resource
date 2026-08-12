@@ -4,7 +4,9 @@
     "extends": "",
     "fqdn": "Tests/Feature/Playground/Lead/Resource/ReportRouteTest",
     "model": "Report",
-    "model_fqdn": "",
+    "model_fqdn": "Playground/Lead/Models/Report",
+    "model_variable": "report",
+    "model_variable_plural": "reports",
     "module": "Lead",
     "module_slug": "lead",
     "name": "ReportRouteTest",
@@ -16,7 +18,7 @@
     "type": "playground-resource-controller-model-user",
     "uses": [],
     "models": {
-        "Report": "resources/configurations/playground-lead/model.report.json"
+        "Report": "resources/configurations/playground-lead/report/model.json"
     },
     "package_providers": []
 }
